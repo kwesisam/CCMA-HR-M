@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="white"
+             x:Class="HRM_PT.MainPage"
+             >
+    <!--MenuItem.Accelerator="ffff"-->
+    <ScrollView>
+        <StackLayout Background="DarkSlateGray"  >
+            <HorizontalStackLayout Margin="200,20,0,0">
+                <Image Source="ccma_preview.png" WidthRequest="30"/>
+                <Label Text="Cape Coast Metropolitan Assembly"  FontSize="20" Padding="10" FontAttributes="Bold"/>
+                <HorizontalStackLayout Margin="450,0,0,0">
+                    <Button Text="Sign Up" CornerRadius="10" HeightRequest="10" Padding="5,-5,5,-5" WidthRequest="100" BackgroundColor="NavajoWhite" Clicked="SignUpPage" />
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Margin="0,50,0,0">
+                <StackLayout Margin="200,20,0,0" Spacing="-20">
+                    <Label Text="Human" FontSize="70" TextColor="Green"/>
+                    <Label Text="Resources" FontSize="70" TextColor="LightCoral"/>
+                    <BoxView WidthRequest="320" HeightRequest="5"   BackgroundColor="White" HorizontalOptions="StartAndExpand" Margin="6,25,0,15" />
+                    <Label Text="Department" FontSize="70" TextColor="NavajoWhite"/>
+                    <BoxView WidthRequest="390" HeightRequest="5" BackgroundColor="White" HorizontalOptions="StartAndExpand" Margin="6,25,0,15" />
+
+                </StackLayout>
+                <StackLayout Margin="200,50,0,0">
+                    <Label Text="Fostering Excellence, Nurturing Potential: At our Human Resources office, we are committed to fostering a culture of excellence by nurturing the potential of every employee. Our mission is to recruit, develop, and retain the best talent, ensuring they thrive both personally and professionally. Together, we pave the way for success, one individual at a time."
+                       WidthRequest="350"
+                       FontSize="14" CharacterSpacing="2"
+                       />
+                    <Button Text="Sign In" 
+                        Margin="0,20,0,0" 
+                        BackgroundColor="NavajoWhite" 
+                        CornerRadius="0" 
+                        TextColor="DarkSlateGray"
+                        FontSize="20"
+                        >
+                        <Button.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ShowSignIn"/>
+                        </Button.GestureRecognizers>
+                    </Button>
+                </StackLayout>
+
+            </HorizontalStackLayout>
+            <StackLayout BackgroundColor="NavajoWhite" Margin="0,100,0,0" IsVisible="false" x:Name="signinpage">
+                <StackLayout WidthRequest="399" Padding="60" BackgroundColor="LightCoral" Spacing="10" Margin="0,40,0,0">
+                    <StackLayout HorizontalOptions="Start" Margin="-27,0,0,20">
+                        <Label Text="Hello," FontSize="50" FontAttributes="Bold"/>
+                        <HorizontalStackLayout>
+                            <Label Text="Friend!" FontSize="50" FontAttributes="Bold" x:Name="user" />
+
+                        </HorizontalStackLayout>
+                    </StackLayout>
+                    <Entry 
+                   Placeholder="Enter your SSNIT"
+                   ClearButtonVisibility="WhileEditing"
+                        WidthRequest="350"
+                        x:Name="hello"
+                        TextChanged="On_Name"
+                   />
+                    <Label x:Name="display"/>
+                    <HorizontalStackLayout Margin="-33,0,0,0">
+                        <Entry 
+                       Placeholder="Enter your password"
+                       ClearButtonVisibility="WhileEditing"
+                       IsPassword="true"
+                       IsSpellCheckEnabled="false"
+                       WidthRequest="300"
+                            x:Name="password"
+                       
+                            />
+                        <Image Source="eye_slash_icon.png" WidthRequest="25" Margin="0,15,0,0" x:Name="show_password">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ShowPassword"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                    </HorizontalStackLayout>
+  
+                  
+                    <Button Text="Sign In" WidthRequest="400" CornerRadius="0" Margin="-1,20,0,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" Clicked="nextPage"/>
+                    <Button Text="ayoo" Clicked="ha"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+    </ScrollView>
+    
+
+
+
+</ContentPage>
+<!---
+     <StackLayout Spacing="10">
+
+  
+     <Frame>
+         <Frame 
+         WidthRequest="1350"
+         HeightRequest="300"
+          Margin="0,20,0,0"
+         BackgroundColor="Black">
+             <Image
+                 Source="dotnet_bot.png"/>
+         </Frame>
+     </Frame>
+     <Frame>
+         <Frame 
+         WidthRequest="1350"
+         HeightRequest="200"
+         
+         BackgroundColor="Black">
+             <Label
+                 Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rhoncus urna eu metus pharetra porttitor. Morbi ut malesuada dolor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla a sapien a eros suscipit sodales sed vitae lectus. Pellentesque libero diam, cursus venenatis egestas sed, viverra ut justo. Donec lacinia eu nulla vitae viverra. Praesent aliquet dui sapien, quis blandit velit condimentum ut. Sed turpis augue, aliquet at accumsan nec, fringilla at ipsum. Nulla sagittis consequat justo vel feugiat. Aliquam cursus luctus leo. Duis pellentesque finibus augue, eu egestas ex feugiat posuere. Maecenas et tortor pharetra, finibus tellus vitae, scelerisque mi. Suspendisse finibus ipsum vel nisl posuere, vitae convallis velit pharetra.
+                 "
+                 HorizontalTextAlignment="Center"
+                 TextColor="Chocolate"
+                 FontSize="20"
+                 Margin="0,20,0,0"
+                 BackgroundColor="Beige"
+                 />
+
+         </Frame>
+     </Frame>
+ </StackLayout>\
+    
+    
+    
+      <ScrollView>
+  <StackLayout Spacing="10">
+      <FlexLayout 
+          FlexLayout.Grow="1"
+          Margin="10,10,10,10"
+          FlexLayout.Shrink="1"
+          AlignItems="Center"
+          Direction="Column"
+          >
+          <Frame 
+                  WidthRequest="1325"
+                  HeightRequest="300"
+                  Margin="0,20,0,0"
+                  BackgroundColor="Black">
+              <Image
+                  Source="dotnet_bot.png"/>
+          </Frame>
+         
+
+      </FlexLayout>
+      <FlexLayout
+         FlexLayout.Grow="1"
+         Margin="10,10,10,10"
+         FlexLayout.Shrink="1"
+         AlignItems="Center"
+          >
+          <Frame 
+                BackgroundColor="Black">
+              <Label
+               Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rhoncus urna eu metus pharetra porttitor. Morbi ut malesuada dolor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla a sapien a eros suscipit sodales sed vitae lectus. Pellentesque libero diam, cursus venenatis egestas sed, viverra ut justo. Donec lacinia eu nulla vitae viverra. Praesent aliquet dui sapien, quis blandit velit condimentum ut. Sed turpis augue, aliquet at accumsan nec, fringilla at ipsum. Nulla sagittis consequat justo vel feugiat. Aliquam cursus luctus leo. Duis pellentesque finibus augue, eu egestas ex feugiat posuere. Maecenas et tortor pharetra, finibus tellus vitae, scelerisque mi. Suspendisse finibus ipsum vel nisl posuere, vitae convallis velit pharetra.
+               "
+               HorizontalTextAlignment="Center"
+               TextColor="Chocolate"
+               FontSize="20"
+               Margin="0,20,0,0"
+               />
+          </Frame>
+   
+      </FlexLayout>
+  </StackLayout>
+    
+  </ScrollView>
+
+
+
+
+
+
+
+ <Frame
+         CornerRadius="5"
+         Padding="20"
+         BackgroundColor="Gray"
+         HeightRequest="350"
+         WidthRequest="400"
+         Margin="0,100,0,0"
+     >
+     <StackLayout>
+         <HorizontalStackLayout
+      HorizontalOptions="Center" >
+             <Label Text="Sign In"/>
+         </HorizontalStackLayout>
+         <Label
+         Text = "SSNIT Number"
+      />
+         <Entry 
+             Placeholder="Enter your SSNIT"
+             ClearButtonVisibility="WhileEditing"
+             />
+         <Label
+         Text = "Password"
+
+      />
+         <Entry 
+             Placeholder="Enter your password"
+             ClearButtonVisibility="WhileEditing"
+             IsPassword="true"
+             IsSpellCheckEnabled="false"
+             />
+         <Button 
+         Text="Sign In"
+     />
+         <HorizontalStackLayout
+      HorizontalOptions="Center" >
+             <Label Text="Not a member"/>
+             <Label Text="Sign Up" TextColor="Blue"/>
+
+         </HorizontalStackLayout>
+
+
+     </StackLayout>
+
+ </Frame>
+    -->

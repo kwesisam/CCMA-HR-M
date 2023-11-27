@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HRM_PT.SignUpPage"
+                     BackgroundColor="DarkSlateGray"
+
+             >
+    <ContentPage.Resources>
+        <StyleSheet Source="Resources/Styles/styles.css" />
+    </ContentPage.Resources>
+    <ScrollView>
+        <StackLayout
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        >
+           
+               
+
+                <StackLayout Spacing="15" WidthRequest="350" >
+                    
+                    <HorizontalStackLayout
+                    HorizontalOptions="Center" Margin="0,0,0,20"
+                    >
+                        <StackLayout Spacing="5">
+                            <Label Text="Sign Up" FontSize="25" FontAttributes="Bold" FontFamily="Arial" TextColor="Chocolate"  HorizontalOptions="Center"/>
+                            <Label Text="Create a Human Resource Account" HorizontalOptions="Center" TextColor="White" FontSize="15"/>
+                        </StackLayout>
+                    </HorizontalStackLayout>
+                    <Label Text="Staff ID" TextColor="White" FontSize="15"/>
+                    <Entry x:Name="staffID" TextChanged="OnStaffID" FontSize="13" Placeholder="Social Security Number" PlaceholderColor="White" IsSpellCheckEnabled="False" ClearButtonVisibility="WhileEditing" />
+                    <Label x:Name="staffID_error" FontSize="12" TextColor="red" IsVisible="false" />
+                    <Label Text="First Name" FontSize="15"/>
+                    <Entry x:Name="firstName" FontSize="13" TextChanged="OnFirstName" Placeholder="Enter your first name" PlaceholderColor="White" IsSpellCheckEnabled="False" ClearButtonVisibility="WhileEditing"/>
+                    <Label x:Name="firstName_error" FontSize="12" TextColor="red" IsVisible="false" />
+                    <Label Text="Surname" FontSize="15"/>
+                    <Entry x:Name="surname" FontSize="13" TextChanged="OnSurname" Placeholder="Enter your surname" PlaceholderColor="White" IsSpellCheckEnabled="False" ClearButtonVisibility="WhileEditing"/>
+                    <Label x:Name="surname_error" FontSize="12" TextColor="red" IsVisible="false" />
+                    <Label Text="Password" TextColor="White" FontSize="15"/>
+                    <HorizontalStackLayout Spacing="10">
+                    <Entry TextChanged="OnPassword" FontSize="13" Placeholder="Password" PlaceholderColor="White" IsPassword="True"  IsSpellCheckEnabled="False"  x:Name="show_password" ClearButtonVisibility="WhileEditing" WidthRequest="300" />
+                        <Image Source="eye_slash_icon.png" WidthRequest="20" x:Name="image_show_password">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ShowPassword"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </HorizontalStackLayout>
+                    <Label x:Name="password_error" FontSize="12" TextColor="red" />
+                    <Button Clicked="OnSubmit" Text="Submit" FontAttributes="Bold" FontSize="20"  TextColor="Black" />
+                <HorizontalStackLayout>
+                    <ActivityIndicator IsRunning="False" x:Name="signUpActivitor" />
+                    <Label x:Name="submitInfo" TextColor="Blue" FontSize="14" IsVisible="false" />
+                </HorizontalStackLayout>
+                    
+                    <HorizontalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="2"
+                    >
+
+                        <Label Text="Already have an account? "/>
+                        <Label Text="Sign In" FontSize="15" TextColor="Blue" FontAttributes="Bold" Margin="0,-2,0,0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="SignInPage"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
+
+                </StackLayout>
+        </StackLayout>
+
+    </ScrollView>
+</ContentPage>

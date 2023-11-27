@@ -1,0 +1,67 @@
+is_global = true
+build_property.TargetFramework = net7.0-windows10.0.19041.0
+build_property.TargetPlatformMinVersion = 10.0.17763.0
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 9A19103F-16F7-4668-BE54-9A1E7A4F7556
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = HRM_PT
+build_property.ProjectDir = C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+
+[C:/Users/SKM/Work Station/CCMA-HR-M/HRM_PT/HRM_PT/ActionPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = HRM_PT.ActionPage.xaml
+build_metadata.AdditionalFiles.TargetPath = ActionPage.xaml
+build_metadata.AdditionalFiles.RelativePath = ActionPage.xaml
+
+[C:/Users/SKM/Work Station/CCMA-HR-M/HRM_PT/HRM_PT/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = HRM_PT.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/Users/SKM/Work Station/CCMA-HR-M/HRM_PT/HRM_PT/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = HRM_PT.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/Users/SKM/Work Station/CCMA-HR-M/HRM_PT/HRM_PT/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = HRM_PT.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[C:/Users/SKM/Work Station/CCMA-HR-M/HRM_PT/HRM_PT/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = HRM_PT.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/Users/SKM/Work Station/CCMA-HR-M/HRM_PT/HRM_PT/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = HRM_PT.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[C:/Users/SKM/Work Station/CCMA-HR-M/HRM_PT/HRM_PT/SignUpPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = HRM_PT.SignUpPage.xaml
+build_metadata.AdditionalFiles.TargetPath = SignUpPage.xaml
+build_metadata.AdditionalFiles.RelativePath = SignUpPage.xaml
+
+[C:/Users/SKM/Work Station/CCMA-HR-M/HRM_PT/HRM_PT/WorkCollection.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = HRM_PT.WorkCollection.xaml
+build_metadata.AdditionalFiles.TargetPath = WorkCollection.xaml
+build_metadata.AdditionalFiles.RelativePath = WorkCollection.xaml
+
+[C:/Users/SKM/Work Station/CCMA-HR-M/HRM_PT/HRM_PT/Resources/Styles/styles.css]
+build_metadata.AdditionalFiles.GenKind = Css
+build_metadata.AdditionalFiles.ManifestResourceName = HRM_PT.Resources.Styles.styles.css
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\styles.css
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\styles.css
