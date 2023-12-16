@@ -1,12 +1,23 @@
+
 namespace HRM_PT;
 
 public partial class SignUpPage : ContentPage
 {
-	public SignUpPage()
+	public SignUpPage(string a)
 	{
 		InitializeComponent();
-	}
+		// Set an empty title to hide the system back button
+		System.Diagnostics.Debug.WriteLine(a);
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        // Perform any custom logic if needed before disabling the back button
+        // For example:
+        // Display an alert or confirmation dialog before preventing the back action
 
+        // Disable the back button action (prevent navigating back or closing the page)
+        return true;
+    }
     private bool isvalidStaffID;
     private bool isvalidFirstName;
     private bool isvalidSurname;
@@ -39,11 +50,7 @@ public partial class SignUpPage : ContentPage
 		}
 	}
 
-	async void SignInPage(object sender, EventArgs e)
-	{
-		await Navigation.PushAsync(new MainPage());
-	}
-
+	
 
 
 	void OnStaffID(object sender, TextChangedEventArgs e)
@@ -51,7 +58,7 @@ public partial class SignUpPage : ContentPage
 		string entryValue = staffID.Text;
         submitInfo.IsVisible = false;
 
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
 		{
 			staffID_ = entryValue;
 			isvalidStaffID = true;
@@ -71,7 +78,7 @@ public partial class SignUpPage : ContentPage
 		string entryValue = firstName.Text;
         submitInfo.IsVisible = false;
 
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
 		{
 			firstName_ = entryValue;
 			firstName_error.IsVisible = false;
@@ -92,7 +99,7 @@ public partial class SignUpPage : ContentPage
 		string entryValue = surname.Text;
         submitInfo.IsVisible = false;
 
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
 		{
 			surname_ = entryValue;
             isvalidSurname = true;
@@ -127,8 +134,21 @@ public partial class SignUpPage : ContentPage
         }
     }
 
-	void OnSubmit(object sender, EventArgs e)
+	async void OnSubmit (object sender, EventArgs e)
 	{
+        Button clickedButton = (Button)sender;
+
+        // Change the background color when the button is clicked
+        clickedButton.BackgroundColor = Colors.PapayaWhip; // Change to any desired color
+
+        // Use a delay or timer to revert the color after a certain time
+        await Task.Delay(500); // Wait for 1 second (adjust time as needed)
+
+        // Revert to the original color after 1 second (adjust time as needed)
+        clickedButton.BackgroundColor = Colors.NavajoWhite;
+        
+
+
         signUpActivitor.IsRunning = true;
 
         if (!(staffIDError))
@@ -161,6 +181,10 @@ public partial class SignUpPage : ContentPage
             signUpActivitor.IsRunning = false;
             App.LoginsRep.AddNewEmployee(staffID_, firstName_, surname_, password_);
 			submitInfo.Text = App.LoginsRep.statusMessage;
+			if (App.LoginsRep.statusMessage.Equals("Success"))
+			{
+                await Navigation.PopAsync();
+            }
 		}
 		else
 		{
@@ -169,4 +193,9 @@ public partial class SignUpPage : ContentPage
 			submitInfo.Text = "Try again";
 		}
 	}
+
+	async void goToHome(object sender, EventArgs e)
+	{
+        await Navigation.PopAsync();
+    }
 }

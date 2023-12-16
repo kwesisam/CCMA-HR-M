@@ -52,25 +52,58 @@ public class LoginsRepository
         }
     }
 
-    public bool CheckUser(string _staffID, string _password)
+    public List<Logins> CheckUserStaffID(string _staffID)
     {
         try
         {
             Init();
 
-            Logins test = conn.Table<Logins>().FirstOrDefault(e => e.staffID == _staffID && e.password == _password);
+            Logins test = conn.Table<Logins>().FirstOrDefault(e => e.staffID == _staffID);
             
             if(test != null)
             {
-                return true;
                 statusMessage = "Success";
+                return conn.Table<Logins>().Where(e => e.staffID == _staffID).ToList();
+
+            }
+            else
+            {
+                statusMessage = "error";
             }
         }catch (Exception e)
         {
             statusMessage = string.Format("Invalid staff ID or password");
         }
 
-        return false;
+        return new List<Logins>();
+    }
+
+    public List<Logins> CheckUser(string _staffID, string _password)
+    {
+        try
+        {
+            Init();
+
+            Logins test = conn.Table<Logins>().FirstOrDefault(e => e.staffID == _staffID && e.password == _password);
+
+            if (test != null)
+            {
+                statusMessage = "Success";
+
+                return conn.Table<Logins>().Where(e => e.staffID == _staffID).ToList();
+            }
+            else
+            {
+                statusMessage = "error";
+            }
+
+        }
+        catch (Exception e)
+        {
+            statusMessage = string.Format("Invalid staff ID or password");
+        }
+
+        return new List<Logins>();
     }
 }
 

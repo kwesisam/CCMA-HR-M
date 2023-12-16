@@ -5,13 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:HRM_PT"
     BackgroundColor="White"
+    NavigationPage.HasBackButton="False"
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        ContentTemplate="{DataTemplate local:SignUpPage}"
+        ContentTemplate="{DataTemplate local:MainPage}"
       
         
-        Route="SignupPage" />
+        Route="MainPage" />
 
 
 </Shell>

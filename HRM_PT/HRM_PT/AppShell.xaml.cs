@@ -5,6 +5,9 @@
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(SignUpPage), typeof(SignUpPage));
+            SetBackButtonBehavior(this, new BackButtonBehavior { IsEnabled = false });
+
         }
     }
 }

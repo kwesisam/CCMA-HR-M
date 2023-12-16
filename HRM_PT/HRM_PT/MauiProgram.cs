@@ -16,10 +16,17 @@ namespace HRM_PT
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            builder.Services.AddSingleton<MainPage>();
+
+            builder.Services.AddTransient<SignUpPage>();
+
+
+
             string dbPath = FileAccessHelper.GetLocalFilePath("humanresource.db");
             builder.Services.AddSingleton<EmployeeRepository>(s => ActivatorUtilities.CreateInstance<EmployeeRepository>(s, dbPath));
             builder.Services.AddSingleton<LeaveRepository>(s => ActivatorUtilities.CreateInstance<LeaveRepository>(s, dbPath));
             builder.Services.AddSingleton<LoginsRepository>(s => ActivatorUtilities.CreateInstance<LoginsRepository>(s, dbPath));
+            builder.Services.AddSingleton<PerformanceRepository>(s => ActivatorUtilities.CreateInstance<PerformanceRepository>(s, dbPath));
 #if WINDOWS
     builder.ConfigureLifecycleEvents(events =>
     {

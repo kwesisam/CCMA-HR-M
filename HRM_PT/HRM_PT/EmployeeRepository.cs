@@ -190,7 +190,7 @@ public class EmployeeRepository
         }
         catch (Exception e)
         {
-            statusMessage = string.Format("Failded to add {0}{1}", e.Message, _identificationStaffID);
+            statusMessage = string.Format("Failed to add {0}{1}", e.Message, _identificationStaffID);
 
         }
     }
@@ -219,8 +219,9 @@ public class EmployeeRepository
             if(test != null)
             {
                 statusMessage = "success";
-                return conn.Table<EmployeeDB>().Where(e => e.identificationStaffID == staffID).ToList();
                 testData = true;
+                return conn.Table<EmployeeDB>().Where(e => e.identificationStaffID == staffID).ToList();
+                
             }
             else
             {
@@ -271,8 +272,9 @@ public class EmployeeRepository
             if (test != null)
             {
                 statusMessage = "Success";
-                return conn.Table<EmployeeDB>().Where(e => e.employeeDetialsDepartment == department).ToList();
                 testData = true;
+                return conn.Table<EmployeeDB>().Where(e => e.employeeDetialsDepartment == department).ToList();
+                
             }
             else
             {
@@ -307,6 +309,7 @@ public class EmployeeRepository
         try
         {
             Init();
+            statusMessage = "Success";
             return conn.Table<EmployeeDB>().Where(e => e.identificationPaymentMode == paymentMode).ToList();
         }catch (Exception e)
         {
@@ -543,5 +546,8 @@ public class EmployeeRepository
             return false;
         }
     }
+
+
+
 }
 

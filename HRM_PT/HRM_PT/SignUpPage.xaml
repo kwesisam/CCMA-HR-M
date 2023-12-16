@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HRM_PT.SignUpPage"
-                     BackgroundColor="DarkSlateGray"
-
+             BackgroundColor="DarkSlateGray"
+             
              >
     <ContentPage.Resources>
         <StyleSheet Source="Resources/Styles/styles.css" />
@@ -45,7 +45,9 @@
                         </Image>
                     </HorizontalStackLayout>
                     <Label x:Name="password_error" FontSize="12" TextColor="red" />
-                    <Button Clicked="OnSubmit" Text="Submit" FontAttributes="Bold" FontSize="20"  TextColor="Black" />
+                <Button Clicked="OnSubmit" Text="Submit" FontAttributes="Bold" FontSize="20" BackgroundColor="NavajoWhite"  TextColor="DarkSlateGray"/>
+
+
                 <HorizontalStackLayout>
                     <ActivityIndicator IsRunning="False" x:Name="signUpActivitor" />
                     <Label x:Name="submitInfo" TextColor="Blue" FontSize="14" IsVisible="false" />
@@ -58,9 +60,9 @@
 
                         <Label Text="Already have an account? "/>
                         <Label Text="Sign In" FontSize="15" TextColor="Blue" FontAttributes="Bold" Margin="0,-2,0,0">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="SignInPage"/>
-                            </Label.GestureRecognizers>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="goToHome" />
+                        </Label.GestureRecognizers>
                         </Label>
                     </HorizontalStackLayout>
 

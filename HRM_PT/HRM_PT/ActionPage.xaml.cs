@@ -1,19 +1,22 @@
 using HRM_PT.NewFolder3;
 using HRM_PTl;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Windows;
+using System.IO;
 using System.Text.RegularExpressions;
 using HRM_PT.DbModel;
 using System.Globalization;
+using System.Formats.Asn1;
 
 namespace HRM_PT;
 
 public partial class ActionPage : ContentPage
 {
-	public ActionPage()
+    private string fullPath;
+    private string fullPath1;
+    private string fullPath2;
+	public ActionPage(List<Logins> list)
 	{
-		InitializeComponent();
+
+        InitializeComponent();
 
         /*spokenCollection.ItemsSource = GetLanguages();
 		readingCollection.ItemsSource = GetLanguages();
@@ -29,20 +32,106 @@ public partial class ActionPage : ContentPage
 		inputNextOfKinCountries.ItemsSource = countries;
         _inputbiographicalDataCountries.ItemsSource = countries;
         _inputNextOfKinCountries.ItemsSource = countries;
+        
+        string folderPath = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.Parent.Parent.FullName;
+        System.Diagnostics.Debug.WriteLine(folderPath);
+        string filename = @"ExcelFiles\EmployeeRecord.txt";
+        string filename1 = @"ExcelFiles\LeaveManagement.txt";
+        string filename2 = @"ExcelFiles\PerformanceManagement.txt";
+
+        string filePath = Path.Combine(folderPath, filename);
+        if (File.Exists(filePath))
+        {
+            System.Diagnostics.Debug.WriteLine("file exist");
+            fullPath = filePath;
+            System.Diagnostics.Debug.WriteLine(fullPath);
+        }
+        else
+        {
+            System.Diagnostics.Debug.WriteLine("error file does not exist");
+        }
+
+        string filePath1 = Path.Combine(folderPath, filename1);
+
+        if (File.Exists(filePath1))
+        {
+            System.Diagnostics.Debug.WriteLine("file1 exist");
+            fullPath1 = filePath1;
+            System.Diagnostics.Debug.WriteLine(fullPath1);
+        }
+        else
+        {
+            System.Diagnostics.Debug.WriteLine("error file1 does not exist");
+        }
+
+        string filePath2 = Path.Combine(folderPath, filename2);
+
+        if (File.Exists(filePath2))
+        {
+            System.Diagnostics.Debug.WriteLine("file2 exist");
+            fullPath2 = filePath2;
+            System.Diagnostics.Debug.WriteLine(fullPath2);
+        }
+        else
+        {
+            System.Diagnostics.Debug.WriteLine("error fil21 does not exist");
+        }
     }
+    protected override bool OnBackButtonPressed()
+    {
+        
+        return true;
+    }
+    public static void getCurrentDirectory()
+    {
+        string a;
+        string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        DirectoryInfo parentDirectory = Directory.GetParent(currentDirectory);
+        if (!string.IsNullOrEmpty(currentDirectory))
+        {
+            // Get the parent directory of the application's folder
+            DirectoryInfo parentDirectoryInfo = Directory.GetParent(currentDirectory);
+            a = Directory.GetParent(currentDirectory).Parent.Parent.Parent.Parent.Parent.FullName;
+            // Check if parent directory exists and get its full path
+            System.Diagnostics.Debug.WriteLine(parentDirectoryInfo);
+           
+
+            // Set the label's text to the parent directory
+
+
+        }
+        else
+        {
+            // Handle the case where current directory is null or empty
+            System.Diagnostics.Debug.WriteLine("Unable to retrieve parent directory. Current directory is null or empty.");
+        }
+
+
+        
+    }
+    //private static string currentDirectory;
+
+    //public static string folderPath;
+
+    //private static string filename = @"ExcelFiles\EmployeeRecord.txt";
+
+    //private static string filePath = Path.Combine(folderPath, filename)
+
 
     //search
     private string searchByStaffIDEntryStaffID;
     private bool testsearchByStaffIDEntryStaffID = false;
     private bool isvalidsearchByStaffIDEntryStaffID = false;
     private string searchByDepartmentName;
+    private bool testsearchBuDepartmentEntry = false;
+    private bool isvalidsearchByDepartmentEntry = false;
     private string searchBySub_Metro;
     private string searchByPayment_Mode;
 
     void OnSearchByStaffID_entryStaffID(object sender, TextChangedEventArgs e)
     {
         //statusSubmitSearchByStaffID.IsVisible = false;
-
+        statusSubmitSearchByStaffID.IsVisible = false;
         string entryValue = searchByStaffID_entryStaffID.Text;
         if (!(string.IsNullOrWhiteSpace(entryValue)))
         {
@@ -57,7 +146,17 @@ public partial class ActionPage : ContentPage
     void OnSearchByDepartment_Name(object sender, TextChangedEventArgs e)
     {
         string entryValue = searchByDepartment_Name.Text;
-        searchByDepartmentName = entryValue;
+        statusSubmitSearchDepartment.IsVisible = false;
+
+        if (!string.IsNullOrEmpty(entryValue))
+        {
+            searchByDepartmentName = entryValue;
+            testsearchBuDepartmentEntry = true;
+            isvalidsearchByDepartmentEntry = true;
+            errorsearchByDepartment_entryStaffID.IsVisible = false;
+        }
+
+
     }
 
     void OnPickerSearchBy_SubMetro(object sender, EventArgs e)
@@ -75,11 +174,20 @@ public partial class ActionPage : ContentPage
     private List<EmployeeDB> GetPeopleByStaffIDlist;
     void submitSearchByStaffID(object sender, EventArgs e)
     {
+        byStaffID.IsVisible = true;
+
+        byDepartment.IsVisible = false;
+        byPayment.IsVisible = false;
+        bySubMetro.IsVisible = false;
+        act1.IsRunning = true;
+
+
 
         if (!testsearchByStaffIDEntryStaffID)
         {
             errorsearchByStaffID_entryStaffID.Text = "This field cannot be empty";
             errorsearchByStaffID_entryStaffID.IsVisible = true;
+            act1.IsRunning = false;
         }
 
         if (isvalidsearchByStaffIDEntryStaffID)
@@ -89,6 +197,7 @@ public partial class ActionPage : ContentPage
             {
                 statusSubmitSearchByStaffID.Text = App.EmployeeRep.statusMessage;
                 statusSubmitSearchByStaffID.IsVisible = true;
+                //byStaffID.IsVisible = true;
 
 
                 foreach (EmployeeDB emp in GetPeopleByStaffIDlist)
@@ -256,12 +365,14 @@ public partial class ActionPage : ContentPage
 
                 }
 
-
+                act1.IsRunning = false;
             }
             else
             {
                 statusSubmitSearchByStaffID.Text = searchByStaffIDEntryStaffID + " does not exist";
                 statusSubmitSearchByStaffID.IsVisible = true;
+                act1.IsRunning = false;
+                byStaffID.IsVisible = false;
             }
         }
         
@@ -435,17 +546,53 @@ public partial class ActionPage : ContentPage
 
     void submitSearchByDepartment(object sender, EventArgs e)
     {
-        ByDepartment.ItemsSource = App.EmployeeRep.GetPeopleByDepartment(searchByDepartmentName);
+        byPayment.IsVisible = false;
+        bySubMetro.IsVisible = false;
+        byStaffID.IsVisible = false;
+        byDepartment.IsVisible = true;
+        act2.IsRunning = true;
+        if (!testsearchBuDepartmentEntry)
+        {
+            errorsearchByDepartment_entryStaffID.IsVisible = true;
+            errorsearchByDepartment_entryStaffID.Text = "This field cannot be empty";
+            act2.IsRunning = false;
+        }
+
+        if (isvalidsearchByDepartmentEntry)
+        {
+            ByDepartment.ItemsSource = App.EmployeeRep.GetPeopleByDepartment(searchByDepartmentName);
+            string check = App.EmployeeRep.statusMessage;
+
+            act2.IsRunning = false;
+            if (check != "Success")
+            {
+                statusSubmitSearchDepartment.Text = "Failed to retrieve data";
+                statusSubmitSearchDepartment.IsVisible = true;
+            }
+        }
     }
 
     void submitSearchBySub_Metro(object sender, EventArgs e)
     {
+        byDepartment.IsVisible = false;
+        byPayment.IsVisible = false;
+        byStaffID.IsVisible = false;
+        bySubMetro.IsVisible = true;
+        System.Diagnostics.Debug.WriteLine(searchBySub_Metro);
+        act3.IsRunning = true;
         BySubMetro.ItemsSource = App.EmployeeRep.GetPeopleBySubMetro(searchBySub_Metro);
+        act3.IsRunning = false;
     }
 
     void submitSearchBy_Payment(object sender, EventArgs e)
     {
-        ByDepartment.ItemsSource = App.EmployeeRep.GetPeopleByPaymentMode(searchByPayment_Mode);
+        byDepartment.IsVisible = false;
+        bySubMetro.IsVisible = false;
+        byStaffID.IsVisible = false;
+        byPayment.IsVisible = true;
+        System.Diagnostics.Debug.WriteLine(searchByPayment_Mode);
+        ByPaymentMode.ItemsSource = App.EmployeeRep.GetPeopleByPaymentMode(searchByPayment_Mode);
+        System.Diagnostics.Debug.WriteLine(App.EmployeeRep.statusMessage);
     }
 
 
@@ -482,7 +629,7 @@ public partial class ActionPage : ContentPage
     private bool isvalidDirectorate = false;
     private bool isvalidDepartment = false;
     private bool isvalidUnit = false;
-    private bool isvalidSupervisor = false;
+    private bool isvalidSupervisor = true;
     private bool isvalidJobClass = false;
     private bool isvalidJobTitle = false;
     private bool isvalidJobGrade = false;
@@ -1151,7 +1298,7 @@ public partial class ActionPage : ContentPage
     void OnInputSurnameTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsSurname.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter) )
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter) )
         {
             employeeDetialsSurname = entryValue;
             testInputEmployeeDetialsSurnameError = true;
@@ -1176,7 +1323,7 @@ public partial class ActionPage : ContentPage
     void OnInputFirstNameTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsFirstName.Text;
-        if(!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if(!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             employeeDetialsFirstName = entryValue;
             testInputEmployeeDetialsFirstNameError = true;
@@ -1229,7 +1376,7 @@ public partial class ActionPage : ContentPage
     void OnInputDirectorateTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsDirectorate.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue))  && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue))  && entryValue.All(char.IsLetter))
         {
             employeeDetialsDirectorate = entryValue;
             testInputEmployeeDetialsDirectorateError = true;
@@ -1254,7 +1401,7 @@ public partial class ActionPage : ContentPage
     void OnInputDepartmentTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsDepartment.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             employeeDetialsDepartment = entryValue;
             testInputEmployeeDetialsDepartmentError = true;
@@ -1280,7 +1427,7 @@ public partial class ActionPage : ContentPage
     void OnInputUnitTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsUnit.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             employeeDetialsUnit = entryValue;
             inputEmployeeDetialsUnitError.IsVisible = false;
@@ -1297,7 +1444,7 @@ public partial class ActionPage : ContentPage
     void OnInputImmediateSupervisorTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsImmediateSupervisor.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             employeeDetialsImmediateSupervisor = entryValue;
             testInputEmployeeDetialsImmediateSupervisorError = true;
@@ -1324,7 +1471,7 @@ public partial class ActionPage : ContentPage
     void OnInputCostCenterTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsCostCenter.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             employeeDetialsCostCenter = entryValue;
             testInputEmployeeDetialsCostCenterError = true;
@@ -1340,7 +1487,7 @@ public partial class ActionPage : ContentPage
     void OnInputJobClassTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsJobClass.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             employeeDetialsJobClass = entryValue;
             inputEmployeeDetialsJobClassError.IsVisible = false;
@@ -1357,7 +1504,7 @@ public partial class ActionPage : ContentPage
     void OnInputJobTitleTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsJobTitle.Text;
-        if(!(string.IsNullOrWhiteSpace(entryValue)))
+        if(!(string.IsNullOrEmpty(entryValue)))
         {
             employeeDetialsJobTitle = entryValue;
             inputEmployeeDetialsJobTitleError.IsVisible = false;
@@ -1374,7 +1521,7 @@ public partial class ActionPage : ContentPage
     void OnInputJobGradeTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsJobGrade.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             employeeDetialsJobGrade = entryValue;
             testInputEmployeeDetialsJobGradeError = true;
@@ -1390,7 +1537,7 @@ public partial class ActionPage : ContentPage
     void OnInputGradeLevelTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsGradeLevel.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             employeeDetialsGradeLevel = entryValue;
             testInputEmployeeDetialsJobGradeError = true;
@@ -1407,7 +1554,7 @@ public partial class ActionPage : ContentPage
     void OnInputGradePointTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsGradePoint.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             employeeDetialsGradePoint = entryValue;
             testInputEmployeeDetialsGradePointError = true;
@@ -1424,7 +1571,7 @@ public partial class ActionPage : ContentPage
     void OnInputBankNameTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputBankDetialsBankName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             bankDetialsBankName = entryValue;
             testInputBankDetialsBankNameError = true;
@@ -1441,7 +1588,7 @@ public partial class ActionPage : ContentPage
     void OnInputBankBranchNameTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputBankDetialsBankBranchName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             testInputBankDetialsBankBranchNameError = true;
             inputBankDetialsBankBranchNameError.IsVisible = false;
@@ -1459,7 +1606,7 @@ public partial class ActionPage : ContentPage
     void OnInputBankAccountTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputBankDetialsBankAccount.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             bankDetialsBankAccount = entryValue;
             inputBankDetialsBankAccountError.IsVisible = false;
@@ -1475,7 +1622,7 @@ public partial class ActionPage : ContentPage
     void OnInputMaidenNameTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputBiographicalDataMaidenName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             biographicalDataMaidenName = entryValue;
             testInputBiographicalDataMaidenNameError = true;
@@ -1500,7 +1647,7 @@ public partial class ActionPage : ContentPage
     void OnInputPlaceOfBirthTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputBiographicalDataPlaceOfBirth.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             biographicalDataPlaceOfBirth = entryValue;
             testInputBiographicalDataPlaceOfBirthError = true;
@@ -1516,7 +1663,7 @@ public partial class ActionPage : ContentPage
     void OnInputHomeTownTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputBiographicalDataHomeTown.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             biographicalDataHomeTown = entryValue;
             testInputBiographicalDataHomeTownError = true;
@@ -1533,7 +1680,7 @@ public partial class ActionPage : ContentPage
     void OnInputReligionTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputBiographicalDataReligion.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             biographicalDataReligion = entryValue;
             testInputBiographicalDataReligionError = true;
@@ -1549,7 +1696,7 @@ public partial class ActionPage : ContentPage
     void OnInputHouseNoTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputResidentialHouseNo.Text;
-        if(!(string.IsNullOrWhiteSpace(entryValue)))
+        if(!(string.IsNullOrEmpty(entryValue)))
         {
             residentialHouseNo = entryValue;
             testInputResidentialHouseNoError = true;
@@ -1565,7 +1712,7 @@ public partial class ActionPage : ContentPage
     void OnInputStreetNameTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputResidentialStreetName.Text;
-        if(!(string.IsNullOrWhiteSpace(entryValue)))
+        if(!(string.IsNullOrEmpty(entryValue)))
         {
             residentialStreetName = entryValue;
             testInputResidentialStreetNameError = true;
@@ -1581,7 +1728,7 @@ public partial class ActionPage : ContentPage
     void OnInputAreaTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputResidentialArea.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             residentialArea = entryValue;
             testInputResidentialAreaEroor = true;
@@ -1597,7 +1744,7 @@ public partial class ActionPage : ContentPage
     void OnInputTownCityTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputResidentialTownCity.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             residentialTownCity = entryValue;
             testInputResidentialTownCityError = true;
@@ -1716,7 +1863,7 @@ public partial class ActionPage : ContentPage
     void OnDiableStateTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDiableState.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             disableReason = entryValue;
         }
@@ -1730,7 +1877,7 @@ public partial class ActionPage : ContentPage
     void OnInputNextOfKinSurnameTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputNextOfKinSurname.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             nextOfKinSurname = entryValue;
             testInputNextOfKinSurnameError = true;
@@ -1757,7 +1904,7 @@ public partial class ActionPage : ContentPage
     void OnInputNextOfKinFirstNameTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputNextOfKinFirstName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             nextOfKinFirstName = entryValue;
             testInputNextOfKinFirstNameError = true;
@@ -1783,7 +1930,7 @@ public partial class ActionPage : ContentPage
     void OnInputNextOfKinRelationshipTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputNextOfKinRelationship.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             nextOfKinRelationship = entryValue;
             testInputNextOfKinRelationshipError = true;
@@ -1799,7 +1946,7 @@ public partial class ActionPage : ContentPage
     void OnInputNextOfKinContactHouseNoTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputNextOfKinContactHouseNo.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             nextOfKinContactHouseNo = entryValue;
             testInputNextOfKinContactHouseNoError = true;
@@ -1817,7 +1964,7 @@ public partial class ActionPage : ContentPage
     void OnInputNextOfKinContactStreetNameTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputNextOfKinContactStreetName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             nextOfKinContactStreetName = entryValue;
             testInputNextOfKinContactStreetNameError = true;
@@ -1833,7 +1980,7 @@ public partial class ActionPage : ContentPage
     void OnInputNextOfKinContactAreaTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputNextOfKinContactArea.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             nextOfKinContactArea = entryValue;
             testInputNextOfKinContactAreaError = true;
@@ -1849,7 +1996,7 @@ public partial class ActionPage : ContentPage
     void OnInputNextOfKinContactCityTownTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputNextOfKinContactCityTown.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             nextOfKinContactCityTown = entryValue;
             inputNextOfKinContactCityTownError.IsVisible = false;
@@ -1888,7 +2035,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant1SurnameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant1Surname.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             dependant1Surname = entryValue;
             testInputDependant1SurnameError = true;
@@ -1915,7 +2062,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant1FirstNameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant1FirstName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             dependant1FirstName = entryValue;
             testInputDependant1FirstNameError = true;
@@ -1943,7 +2090,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant1MiddleNameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant1MiddleName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             dependant1MiddleName = entryValue;
             testInputDependant1MiddleNameError = true;
@@ -1969,7 +2116,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant1RelationshipTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant1Relationship.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             dependant1Relationship = entryValue;
             testInputDependant1RelationshipError = true;
@@ -1986,7 +2133,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant2SurnameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant2Surname.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             dependant2Surname = entryValue;
             testInputDependant2SurnameError = true;
@@ -2014,7 +2161,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant2FirstNameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant2FirstName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             dependant2FirstName = entryValue;
             testInputDependant2FirstNameError = true;
@@ -2041,7 +2188,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant2MiddleNameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant2MiddleName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             dependant2MiddleName = entryValue;
             testInputDependant2MiddleNameError = true;
@@ -2067,7 +2214,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant2RelationshipTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant2Relationship.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             dependant2Relationship = entryValue;
             testInputDependant2RelationshipError = true;
@@ -2083,7 +2230,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant3SurnameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant3Surname.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             dependant3Surname = entryValue;
             testInputDependant3SurnameError = true;
@@ -2110,7 +2257,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant3FirstNameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant3FirstName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             dependant3FirstName = entryValue;
             testInputDependant3FirstNameError = true;
@@ -2137,7 +2284,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant3MiddleNameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant3MiddleName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             dependant3MiddleName = entryValue;
             testInputDependant3MiddleNameError = true;
@@ -2163,7 +2310,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant3RelationshipTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant3Relationship.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             dependant3Relationship = entryValue;
             testInputDependant3RelationshipError = true;
@@ -2179,7 +2326,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant4SurnameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant4Surname.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             dependant4Surname = entryValue;
             testInputDependant4SurnameError = true;
@@ -2206,7 +2353,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant4FirstNameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant4FirstName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             dependant4FirstName = entryValue;
             testInputDependant4FirstNameError = true;
@@ -2233,7 +2380,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant4MiddleNameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant4MiddleName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             dependant4MiddleName = entryValue;
             testInputDependant4MiddleNameError = true;
@@ -2259,7 +2406,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant4RelationshipTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant4Relationship.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             dependant4Relationship = entryValue;
             testInputDependant4RelationshipError = true;
@@ -2276,7 +2423,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant5SurnameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant5Surname.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             dependant5Surname = entryValue;
             testInputDependant5SurnameError = true;
@@ -2303,7 +2450,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant5FirstNameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant5FirstName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             dependant5FirstName = entryValue;
             testInputDependant5FirstNameError = true;
@@ -2330,7 +2477,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant5MiddleNameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant5MiddleName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             dependant5MiddleName = entryValue;
             testInputDependant5MiddleNameError = true;
@@ -2356,7 +2503,7 @@ public partial class ActionPage : ContentPage
     void OnInputDependant5RelationshipTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant5Relationship.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             dependant5Relationship = entryValue;
             testInputDependant5RelationshipError = true;
@@ -2372,7 +2519,7 @@ public partial class ActionPage : ContentPage
     void OnInputEducationInstitutionName(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEducationInstitutionName.Text;
-        if(!(string.IsNullOrWhiteSpace(entryValue)) ) {
+        if(!(string.IsNullOrEmpty(entryValue)) ) {
             educationInstitutionName = entryValue;
             testInputEducationInstitutionNameError = true;
             inputEducationInstitutionNameError.IsVisible = false;
@@ -2389,7 +2536,7 @@ public partial class ActionPage : ContentPage
     void OnInputEducationQualificationObtained(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEducationQualificationObtained.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             educationQualificationObtained = entryValue;
             testInputEducationQualificationObtainedError = true;
@@ -2405,7 +2552,7 @@ public partial class ActionPage : ContentPage
     void OnInputEducationCourseStudied(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEducationCourseStudied.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             educationCourseStudied = entryValue;
             testInputEducationCourseStudiedError = true;
@@ -2421,7 +2568,7 @@ public partial class ActionPage : ContentPage
     void OnInputEducationEntryCertificate(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEducationEntryCertificate.Text;
-        if(!(string.IsNullOrWhiteSpace (entryValue)))
+        if(!(string.IsNullOrEmpty (entryValue)))
         {
             educationEntryCertificate = entryValue;
             testInputEducationEntryCertificateError = true;
@@ -2437,7 +2584,7 @@ public partial class ActionPage : ContentPage
     void OnInputSkills1Type(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputSkills1Type.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             skills1Type = entryValue;
             testInputSkills1TypeError = true;
@@ -2454,7 +2601,7 @@ public partial class ActionPage : ContentPage
     void OnInputSkills2Type(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputSkills2Type.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             skills2Type = entryValue;
             testInputSkills2TypeError = true;
@@ -2471,7 +2618,7 @@ public partial class ActionPage : ContentPage
     void OnInputSkills3Type(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputSkills3Type.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             skills3Type = entryValue;
             testInputSkills3TypeError = true;
@@ -2488,7 +2635,7 @@ public partial class ActionPage : ContentPage
     void OnInputSkills1InstitutionName(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputSkills1InstitutionName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) )
+        if (!(string.IsNullOrEmpty(entryValue)) )
         {
             skills1InstitutionName = entryValue;
             testInputSkills1InstitutionNameError = true;
@@ -2507,7 +2654,7 @@ public partial class ActionPage : ContentPage
     void OnInputSkills2InstitutionName(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputSkills2InstitutionName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             skills2InstitutionName = entryValue;
             testInputSkills2InstitutionNameError = true;
@@ -2525,7 +2672,7 @@ public partial class ActionPage : ContentPage
     void OnInputSkills3InstitutionName(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputSkills3InstitutionName.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) )
+        if (!(string.IsNullOrEmpty(entryValue)) )
         {
             skills3InstitutionName = entryValue;
             testInputSkills3InstitutionNameError = true;
@@ -2543,7 +2690,7 @@ public partial class ActionPage : ContentPage
     void OnInputAssociation1Name(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputAssociation1Name.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             association1Name = entryValue;
             testInputAssociation1NameError = true;
@@ -2563,7 +2710,7 @@ public partial class ActionPage : ContentPage
     void OnInputAssociation2Name(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputAssociation2Name.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) )
+        if (!(string.IsNullOrEmpty(entryValue)) )
         {
             association2Name = entryValue;
             testInputAssociation2NameError = true;
@@ -2582,7 +2729,7 @@ public partial class ActionPage : ContentPage
     void OnInputAssociation3Name(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputAssociation3Name.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) )
+        if (!(string.IsNullOrEmpty(entryValue)) )
         {
             association3Name = entryValue;
             testInputAssociation3NameError = true;
@@ -2600,7 +2747,7 @@ public partial class ActionPage : ContentPage
     void OnInputLanguage1Name(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputLanguage1Name.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             language1Name = entryValue;
             testInputLanguage1NameError = true;
@@ -2628,7 +2775,7 @@ public partial class ActionPage : ContentPage
     void OnInputLanguage2Name(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputLanguage2Name.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             language2Name = entryValue;
             testInputLanguage2NameError = true;
@@ -2657,7 +2804,7 @@ public partial class ActionPage : ContentPage
     void OnInputLanguage3Name(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputLanguage3Name.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             language3Name = entryValue;
             testInputLanguage3NameError = true;
@@ -2683,6 +2830,10 @@ public partial class ActionPage : ContentPage
         }
     }
 
+
+    
+
+    
     void inputSubmitbtn(object sender, EventArgs e)
     {
 
@@ -2984,6 +3135,24 @@ private bool language3 = false;
             if(check == "Success")
             {
                 addEmployeeStatusMessage.Text = "Success";
+              
+                    if (File.Exists(fullPath))
+                    {
+                        addFileRecord(identificationStaffID,identificationSocialSecurity,identificationPaymentMode,LgsSubMetro,identificationNHIS,identificationDriversLicense,identificationVotersID,identificationIntPassport,identificationIntPassportExpiryDate,
+                                        employementDetialsTitle,employeeDetialsSurname,employeeDetialsFirstName,employeeDetialsMiddleName,employeeDetialsAppointmentDate, employeeDetialsDirectorate, employeeDetialsDepartment,
+                                        employeeDetialsUnit, employeeDetialsCostCenter, employeeDetialsJobClass, employeeDetialsJobTitle, employeeDetialsJobGrade, employeeDetialsGradeLevel, employeeDetialsGradePoint,employeeDetialsLastPromotionDate,
+                                        employeeDetialsRetirementDate,employeeDetialsImmediateSupervisor,bankDetialsBankName, bankDetialsBankBranchName, bankDetialsBankAccount,biographicalDataMaidenName,biographicalDataSex,biographicalMaritalStatus,
+                                        biographicalDataPlaceOfBirth,biographicalDataDateOfBirth,biographicalDataHomeTown,biographicalRegion, biographicalCountries, biographicalDataReligion, residentialHouseNo, residentialStreetName,residentialArea,
+                                        residentialTownCity,residentialRegion,otherPostalAddress,otherEmailAddress, otherPhoneNo, otherMobileNo, disableState, disableReason,nextOfKinSurname, nextOfKinFirstName, nextOfKinRelationship,
+                                        nextOfKinContactHouseNo,nextOfKinContactStreetName, nextOfKinContactArea, nextOfKinContactCityTown, nextOFKinRegion, nextOfKinCountries, nextOfKinContactPhoneNo, dependant1Title, dependant1Surname, dependant1FirstName,
+                                        dependant1MiddleName, dependant1DateOfBirth, dependant1Relationship, dependant2Title, dependant2Surname, dependant2FirstName,dependant2MiddleName, dependant2DateOfBirth, dependant2Relationship,
+                                         dependant3Title, dependant3Surname, dependant3FirstName, dependant3MiddleName, dependant3DateOfBirth, dependant3Relationship,dependant4Title, dependant4Surname, dependant4FirstName, dependant4MiddleName, 
+                                         dependant4DateOfBirth, dependant4Relationship,dependant5Title, dependant5Surname, dependant5FirstName, dependant5MiddleName, dependant5DateOfBirth, dependant5Relationship,educationInstitutionName,educationTo, educationFrom,
+                                         educationQualificationObtained,educationCourseStudied,educationEntryCertificate, skills1Type, skills1InstitutionName, skills1YearObtained, skills2Type, skills2InstitutionName, skills2YearObtained
+                                         , skills3Type, skills3InstitutionName, skills3YearObtained, association1Name, association2Name, association3Name, language1Name, languageSpoken1, languageReading1, languageWriting1, language2Name, languageSpoken2, 
+                                         languageReading2, languageWriting2, language3Name, languageSpoken3, languageReading3, languageWriting3, fullPath);
+                    }
+                
             }
             else
             {
@@ -2993,7 +3162,8 @@ private bool language3 = false;
         }
         else
         {
-            viewaddemployee.Text = "fffff";
+            viewaddemployee.Text = "An error occured";
+            viewaddemployee.TextColor = Colors.Red;
         }
        
 
@@ -3482,7 +3652,9 @@ private bool language3 = false;
 
 	void openSearchByStaffIDForm(object sender, EventArgs e)
 	{
-		searchByStaffID.IsVisible = true;
+
+
+        searchByStaffID.IsVisible = true;
 		searchByDepartment.IsVisible = false;
 		searchBySubMetro.IsVisible = false;
 		searchByPaymentMode.IsVisible = false;
@@ -3543,8 +3715,9 @@ private bool language3 = false;
 
     }
 
-    void openLeaveUpdateEmployee(object sender, EventArgs e)
+    async void openLeaveUpdateEmployee(object sender, EventArgs e)
 	{
+
 		leaveUpdateEmployee.IsVisible = true;
         leaveAddEmployee.IsVisible = false;
         leaveDeleteEmployee.IsVisible = false;
@@ -3656,9 +3829,9 @@ private bool language3 = false;
         deleteEmployeeFrame.IsVisible = false;
         leaveManagementFrame.IsVisible = false;
     }
-	void logout(object sender, EventArgs e)
+	async void logout(object sender, EventArgs e)
 	{
-
+        await Navigation.PopAsync();
 	}
 
 	private List<string> countries = new List<string>
@@ -3697,11 +3870,12 @@ private bool language3 = false;
 
     void openConfirmDelete(object sender, EventArgs e)
     {
-
+        deAct.IsRunning = true;
         if (!test_recordDeleteStaffID)
         {
             error_recordDeleteStaffID.IsVisible = true;
             error_recordDeleteStaffID.Text = "This field cannot be empty";
+            deAct.IsRunning = false;
         }
 
         if (isvalid_recordDeleteStaffID)
@@ -3728,11 +3902,13 @@ private bool language3 = false;
                 confirmDeleteFrmae.IsVisible = true;
                 successfulDelete.IsVisible = false;
                 recordDeleteStafID.Text = string.Empty;
+                deAct.IsRunning = false;
             }
             else
             {
                 recordDeleteCheckStaffID.Text = recordDelete_staffID + " does not exist";
                 recordDeleteCheckStaffID.IsVisible = true;
+                deAct.IsRunning = false;
             }
            
         }
@@ -3743,11 +3919,12 @@ private bool language3 = false;
 
     void deleteEmployeeButton(object sender, EventArgs e)
     {
-
+        deAct1.IsRunning = true;
         bool result = App.EmployeeRep.DeleteEmployeeByStaffID(recordDelete_staffID);
         successfulDelete.Text = App.EmployeeRep.statusMessage;
         successfulDelete.IsVisible = true;
         confirmDeleteFrmae.IsVisible = false;
+        deAct1.IsRunning = false;
     }
 
 
@@ -7898,6 +8075,8 @@ private bool language3 = false;
                 addTypeofLeave, addResumeDate, addOfficer, addApprovalDate, addTotalLeaveDays
                 );
 
+            addRecord1(addStaffID, addTypeofLeave, addDateApplied, addResumeDate, addApprovalDate,addNameOfHOD, addOfficer, addDaysRequested
+                , addTotalLeaveDays, fullPath1);
             leavesuccess.Text = App.LeaveRep.message;
             leavesuccess.IsVisible = true;
 
@@ -8045,18 +8224,20 @@ private bool language3 = false;
         {
             errorLeaveUpdate_StaffID_.Text = "This feild cannot be empty";
             errorLeaveUpdate_StaffID_.IsVisible = true;
+            deAct.IsRunning = false;
+
         }
 
         if (__isvalidStaffID__)
         {
             leaveUpdate_StaffID_.Text = string.Empty;
             List<LeaveManagementDB> list = App.LeaveRep.GetPeopleByStaffID(__staffID__);
-
             bool done = App.LeaveRep.done;
             updateCheckSuccess.Text = App.LeaveRep.message;
             updateCheckSuccess.IsVisible = true;
             if (done)
             {
+                
                 leaveUpdateMain.IsVisible = true;
                 foreach (LeaveManagementDB emp in list)
                 {
@@ -8141,6 +8322,7 @@ private bool language3 = false;
                 }
 
             }
+     
 
         }
 
@@ -8694,6 +8876,81 @@ private bool language3 = false;
     void _performance_btn(object sender, EventArgs e)
     {
 
+    }
+
+
+    //excel files
+
+    //excel files
+    private  void addFileRecord(string Staff_ID_No, string Social_Security_No, string Payment_Mode, string Sub_Metro, string NHIS_No, string Drivers_License_No,string Voters_ID_No, string INTL_Passport_No, string Expiry_Date, string Title, string Surname,
+        string First_Name, string Middle_Name, string First_Appointment_Date, string Directorate, string Department, string Unit, string Cost_Center, string Job_Class, string Job_Title, string Job_Grade, string Grade_Level, 
+        string Grade_Point, string Date_of_Last_Promotion,string Retirement_Date, string Name_of_Immediate_Supervisor, string Name_of_Bank, string Branch_Name_Code, string Account_Number, string Maiden_name, string Sex, string Marital_Status, 
+        string Place_of_Birth, string Date_of_Birth, string Home_Town, string Region, string Nationality, string Religion, string House_No, string Street_Name, string Area, string Town_City, string Residential_Region, string Postal_Address,
+        string Email_Address, string Office_Phone_No, string Mobile_Cell_Phone_No, string Disable, string If_yes_Specify, string Next_of_kin_Surname, string Next_of_kin_FirstName, string Next_of_kin_Relationship, string Next_of_kin_House_No,
+        string Next_of_kin_Street_Name, string Next_of_kin_Area, string Next_of_kin_City_Town, string Next_of_kin_State_Region, string Next_of_kin_Country, string Contact_Phone_No, string Title1, string Surname1, string First_Name1, string Middle_Name1, string Date_of_Birth1,
+        string Relationship1, string Title2, string Surname2, string First_Name2, string Middle_Name2, string Date_of_Birth2, string Relationship2, string Title3, string Surname3, string First_Name3, string Middle_Name3,
+        string Date_of_Birth3, string Relationship3, string Title4, string Surname4, string First_Name4, string Middle_Name4, string Date_of_Birth4, string Relationship4, string Title5, string Surname5, string First_Name5,
+        string Middle_Name5, string Date_of_Birth5, string Relationship5, string Name_of_Institution_School,string Period_Attend_From,string Period_Attend_To,string Qualification,string Main_Course_of_Study,string Entry_Certificate,
+        string Skill_Training1,string Training_Institution_Organization1,string Year_Obtained1,string Skill_Training2,string Training_Institution_Organization2,string Year_Obtained2,string Skill_Training3,string Training_Institution_Organization3,
+        string Year_Obtained3,string Professional_Societies_and_Affiliations1,string Professional_Societies_and_Affiliations2,string Professional_Societies_and_Affiliations3,string Language1,string Spoken1,string Reading1,string Writing1,
+        string Language2,string Spoken2,string Reading2,string Writing2,string Language3,string Spoken3, string Reading3, string Writing3, string filePath)
+    {
+        try
+        {
+            using(System.IO.StreamWriter file = new System.IO.StreamWriter(filePath, true))
+            {
+                file.WriteLine(Staff_ID_No + "," + Social_Security_No + ","+ Payment_Mode +","+ Sub_Metro + "," + NHIS_No + "," + Drivers_License_No + "," + Voters_ID_No + "," + INTL_Passport_No + "," + Expiry_Date + "," + Title + "," + Surname
+        + "," + First_Name + "," + Middle_Name + "," + First_Appointment_Date + "," + Directorate + "," + Department + "," + Unit + "," + Cost_Center + "," + Job_Class + "," + Job_Title + "," + Job_Grade + "," + Grade_Level
+        +"," + Grade_Point + "," + Date_of_Last_Promotion + "," + Retirement_Date + "," + Name_of_Immediate_Supervisor + "," + Name_of_Bank + "," + Branch_Name_Code + "," + Account_Number + "," + Maiden_name + "," + Sex + "," + Marital_Status
+        +"," + Place_of_Birth + "," + Date_of_Birth + "," + Home_Town + "," + Region + "," + Nationality + "," + Religion + "," + House_No + "," + Street_Name + "," + Area + "," + Town_City + "," + Residential_Region + "," + Postal_Address
+        +"," + Email_Address + "," + Office_Phone_No + "," + Mobile_Cell_Phone_No + "," + Disable + "," + If_yes_Specify + "," + Next_of_kin_Surname + "," + Next_of_kin_FirstName + "," + Next_of_kin_Relationship + "," + Next_of_kin_House_No
+        +"," + Next_of_kin_Street_Name + "," + Next_of_kin_Area + "," + Next_of_kin_City_Town + "," + Next_of_kin_State_Region + "," + Next_of_kin_Country + "," + Contact_Phone_No + "," + Title1 + "," + Surname1 + "," + First_Name1 + "," + Middle_Name1 + "," + Date_of_Birth1
+        +"," + Relationship1 + "," + Title2 + "," + Surname2 + "," + First_Name2 + "," + Middle_Name2 + "," + Date_of_Birth2 + "," + Relationship2 + "," + Title3 + "," + Surname3 + "," + First_Name3 + "," + Middle_Name3
+        +"," + Date_of_Birth3 + "," + Relationship3 + "," + Title4 + "," + Surname4 + "," + First_Name4 + "," + Middle_Name4 + "," + Date_of_Birth4 + "," + Relationship4 + "," + Title5 + "," + Surname5 + "," + First_Name5
+        +"," + Middle_Name5 + "," + Date_of_Birth5 + "," + Relationship5 + "," + Name_of_Institution_School + "," + Period_Attend_From + "," + Period_Attend_To + "," + Qualification + "," + Main_Course_of_Study + "," + Entry_Certificate
+        +"," + Skill_Training1 + "," + Training_Institution_Organization1 + "," + Year_Obtained1 + "," + Skill_Training2 + "," + Training_Institution_Organization2 + "," + Year_Obtained2 + "," + Skill_Training3 + "," + Training_Institution_Organization3
+        +"," + Year_Obtained3 + "," + Professional_Societies_and_Affiliations1 + "," + Professional_Societies_and_Affiliations2 + "," + Professional_Societies_and_Affiliations3 + "," + Language1 + "," + Spoken1 + "," + Reading1 + "," + Writing1
+        +"," + Language2 + "," + Spoken2 + "," + Reading2 + "," + Writing2 + "," + Language3 + "," + Spoken3 + "," + Reading3 + "," + Writing3);
+            }
+        }catch(Exception e)
+        {
+            string error = $"Error was found!: {e.Message}";
+        }
+    
+    }
+
+    private void addRecord1(string staffID, string typeOfLeave, string dateApplied, string dateOfResumption, 
+        string approvalDate, string nameOfHOD, string officer, string requestedDays, string totalLeave, string filePath)
+    {
+        try
+        {
+            int a = int.Parse(totalLeave);
+            int b = int.Parse(requestedDays);
+            int c = a - b;
+            string d = c.ToString();
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(filePath, true))
+            {
+                file.WriteLine(staffID + "," + typeOfLeave + "," + dateApplied + "," + dateOfResumption + "," + approvalDate + "," + nameOfHOD
+                    + "," + officer + "," + requestedDays + "," + d + "," + totalLeave);
+            }
+        }catch(Exception e)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error was found: {e.Message}");
+        }
+    }
+
+    private void addRecord2(string department, string planningStage, string midYear, string endYear, string filePath)
+    {
+        try
+        {
+            using(System.IO.StreamWriter file = new System.IO.StreamWriter(filePath, true))
+            {
+                file.WriteLine(department + "," + planningStage + "," + midYear + "," + endYear);
+            }
+        }catch(Exception e)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error was found: {e.Message}");
+        }
     }
 
 }

@@ -23,11 +23,11 @@
 
 
             <Label Text="HR Office" FontSize="20" HorizontalOptions="Center" Padding="10" TextColor="LightCoral" FontAttributes="Bold"/>
-            <Frame WidthRequest="200" HeightRequest="50" Margin="0,20,0,0" BorderColor="IndianRed" BackgroundColor="Transparent" >
+            <Frame WidthRequest="200" HeightRequest="50" Margin="0,20,0,0" x:Name="hoverSearch" BorderColor="IndianRed" BackgroundColor="Transparent" >
                 <HorizontalStackLayout Padding="-7" Spacing="10">
                     <Image Source="search_person.png" WidthRequest="20" Margin="0,-2,0,0"/>
 
-                    <Label Text="Search Record" TextColor="Gray" FontAttributes="Bold"  />
+                    <Label Text="Search Record"   TextColor="Gray" FontAttributes="Bold"  />
 
                 </HorizontalStackLayout>
                 <Frame.GestureRecognizers>
@@ -128,7 +128,7 @@
                 >
 
                 <StackLayout IsVisible="false"  x:Name="searchFram" BackgroundColor="Transparent" >
-                    <StackLayout Spacing="20">
+                    <StackLayout Spacing="20" Padding="30">
                         <StackLayout >
                             <HorizontalStackLayout Spacing="550">
                                 <HorizontalStackLayout Spacing="5">
@@ -226,45 +226,49 @@
                                     <Frame IsVisible="false" BackgroundColor="Transparent" x:Name="searchByStaffID">
                                         <StackLayout Spacing="20" Margin="0,72,0,72">
                                             <Label Text="Searching By Staff ID" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold" FontSize="20"/>
-                                            <Label Text="Staff ID" Margin="120,0,0,0" TextColor="Black"/>
                                             <Entry Placeholder="Enter a staff id"  PlaceholderColor="Black" WidthRequest="400" ClearButtonVisibility="WhileEditing" Background="LightGray" TextColor="Black" x:Name="searchByStaffID_entryStaffID" TextChanged="OnSearchByStaffID_entryStaffID" />
-                                            <Label x:Name="errorsearchByStaffID_entryStaffID" FontSize="12" TextColor="red" IsVisible="false" />
-                                            <Button Text="Submit" WidthRequest="400" TextColor="black" Background="Transparent" BorderColor="blue" Clicked="submitSearchByStaffID"/>
-                                            <Label x:Name="statusSubmitSearchByStaffID" FontSize="12" TextColor="Black" IsVisible="false" />
+                                            <Label x:Name="errorsearchByStaffID_entryStaffID" FontSize="12"  Margin="130,0,0,0" Text="hi" TextColor="Black" IsVisible="false" />
+                                            <Label x:Name="statusSubmitSearchByStaffID" FontSize="12" TextColor="Black" Margin="130,0,0,0" Text="hello" IsVisible="false" />
+                                            <Button Text="Submit" WidthRequest="400" TextColor="black" Background="Transparent" BorderColor="Blue" Clicked="submitSearchByStaffID"/>
+                                            <ActivityIndicator IsRunning="false" Color="NavajoWhite" HorizontalOptions="Center" x:Name="act1"/>
                                         </StackLayout>
                                     </Frame>
                                     <Frame IsVisible="false" BackgroundColor="Transparent" x:Name="searchByDepartment">
                                         <StackLayout Spacing="20" Margin="0,72,0,72">
                                             <Label Text="Searching By Department" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold" FontSize="20"/>
-                                            <Label Text="Department" TextColor="Black" Margin="120,0,0,0"/>
-                                            <Entry Placeholder="Enter a department name"  WidthRequest="400" ClearButtonVisibility="WhileEditing" Background="gray" TextColor="Black" x:Name="searchByDepartment_Name" TextChanged="OnSearchByDepartment_Name" PlaceholderColor="Black"/>
+                                            <Entry Placeholder="Enter a department name"  WidthRequest="400" ClearButtonVisibility="WhileEditing" Background="LightGray" TextColor="Black" x:Name="searchByDepartment_Name" TextChanged="OnSearchByDepartment_Name" PlaceholderColor="Black"/>
+                                            <Label x:Name="errorsearchByDepartment_entryStaffID" FontSize="12"  Margin="130,0,0,0" Text="hi" TextColor="Black" IsVisible="false" />
+                                            <Label x:Name="statusSubmitSearchDepartment" FontSize="12" TextColor="Black" Margin="130,0,0,0" Text="hello" IsVisible="false" />
                                             <Button Text="Submit" WidthRequest="400" Background="Transparent" Clicked="submitSearchByDepartment" BorderColor="blue"/>
+                                            <ActivityIndicator IsRunning="False" Color="NavajoWhite" HorizontalOptions="Center" x:Name="act2"/>
+
                                         </StackLayout>
                                     </Frame>
                                     <Frame IsVisible="false" BackgroundColor="Transparent" x:Name="searchBySubMetro">
                                         <StackLayout Spacing="20" Margin="0,72,0,72">
                                             <Label Text="Searching By Sub Metro" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold" FontSize="20"/>
-                                            <Label Text="Sub Metro" TextColor="Black" Margin="120,0,0,0"/>
-                                            <Picker  WidthRequest="400" TextColor="Black" Background="Gray" x:Name="searchBy_SubMetro" SelectedIndexChanged="OnPickerSearchBy_SubMetro">
+                                            <Picker  WidthRequest="400" TextColor="Black" Background="LightGray" x:Name="searchBy_SubMetro" SelectedIndexChanged="OnPickerSearchBy_SubMetro">
                                                 <Picker.Items>
                                                     <x:String>North</x:String>
                                                     <x:String>South</x:String>
                                                 </Picker.Items>
                                             </Picker>
                                             <Button Text="Submit" WidthRequest="400" Clicked="submitSearchBySub_Metro" Background="Transparent" BorderColor="blue"/>
+                                            <ActivityIndicator IsRunning="False" Color="NavajoWhite" HorizontalOptions="Center" x:Name="act3" />
+
                                         </StackLayout>
                                     </Frame>
                                     <Frame IsVisible="false" BackgroundColor="Transparent" x:Name="searchByPaymentMode">
                                         <StackLayout Spacing="20" Margin="0,72,0,72">
                                             <Label Text="Searching By Payment Mode" TextColor="Black" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20"/>
-                                            <Label Text="Payment Mode" TextColor="Black" Margin="120,0,0,0"/>
-                                            <Picker  WidthRequest="400" Background="gray" TextColor="Black"  x:Name="searchBy_PaymentMode" SelectedIndexChanged="OnPickerSearchBy_PaymentMode">
+                                            <Picker  WidthRequest="400" Background="LightGray" TextColor="Black"  x:Name="searchBy_PaymentMode" SelectedIndexChanged="OnPickerSearchBy_PaymentMode">
                                                 <Picker.Items>
                                                     <x:String>GOG</x:String>
-                                                    <x:String>IDF</x:String>
+                                                    <x:String>IGF</x:String>
                                                 </Picker.Items>
                                             </Picker>
                                             <Button Text="Submit" WidthRequest="400" Clicked="submitSearchBy_Payment" Background="Transparent" BorderColor="blue"/>
+                                            <ActivityIndicator IsRunning="False" Color="NavajoWhite" HorizontalOptions="Center" x:Name="act4"/>
                                         </StackLayout>
                                     </Frame>
                                 </StackLayout>
@@ -273,16 +277,18 @@
                         </StackLayout>
                             
                          <!--department-->
-                        <StackLayout>
-                            <Frame BackgroundColor="white" BorderColor="Gray">
-                                <StackLayout Spacing="10">
+                        <StackLayout x:Name="byDepartment" IsVisible="false">
+                            <StackLayout BackgroundColor="white" >
+                               
+                                <StackLayout Spacing="10" Padding="5">
                                     <HorizontalStackLayout Spacing="20" >
                                         <Frame  WidthRequest="30" HeightRequest="30" Background="white" Padding="0" BorderColor="gray"/>
-                                        <Label Text="Name" TextColor="Black" FontSize="20" Margin="0,0,0,0"/>
-                                        <Label Text="Staff ID" TextColor="Black" FontSize="20" Margin="250,0,0,0"/>
-                                        <Label Text="Sub Metro" FontSize="20" TextColor="Black" />
-                                        <Label Text="Payment Mode" TextColor="Black" FontSize="20" Margin="20,0,0,0"/>
-                                        <Label Text="Department" TextColor="Black" FontSize="20" Margin="20,0,0,0"/>
+                                        <Label Text="Name" TextColor="Black" FontSize="16" Margin="0,5,0,0"/>
+                                        <Label Text="Staff ID" TextColor="Black" FontSize="16" Margin="250,5,0,0"/>
+                                        <Label Text="Social Security No." FontSize="16" TextColor="Black" Margin="5,5,0,0"/>
+                                        <Label Text="Sub Metro" TextColor="Black" FontSize="16" Margin="0,5,0,0"/>
+                                        <Label Text="Payment Mode" TextColor="Black" FontSize="16" Margin="0,5,0,0"/>
+                                        <Label Text="Grade Level" TextColor="Black" FontSize="16" Margin="0,5,0,0"/>
                                     </HorizontalStackLayout>
                                     <CollectionView x:Name="ByDepartment">
                                         <CollectionView.ItemTemplate>
@@ -290,23 +296,23 @@
                                                 <StackLayout >
                                                     <BoxView HeightRequest="2" Color="gray"/>
                                                     <HorizontalStackLayout Margin="0,0,0,0" Spacing="20" Background="Transparent" Padding="5">
-                                                        <Frame WidthRequest="20" HeightRequest="20" BackgroundColor="White" BorderColor="gray" Padding="0"/>
+                                                        <Frame WidthRequest="20" HeightRequest="20" Margin="0,-15,0,0" BackgroundColor="White" BorderColor="gray" Padding="0"/>
                                                         <HorizontalStackLayout Margin="0,5,0,0" Spacing="10" >
 
-                                                            <StackLayout Spacing="-3">
-                                                                <HorizontalStackLayout Spacing="2">
-                                                                    <Label Text="{Binding employeeDetialsSurname}" TextColor="Black" FontSize="15" FontAttributes="Bold" x:Name="ByDepartment_name"/>
+                                                            <StackLayout Spacing="-3"  WidthRequest="310">
+                                                                <HorizontalStackLayout Spacing="2" >
+                                                                    <Label Text="{Binding employeeDetialsSurname}" TextColor="Black" FontSize="15" FontAttributes="Bold"  x:Name="ByDepartment_name"/>
                                                                     <Label Text="{Binding employeeDetialsFirstName}" TextColor="Black" FontSize="15" FontAttributes="Bold" />
                                                                     <Label Text="{Binding employeeDetialsMiddleName}" TextColor="Black" FontSize="15" FontAttributes="Bold" />
-                                                                </HorizontalStackLayout>
+                                                                </HorizontalStackLayout >
                                                                 <Label Text="{Binding otherEmailAddress}" TextColor="Black" FontSize="13" x:Name="ByDepartment_staffID"  />
                                                                 <Label Text="{Binding otherMobileNo}" TextColor="Black" FontSize="13"   />
-
                                                             </StackLayout>
-                                                            <Label Text="{Binding identificationStaffID}" TextColor="black" FontSize="15" Margin="225,5,0,0" />
-                                                            <Label Text="{Binding LgsSubMetro}" TextColor="black" FontSize="15" Margin="25,5,0,0"/>
-                                                            <Label Text="{Binding identificationPaymentMode}" TextColor="Black" FontSize="15" Margin="150,5,0,0"/>
-                                                            <Label Text="{Binding employeeDetialsDepartment}" TextColor="Black" FontSize="15" Margin="90,5,0,0"/>
+                                                            <Label Text="{Binding identificationStaffID}" WidthRequest="68" TextColor="black"  FontSize="15" Margin="0,0,0,0" />
+                                                            <Label Text="{Binding identificationSocialSecurity}" TextColor="black"  WidthRequest="150" FontSize="15" Margin="0,0,0,0" />
+                                                            <Label Text="{Binding LgsSubMetro}" TextColor="black" FontSize="15"  WidthRequest="80" Margin="0,0,0,0"/>
+                                                            <Label Text="{Binding identificationPaymentMode}" TextColor="Black" FontSize="15"  WidthRequest="110" Margin="8,0,0,0"/>
+                                                            <Label Text="{Binding employeeDetialsGradeLevel}" Margin="18,0,0,0"  WidthRequest="90" TextColor="Black" FontSize="15"/>
                                                         </HorizontalStackLayout>
                                                     </HorizontalStackLayout>
                                                 </StackLayout>
@@ -314,45 +320,57 @@
                                         </CollectionView.ItemTemplate>
                                     </CollectionView>
                                 </StackLayout>
-                            </Frame>
+                            
+                            </StackLayout>
+                            <StackLayout.Shadow>
+                             <Shadow
+                                Brush="Gray"
+                                Offset="-2,10"
+                                Opacity="0.2"
+                            />  
+
+                            </StackLayout.Shadow>
                         </StackLayout>
                         <!--sub metro-->
-                        <StackLayout>
-                            <Frame BackgroundColor="White" BorderColor="gray">
+                        <StackLayout x:Name="bySubMetro" IsVisible="false">
+                            <StackLayout BackgroundColor="White" >
                                 <StackLayout Spacing="10">
                                     <HorizontalStackLayout Spacing="20" >
-                                        <Frame  WidthRequest="30" HeightRequest="30" Background="White" Padding="0" BorderColor="Gray"/>
-                                        <Label Text="Name" TextColor="Black" FontSize="20" Margin="0,0,0,0"/>
-                                        <Label Text="Staff ID" TextColor="Black" FontSize="20" Margin="250,0,0,0"/>
-                                        <Label Text="Social Security No." FontSize="20" TextColor="Black"/>
-                                        <Label Text="Sub Metro" TextColor="Black"  FontSize="20" Margin="20,0,0,0"/>
-                                        <Label Text="Grade Level" TextColor="Black" FontSize="20" Margin="20,0,0,0"/>
+                                        <Frame  WidthRequest="30" HeightRequest="30" Background="White"   BorderColor="Gray"/>
+                                        <Label Text="Name" TextColor="Black" FontSize="16" Margin="0,5,0,0"/>
+                                        <Label Text="Staff ID" TextColor="Black" FontSize="16" Margin="250,5,0,0"/>
+                                        <Label Text="Social Security No." FontSize="16" TextColor="Black" Margin="5,5,0,0"/>
+                                        <Label Text="Department" TextColor="Black" FontSize="16" Margin="0,5,0,0"/>
+                                        <Label Text="Payment Mode" TextColor="Black" FontSize="16" Margin="158,5,0,0"/>
+                                        <Label Text="Grade Level" TextColor="Black" FontSize="16" Margin="0,5,0,0"/>
                                     </HorizontalStackLayout>
                                     <CollectionView x:Name="BySubMetro">
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackLayout >
                                                     <BoxView HeightRequest="2" Color="Gray"/>
-                                                    <HorizontalStackLayout Margin="0,0,0,0" Spacing="20" Background="Transparent" Padding="5">
-                                                        <Frame WidthRequest="20" HeightRequest="20" BackgroundColor="White" Padding="0" BorderColor="Gray"/>
+                                                    <HorizontalStackLayout Margin="0,0,0,0" Spacing="20"  Background="Transparent" Padding="5">
+                                                        <Frame WidthRequest="20" HeightRequest="20"  BackgroundColor="White" Padding="0" BorderColor="Gray"/>
                                                         <HorizontalStackLayout Margin="0,5,0,0" Spacing="10" >
-                                                            
-                                                            <StackLayout Spacing="-3">
+
+                                                            <StackLayout Spacing="-3" WidthRequest="310" >
                                                                 <HorizontalStackLayout>
                                                                     <Label Text="{Binding employeeDetialsSurname}" TextColor="Black" FontSize="15" FontAttributes="Bold" x:Name="ByDepartment_name"/>
                                                                     <Label Text="{Binding employeeDetialsFirstName}" TextColor="Black" FontSize="15" FontAttributes="Bold" />
                                                                     <Label Text="{Binding employeeDetialsMiddleName}" TextColor="Black" FontSize="15" FontAttributes="Bold" />
                                                                 </HorizontalStackLayout>
-                                                                <HorizontalStackLayout>
+                                                                <HorizontalStackLayout Spacing="15">
                                                                     <Label Text="{Binding otherEmailAddress}" TextColor="Black" FontSize="13"   />
+                                                        
                                                                     <Label Text="{Binding otherMobileNo}" TextColor="Black" FontSize="13"  />
 
                                                                 </HorizontalStackLayout>
                                                             </StackLayout>
-                                                            <Label Text="{Binding identificationStaffID}" TextColor="Black" FontSize="15" Margin="225,5,0,0" />
-                                                            <Label Text="{Binding identificationPaymentMode}" TextColor="Black" FontSize="15" Margin="25,5,0,0"/>
-                                                            <Label Text="{Binding employeeDetialsDepartment}" TextColor="Black" FontSize="15" Margin="150,5,0,0"/>
-                                                            <Label Text="{Binding LgsSubMetro}" TextColor="Black" FontSize="15" Margin="90,5,0,0"/>
+                                                            <Label Text="{Binding identificationStaffID}"  WidthRequest="68" TextColor="Black" FontSize="15" Margin="0,5,0,0" />
+                                                            <Label Text="{Binding identificationSocialSecurity}" WidthRequest="150" TextColor="Black" FontSize="15" Margin="0,5,0,0"/>
+                                                            <Label Text="{Binding employeeDetialsDepartment}" TextColor="Black"  WidthRequest="250" FontSize="15" Margin="0,5,0,0"/>
+                                                            <Label Text="{Binding identificationPaymentMode}" TextColor="Black" FontSize="15"  WidthRequest="110" Margin="8 ,5,0,0"/>
+                                                            <Label Text="{Binding employeeDetialsGradeLevel}" TextColor="Black" FontSize="15"  WidthRequest="90" Margin="13,5,0,0"/>
                                                         </HorizontalStackLayout>
                                                     </HorizontalStackLayout>
                                                 </StackLayout>
@@ -360,19 +378,28 @@
                                         </CollectionView.ItemTemplate>
                                     </CollectionView>
                                 </StackLayout>
-                            </Frame>
-                        </StackLayout>
+                            </StackLayout>
+                            <StackLayout.Shadow>
+                                <Shadow
+                                Brush="Gray"
+                                Offset="-5,10"
+                                Opacity="0.2"
+                            />      
+
+                            </StackLayout.Shadow>
+                        </StackLayout >
                             <!--Payment mode-->
-                        <StackLayout>
-                            <Frame BackgroundColor="White" BorderColor="gray">
+                        <StackLayout x:Name="byPayment" IsVisible="false">
+                            <StackLayout BackgroundColor="White" >
                                 <StackLayout Spacing="10">
                                     <HorizontalStackLayout Spacing="20" >
                                         <Frame  WidthRequest="30" HeightRequest="30" Background="white" Padding="0" BorderColor="Gray"/>
-                                        <Label Text="Name" TextColor="Black" FontSize="20" Margin="0,0,0,0"/>
-                                        <Label Text="Staff ID" TextColor="Black" FontSize="20" Margin="250,0,0,0"/>
-                                        <Label Text="Social Security No." FontSize="20" TextColor="Black" />
-                                        <Label Text="Sub Metro" TextColor="Black" FontSize="20" Margin="20,0,0,0"/>
-                                        <Label Text="Grade Level" TextColor="Black" FontSize="20" Margin="20,0,0,0"/>
+                                        <Label Text="Name" TextColor="Black" FontSize="16" Margin="0,5,0,0"/>
+                                        <Label Text="Staff ID" TextColor="Black" FontSize="16" Margin="250,5,0,0"/>
+                                        <Label Text="Social Security No."  FontSize="16" TextColor="Black" Margin="5,5,0,0" />
+                                        <Label Text="Department" TextColor="Black" FontSize="16" Margin="0,5,0,0"/>
+                                        <Label Text="Sub Metro" TextColor="Black" FontSize="16" Margin="158,5,0,0"/>
+                                        <Label Text="Grade Level" TextColor="Black" FontSize="16" Margin="0,5,0,0"/>
                                     </HorizontalStackLayout>
                                     <CollectionView x:Name="ByPaymentMode">
                                         <CollectionView.ItemTemplate>
@@ -380,24 +407,25 @@
                                                 <StackLayout >
                                                     <BoxView HeightRequest="2" Color="gray"/>
                                                     <HorizontalStackLayout Margin="0,0,0,0" Spacing="20" Background="Transparent" Padding="5">
-                                                        <Frame WidthRequest="20" HeightRequest="20" BackgroundColor="White" Padding="0" BorderColor="Gray"/>
+                                                        <Frame WidthRequest="20" HeightRequest="20" Margin="5,0,0,0" BackgroundColor="White" Padding="0" BorderColor="Gray"/>
                                                         <HorizontalStackLayout Margin="0,5,0,0" Spacing="10" >
-                                                            
-                                                            <StackLayout Spacing="-3">
+
+                                                            <StackLayout Spacing="-3" WidthRequest="310">
                                                                 <HorizontalStackLayout>
                                                                     <Label Text="{Binding employeeDetialsSurname}" TextColor="Black" FontSize="15" FontAttributes="Bold" x:Name="ByDepartment_name"/>
                                                                     <Label Text="{Binding employeeDetialsFirstName}" TextColor="Black" FontSize="15" FontAttributes="Bold" />
                                                                     <Label Text="{Binding employeeDetialsMiddleName}" TextColor="Black" FontSize="15" FontAttributes="Bold" />
                                                                 </HorizontalStackLayout>
-                                                                <HorizontalStackLayout>
+                                                                <HorizontalStackLayout Spacing="15">
                                                                     <Label Text="{Binding otherEmailAddress}" TextColor="Black" FontSize="13" x:Name="ByDepartment_staffID"  />
                                                                     <Label Text="{Binding otherMobileNo}" TextColor="Black" FontSize="13"  />
                                                                 </HorizontalStackLayout>
                                                             </StackLayout>
-                                                            <Label Text="{Binding identificationStaffID}" TextColor="Black" FontSize="15" Margin="225,5,0,0" />
-                                                            <Label Text="{Binding LgsSubMetro}" TextColor="Black" FontSize="15" Margin="25,5,0,0"/>
-                                                            <Label Text="{Binding employeeDetialsDepartment}" TextColor="Black" FontSize="15" Margin="150,5,0,0"/>
-                                                            <Label Text="{Binding identificationPaymentMode}" TextColor="black" FontSize="15" Margin="90,5,0,0"/>
+                                                            <Label Text="{Binding identificationStaffID}" TextColor="Black" WidthRequest="68" FontSize="15" Margin="0,5,0,0" />
+                                                            <Label Text="{Binding identificationSocialSecurity}" TextColor="Black" FontSize="15" WidthRequest="150" Margin="0,5,0,0"/>
+                                                            <Label Text="{Binding employeeDetialsDepartment}" TextColor="Black" WidthRequest="250" FontSize="15" Margin="0,5,0,0"/>
+                                                            <Label Text="{Binding LgsSubMetro}" TextColor="black" FontSize="15" Margin="5,5,0,0"/>
+                                                            <Label Text="{Binding employeeDetialsGradeLevel}" TextColor="Black" FontSize="15"  WidthRequest="90"  Margin="45,5,0,0"/>
                                                         </HorizontalStackLayout>
                                                     </HorizontalStackLayout>
                                                 </StackLayout>
@@ -405,12 +433,20 @@
                                         </CollectionView.ItemTemplate>
                                     </CollectionView>
                                 </StackLayout>
-                            </Frame>
+                            </StackLayout>
+                            <StackLayout.Shadow>
+                            <Shadow
+                                Brush="Gray"
+                                Offset="-5,10"
+                                Opacity="0.2"
+                            />
+
+                            </StackLayout.Shadow>
                         </StackLayout>
                             <!--staff id-->
                         
                         
-                        <StackLayout IsVisible="true"  Background="Honeydew">
+                        <StackLayout IsVisible="false" x:Name="byStaffID" Background="Honeydew">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
@@ -963,10 +999,25 @@
 
                         <StackLayout BackgroundColor="White" >
                             <StackLayout Spacing="50">
-                                <HorizontalStackLayout>
-                                    <Image Source="ccma_preview.png" WidthRequest="40"/>
-                                    <Label Text="Human Resource Deparment" TextColor="Blue" Padding="5" FontSize="23" FontAttributes="Bold" />
+                                <HorizontalStackLayout Spacing="550">
+                                    <HorizontalStackLayout Spacing="5">
+                                        <Image Source="star.png" WidthRequest="25" Margin="0,-15,0,0"/>
+                                        <StackLayout Margin="0,-5,0,0">
+                                            <Label Text="Add Employee" TextColor="Black" FontSize="25"/>
+                                        </StackLayout>
+                                    </HorizontalStackLayout>
+
+                                    <HorizontalStackLayout Spacing="5" Margin="0,7,0,0">
+                                        <Frame WidthRequest="40" HeightRequest="40" Padding="0"  Background="Transparent" CornerRadius="75" Margin="0,-10,0,0"  >
+                                            <Image Source="man_icon.png" WidthRequest="30" />
+                                        </Frame>
+                                        <StackLayout Spacing="-3" Margin="0,-8,0,0">
+                                            <Label Text="full name" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
+                                            <Label Text="staff id" TextColor="Black" FontSize="13"/>
+                                        </StackLayout>
+                                    </HorizontalStackLayout>
                                 </HorizontalStackLayout>
+
                                 <Label Text="Employee Personal Data Form-A" TextColor="Black"  FontSize="23" FontAttributes="Bold" FontFamily="Montserrat"/>
 
                                 <StackLayout Spacing="2">
@@ -2178,8 +2229,8 @@
                                         </StackLayout>
                                     </Grid>
                                     <Button Text="Submit"  BorderColor="blue" TextColor="black" Margin="0,20,0,0" Clicked="inputSubmitbtn"/>
-                                    <Label x:Name="addEmployeeStatusMessage" FontSize="12" TextColor="blue"/>
-                                    <Editor x:Name="viewaddemployee" TextColor="Black"/>
+                                    <Label x:Name="addEmployeeStatusMessage" FontSize="12" TextColor="Black"/>
+                                    <Editor x:Name="viewaddemployee" FontSize="12" TextColor="Black"/>
 
                                 </StackLayout>
                             </StackLayout>
@@ -2195,13 +2246,28 @@
                     x:Name="updateEmployeeFrame"
                      >
                     <VerticalStackLayout Padding="50">
-                        <HorizontalStackLayout>
-                            <Image Source="ccma_preview.png" WidthRequest="40"/>
-                            <Label Text="Human Resource Deparment" TextColor="Blue" Padding="5" FontSize="23" FontAttributes="Bold" />
+                        <HorizontalStackLayout Spacing="550" HorizontalOptions="Center">
+                            <HorizontalStackLayout Spacing="5">
+                                <Image Source="star.png" WidthRequest="25" Margin="0,-15,0,0"/>
+                                <StackLayout>
+                                    <Label Text="Update Employee" TextColor="Black" FontSize="25"/>
+                                </StackLayout>
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout Spacing="5" Margin="0,7,0,0">
+                                <Frame WidthRequest="40" HeightRequest="40" Padding="0"  Background="Transparent" CornerRadius="75" Margin="0,-10,0,0"  >
+                                    <Image Source="man_icon.png" WidthRequest="30" />
+                                </Frame>
+                                <StackLayout Spacing="-3">
+                                    <Label Text="full name" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
+                                    <Label Text="staff id" TextColor="Black" FontSize="13"/>
+                                </StackLayout>
+                            </HorizontalStackLayout>
                         </HorizontalStackLayout>
-                        
-                        
-                        
+
+
+
+
                         <StackLayout HorizontalOptions="Center" Spacing="10" Margin="0,0,0,50">
                             <Label Text="Staff ID" TextColor="Black"/>
                             <Entry Placeholder="Enter a Staff ID" TextColor="Black" ClearButtonVisibility="WhileEditing" PlaceholderColor="Black" x:Name="searchUpdateStaffID" TextChanged="OnSearchUpdateStaffID" WidthRequest="300" BackgroundColor="LightGray"/>
@@ -3451,37 +3517,46 @@
 
          
                 <StackLayout IsVisible="false" BackgroundColor="Transparent"  x:Name="deleteEmployeeFrame" HeightRequest="800">
-                    <StackLayout BackgroundColor="white">
-                        <HorizontalStackLayout Spacing="500">
-                            <Label Text="Delete Employee's Record" Margin="10,0,0,0" Padding="10" FontSize="25" TextColor="Black"/>
+                    <StackLayout BackgroundColor="white" Padding="50">
+                        <HorizontalStackLayout Spacing="550">
+                            <HorizontalStackLayout Spacing="5">
+                                <Image Source="star.png" WidthRequest="25" Margin="0,-15,0,0"/>
+                                <StackLayout Margin="0,-5,0,0">
+                                    <Label Text="Delete Employee Record" TextColor="Black" FontSize="25"/>
+                                </StackLayout>
+                            </HorizontalStackLayout>
+
                             <HorizontalStackLayout Spacing="5" Margin="0,7,0,0">
                                 <Frame WidthRequest="40" HeightRequest="40" Padding="0"  Background="Transparent" CornerRadius="75" Margin="0,-10,0,0"  >
                                     <Image Source="man_icon.png" WidthRequest="30" />
                                 </Frame>
-                                <StackLayout Spacing="-3">
+                                <StackLayout Spacing="-3" Margin="0,-8,0,0">
                                     <Label Text="full name" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
                                     <Label Text="staff id" TextColor="Black" FontSize="13"/>
                                 </StackLayout>
                             </HorizontalStackLayout>
                         </HorizontalStackLayout>
+
                         <StackLayout Background="Transparent" > 
                             <StackLayout>
                                 <StackLayout Padding="0,40,0,0"  Background="Transparent">
                                     <StackLayout Padding="0,20,0,0" Spacing="5">
-                                        <Label Text="Staff ID" Margin="410,0,0,0" TextColor="Black"/>
+                                        <Label Text="Staff ID" Margin="360,0,0,0" TextColor="Black" />
                                         <Entry Placeholder="Enter a staff ID" WidthRequest="300" x:Name="recordDeleteStafID" TextChanged="OnRecordDeleteStaffid" TextColor="Black" Background="LightGray" PlaceholderColor="Black"/>
                                         <Label TextColor="red" FontSize="12" Margin="410,0,0,0" x:Name="error_recordDeleteStaffID" IsVisible="true" />
                                         <Button Text="Submit"  WidthRequest="300" HorizontalOptions="Center" Background="Transparent" TextColor="Black" BorderColor="Blue" Margin="0,0,0,10">
                                             <Button.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="openConfirmDelete" NumberOfTapsRequired="1"/>
                                             </Button.GestureRecognizers>
-                                         
+
                                         </Button>
-                                        <Label x:Name="recordDeleteCheckStaffID" Margin="410,0,0,0"  IsVisible="false" FontSize="12" TextColor="red" />
-                                        <Label x:Name="successfulDelete" Margin="410,0,0,00"    IsVisible="false"  FontSize="12"  TextColor="black"/>
+                                        <Label x:Name="recordDeleteCheckStaffID" Margin="360,0,0,0"  IsVisible="false" FontSize="12" TextColor="red" />
+                                        <Label x:Name="successfulDelete" Margin="360,0,0,00"    IsVisible="false"  FontSize="12"  TextColor="black"/>
+                                        <ActivityIndicator IsRunning="False" Color="Black" HorizontalOptions="Center" x:Name="deAct" />
+
                                         <StackLayout IsVisible="false" x:Name="confirmDeleteFrmae" Background="Transparent" >  
                                             <StackLayout Padding="50" >
-                                                <Label Text="Comfirm Deletion" TextColor="Black" FontSize="15" HorizontalOptions="Center" Margin="0,0,0,50"/>
+                                                <Label Text="Comfirm Deletion" TextColor="Black" FontSize="20" HorizontalOptions="Center" Margin="0,0,0,50"/>
                                                 <Grid>
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="*"/>
@@ -3492,23 +3567,23 @@
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <StackLayout Grid.Column="0" Grid.Row="0" Padding="10">
-                                                        <Label Text="Staff ID" TextColor="Black"/>
+                                                        <Label Text="Staff ID" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
                                                         <Label TextColor="Black" x:Name="deleteStaffID" />
-                                                        <Label Text="Full Name" TextColor="Black"/>
+                                                        <Label Text="Full Name" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
                                                         <Label TextColor="Black" x:Name="deleteFullName"/>
-                                                        <Label Text="Department" TextColor="Black"/>
+                                                        <Label Text="Department" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
                                                         <Label TextColor="Black" x:Name="deleteDepartment"/>
-                                                        <Label Text="Name Of Immediate Supervisor" TextColor="Black"/>
+                                                        <Label Text="Name Of Immediate Supervisor" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
                                                         <Label TextColor="Black" x:Name="deleteSupervisor"/>
                                                     </StackLayout>
                                                     <StackLayout Grid.Column="2" Grid.Row="0">
-                                                        <Label Text="Social Security No." TextColor="Black"/>
+                                                        <Label Text="Social Security No." TextColor="Black" FontSize="15" FontAttributes="Bold"/>
                                                         <Label TextColor="Black" x:Name="deleteSocialSecurityNo"/>
-                                                        <Label Text="Sub Metro" TextColor="Black"/>
+                                                        <Label Text="Sub Metro" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
                                                         <Label TextColor="Black" x:Name="deleteSubMetro"/>
-                                                        <Label Text="Payment Mode" TextColor="Black"/>
+                                                        <Label Text="Payment Mode" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
                                                         <Label TextColor="Black" x:Name="deletePaymentMode"/>
-                                                        <Label Text="Job Title" TextColor="Black"/>
+                                                        <Label Text="Job Title" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
                                                         <Label TextColor="Black" x:Name="deleteJobTitle"/>
                                                     </StackLayout>
                                                 </Grid>
@@ -3518,6 +3593,7 @@
                                                         <TapGestureRecognizer Tapped="deleteEmployeeButton" NumberOfTapsRequired="1"/>
                                                     </Button.GestureRecognizers>
                                                 </Button>
+                                                <ActivityIndicator IsRunning="False" Color="Black" HorizontalOptions="Center" x:Name="deAct1" />
                                             </StackLayout>
                                         </StackLayout>
                                         
@@ -3537,17 +3613,24 @@
                     >
                     <StackLayout Spacing="10" Padding="50">
                         <HorizontalStackLayout Spacing="550">
-                            <Label Text="Leave Management" Margin="10,0,0,0" Padding="10" FontSize="25" TextColor="Black"/>
+                            <HorizontalStackLayout Spacing="5">
+                                <Image Source="star.png" WidthRequest="25" Margin="0,-15,0,0"/>
+                                <StackLayout Margin="0,-4,0,0">
+                                    <Label Text="Leave Management" TextColor="Black" FontSize="25"/>
+                                </StackLayout>
+                            </HorizontalStackLayout>
+
                             <HorizontalStackLayout Spacing="5" Margin="0,7,0,0">
                                 <Frame WidthRequest="40" HeightRequest="40" Padding="0"  Background="Transparent" CornerRadius="75" Margin="0,-10,0,0"  >
                                     <Image Source="man_icon.png" WidthRequest="30" />
                                 </Frame>
-                                <StackLayout Spacing="-3">
+                                <StackLayout Spacing="-3" Margin="0,-8,0,0" >
                                     <Label Text="full name" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
                                     <Label Text="staff id" TextColor="Black" FontSize="13"/>
                                 </StackLayout>
                             </HorizontalStackLayout>
                         </HorizontalStackLayout>
+
                         <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
                             <Button Text="Add Employee" BackgroundColor="Transparent" TextColor="black" BorderColor="Blue">
                                 <Button.GestureRecognizers>
@@ -3648,25 +3731,25 @@
                                                 <StackLayout Margin="0,30,0,30" >
                                                     <HorizontalStackLayout HorizontalOptions="Center" Spacing="80" Margin="0,30,0,30" >
                                                         <StackLayout Spacing="5">
-                                                            <Label Text="Staff ID" TextColor="Black" />
+                                                            <Label Text="Staff ID" TextColor="Black" FontAttributes="Bold" FontSize="14" />
                                                             <Label  TextColor="Black" Text="{Binding staffID}" />
 
                                                         </StackLayout>
                                                         <StackLayout Spacing="5">
-                                                            <Label Text="Date Applied" TextColor="Black" />
+                                                            <Label Text="Date Applied" TextColor="Black" FontAttributes="Bold" FontSize="14"/>
                                                             <Label  TextColor="Black" Text="{Binding dateApplied}" />
 
-                                                            <Label Text="Date of Resumption"  TextColor="Black" />
+                                                            <Label Text="Date of Resumption"  TextColor="Black" FontAttributes="Bold" FontSize="14"/>
                                                             <Label  TextColor="Black" Text="{Binding resumptionDate}" />
-                                                            <Label Text="Date of Approval" TextColor="Black" />
+                                                            <Label Text="Date of Approval" TextColor="Black" FontAttributes="Bold" FontSize="14"/>
                                                             <Label Text="{Binding approvedDate}" TextColor="Black"/>
                                                         </StackLayout>
                                                         <StackLayout>
-                                                            <Label Text="Type of Leave"  TextColor="Black" />
+                                                            <Label Text="Type of Leave"  TextColor="Black" FontAttributes="Bold" FontSize="14"/>
                                                             <Label TextColor="Black" Text="{Binding typeOfLeave}"/>
-                                                            <Label Text="Name of HOD"  TextColor="Black" />
+                                                            <Label Text="Name of HOD"  TextColor="Black" FontAttributes="Bold" FontSize="14"/>
                                                             <Label TextColor="Black" Text="{Binding nameOFHOD}"/>
-                                                            <Label Text="Officer Taking Overs Name"  TextColor="Black" />
+                                                            <Label Text="Officer Taking Overs Name"  TextColor="Black" FontAttributes="Bold" FontSize="14"/>
                                                             <Label TextColor="Black" Text="{Binding takenOverOfficer}"/>
 
 
@@ -3675,11 +3758,9 @@
 
                                                         </StackLayout>
                                                         <StackLayout>
-                                                            <Label Text="Number of Days Requested"  TextColor="Black"/>
+                                                            <Label Text="Number of Days Requested"  TextColor="Black" FontAttributes="Bold" FontSize="14"/>
                                                             <Label Text="{Binding daysRequested}" TextColor="Black"/>
-                                                            <Label Text="Number of Days Left"  TextColor="Black"/>
-                                                            <Label Text="{Binding daysLeft}" TextColor="Black"/>
-                                                            <Label Text="Total Number of Leave"  TextColor="Black"/>
+                                                            <Label Text="Total Number of Leave"  TextColor="Black" FontAttributes="Bold" FontSize="14"/>
                                                             <Label Text="{Binding totalLeave}" TextColor="Black"/>
                                                         </StackLayout>
 
@@ -3790,8 +3871,25 @@
                     
                 </StackLayout>
                 <StackLayout BackgroundColor="Transparent" IsVisible="false" x:Name="performanceFrame">
-                    <StackLayout Spacing="20" >
-                        <Label Text="Performance Management System" TextColor="Black" HorizontalOptions="Center" />
+                    <StackLayout Spacing="20" Padding="50" >
+                        <HorizontalStackLayout Spacing="550" HorizontalOptions="Center">
+                            <HorizontalStackLayout Spacing="5">
+                                <Image Source="star.png" WidthRequest="25" Margin="0,-15,0,0"/>
+                                <StackLayout Margin="0,-5,0,0">
+                                    <Label Text="Add Employee" TextColor="Black" FontSize="25"/>
+                                </StackLayout>
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout Spacing="5" Margin="0,7,0,0">
+                                <Frame WidthRequest="40" HeightRequest="40" Padding="0"  Background="Transparent" CornerRadius="75" Margin="0,-10,0,0"  >
+                                    <Image Source="man_icon.png" WidthRequest="30" />
+                                </Frame>
+                                <StackLayout Spacing="-3" Margin="0,-8,0,0">
+                                    <Label Text="full name" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
+                                    <Label Text="staff id" TextColor="Black" FontSize="13"/>
+                                </StackLayout>
+                            </HorizontalStackLayout>
+                        </HorizontalStackLayout>
                         <StackLayout WidthRequest="800" Spacing="10">
                             <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
                                 <Button Text="Add New Record" TextColor="Black" BorderColor="Blue">

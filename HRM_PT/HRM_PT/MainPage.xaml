@@ -11,7 +11,7 @@
                 <Image Source="ccma_preview.png" WidthRequest="30"/>
                 <Label Text="Cape Coast Metropolitan Assembly"  FontSize="20" Padding="10" FontAttributes="Bold"/>
                 <HorizontalStackLayout Margin="450,0,0,0">
-                    <Button Text="Sign Up" CornerRadius="10" HeightRequest="10" Padding="5,-5,5,-5" WidthRequest="100" BackgroundColor="NavajoWhite" Clicked="SignUpPage" />
+                    <Button Text="Sign Up" TextColor="DarkSlateGray" CornerRadius="10" HeightRequest="10" Padding="5,-5,5,-5" WidthRequest="100" BackgroundColor="NavajoWhite" Clicked="SignUpPage" />
                 </HorizontalStackLayout>
             </HorizontalStackLayout>
             <HorizontalStackLayout Margin="0,50,0,0">
@@ -52,22 +52,24 @@
                         </HorizontalStackLayout>
                     </StackLayout>
                     <Entry 
-                   Placeholder="Enter your SSNIT"
+                   Placeholder="Enter your Staff ID"
                    ClearButtonVisibility="WhileEditing"
                         WidthRequest="350"
                         x:Name="hello"
+                        PlaceholderColor="White"
                         TextChanged="On_Name"
                    />
-                    <Label x:Name="display"/>
-                    <HorizontalStackLayout Margin="-33,0,0,0">
+
+                    <HorizontalStackLayout Margin="-33,0,0,0" x:Name="userPassword" IsVisible="false">
                         <Entry 
                        Placeholder="Enter your password"
                        ClearButtonVisibility="WhileEditing"
                        IsPassword="true"
                        IsSpellCheckEnabled="false"
+                            PlaceholderColor="White"
                        WidthRequest="300"
                             x:Name="password"
-                       
+                       TextChanged="setUserPassword"
                             />
                         <Image Source="eye_slash_icon.png" WidthRequest="25" Margin="0,15,0,0" x:Name="show_password">
                             <Image.GestureRecognizers>
@@ -78,9 +80,23 @@
                     </HorizontalStackLayout>
   
                   
-                    <Button Text="Sign In" WidthRequest="400" CornerRadius="0" Margin="-1,20,0,0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" Clicked="nextPage"/>
-                    <Button Text="ayoo" Clicked="ha"/>
+                    <Button 
+                        Text="Sign In" 
+                        WidthRequest="401" 
+                        CornerRadius="0" 
+                        Margin="-1,20,0,0" 
+                        HorizontalOptions="CenterAndExpand" 
+                        FontAttributes="Bold" 
+                        BackgroundColor="NavajoWhite" 
+                        TextColor="DarkSlateGray"
+                        FontSize="20"
+                        x:Name="userButton"
+                        IsVisible="false"
+                        Clicked="nextPage"/>
+                    <ActivityIndicator IsRunning="False" x:Name="signInActivitor" />
+
                 </StackLayout>
+
             </StackLayout>
         </StackLayout>
 

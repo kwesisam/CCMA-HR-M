@@ -1,0 +1,2 @@
+﻿StaffID,Type of leave, Date Applied, Date of Resumption, Approval Date, Name of HOD, Offficer Taken Over, Days Requested, Total Leave
+4567DFXGHJK,Parternity Leave,10/02/1960,16/02/1960,25/02/1960,DTRGHJ,RYGUHJ,55,33,88
