@@ -18,7 +18,8 @@ namespace HRM_PT
                 });
             builder.Services.AddSingleton<MainPage>();
 
-            builder.Services.AddTransient<SignUpPage>();
+            builder.Services.AddSingleton<SignUpPage>();
+            builder.Services.AddTransient<ActionPage>();
 
 
 

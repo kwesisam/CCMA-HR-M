@@ -8,7 +8,6 @@ namespace HRM_PT.NewFolder3;
 
     public class Dependants
     {
-    public string Number { get; set; }
     public string Title { get; set; }
     public string SurName { get; set; }
     public string FirstName { get; set; }

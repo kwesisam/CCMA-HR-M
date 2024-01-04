@@ -579,3 +579,7 @@ C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-ios\iossimula
 C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-ios\iossimulator-x64\HRM_PT.pdb
 C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-ios\iossimulator-x64\HRM_PT.genruntimeconfig.cache
 C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-ios\iossimulator-x64\ref\HRM_PT.dll
+C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-ios\iossimulator-x64\resizetizer\r\Resources\white_people_search.png
+C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-ios\iossimulator-x64\resizetizer\r\Resources\white_person_add.png
+C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-ios\iossimulator-x64\resizetizer\r\Resources\white_renew.png
+C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-ios\iossimulator-x64\resizetizer\r\Resources\white_user_delete.png

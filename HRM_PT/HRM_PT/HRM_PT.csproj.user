@@ -4,6 +4,10 @@
     <IsFirstTimeProjectOpen>False</IsFirstTimeProjectOpen>
     <ActiveDebugProfile>Windows Machine</ActiveDebugProfile>
     <ActiveDebugFramework>net7.0-windows10.0.19041.0</ActiveDebugFramework>
+    <UapAppxPackageBuildMode>SideloadOnly</UapAppxPackageBuildMode>
+    <AppxShowAllApps>False</AppxShowAllApps>
+    <_LastSelectedProfileId>MSIX-win10-x64.pubxml</_LastSelectedProfileId>
+    <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
   </PropertyGroup>
   <ItemGroup>
     <MauiXaml Update="ActionPage.xaml">
@@ -28,6 +32,9 @@
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="SignUpPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="TestN.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="WorkCollection.xaml">

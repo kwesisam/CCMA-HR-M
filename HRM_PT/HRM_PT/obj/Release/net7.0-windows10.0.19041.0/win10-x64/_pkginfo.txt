@@ -1,0 +1,1 @@
+C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Release\net7.0-windows10.0.19041.0\win10-x64\AppPackages\HRM_PT_0.0.16.0_Test\HRM_PT_0.0.16.0_x64.msix

@@ -8319,6 +8319,18 @@ namespace HRM_PT
 			// aapt resource value: 0x7F0700E3
 			public const int user_delete_icon = 2131165411;
 			
+			// aapt resource value: 0x7F0700E4
+			public const int white_people_search = 2131165412;
+			
+			// aapt resource value: 0x7F0700E5
+			public const int white_person_add = 2131165413;
+			
+			// aapt resource value: 0x7F0700E6
+			public const int white_renew = 2131165414;
+			
+			// aapt resource value: 0x7F0700E7
+			public const int white_user_delete = 2131165415;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

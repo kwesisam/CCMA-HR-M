@@ -4,19 +4,20 @@ using HRM_PT.DbModel;
 namespace HRM_PT;
     public class PerformanceRepository
     {
-    private static SQLiteConnection conn;
+    private static SQLiteAsyncConnection conn;
     string _dbPath;
 
     public string statusMessage { get; set; }
     public bool done { get; set; }
+    public bool testData { get; set; }
 
-    private void Init()
+    private async Task Init()
     {
         if (conn != null)
             return;
 
-        conn = new SQLiteConnection(_dbPath);
-        conn.CreateTable<PerformanceDB>();
+        conn = new SQLiteAsyncConnection(_dbPath);
+        await conn.CreateTableAsync<PerformanceDB>();
 
     }
 
@@ -25,12 +26,12 @@ namespace HRM_PT;
         _dbPath = dbPath;
     }
 
-    public void AddData(string _departmentName, string _planningStage, string _midYear, string _endYear)
+    public async Task AddData(string _departmentName, string _planningStage, string _midYear, string _endYear)
     {
         try
         {
             int result = 0;
-            Init();
+            await Init();
 
             var departmentInformation = new PerformanceDB
             {
@@ -40,7 +41,7 @@ namespace HRM_PT;
                 endYear = _endYear
             };
 
-            result = conn.Insert(departmentInformation);
+            result = await conn.InsertAsync(departmentInformation);
             statusMessage = "Success";
         }catch(Exception e)
         {
@@ -49,12 +50,39 @@ namespace HRM_PT;
 
     }
 
-    public List<PerformanceDB> GetAllPeople()
+
+    public async Task<List<PerformanceDB>> GetPerformanceRecord(string _department)
     {
         try
         {
-            Init();
-            return conn.Table<PerformanceDB>().ToList();
+            await Init();
+            PerformanceDB test = await conn.Table<PerformanceDB>().FirstOrDefaultAsync(e => e.departmentName == _department);
+            if(test != null)
+            {
+                statusMessage = "success";
+                done = true;
+                testData = true;
+                return await conn.Table<PerformanceDB>().Where(e => e.departmentName == _department).ToListAsync();
+            }
+            else
+            {
+                statusMessage = string.Format("{0} does not exist.", _department);
+                testData = false;
+            }
+        }catch( Exception e)
+        {
+            done = true;
+            statusMessage = string.Format("Failed to retrieve data. {0}", e.Message);
+        }
+
+        return new List<PerformanceDB>();
+    }
+    public async Task<List<PerformanceDB>> GetAllPeople()
+    {
+        try
+        {
+            await Init();
+            return await conn.Table<PerformanceDB>().ToListAsync();
         }catch(Exception e)
         {
             statusMessage = string.Format("Failed to retrieve data. {0} ", e.Message);
@@ -62,12 +90,12 @@ namespace HRM_PT;
 
         return new List<PerformanceDB>();
     }
-    public bool UpdateData(string department, string _departmentName, string _planningStage, string _midYear, string _endYear)
+    public async Task<bool> UpdateData(string department, string _departmentName, string _planningStage, string _midYear, string _endYear)
     {
         try
         {
-            Init();
-            PerformanceDB dataUpdate = conn.Table<PerformanceDB>().FirstOrDefault(e => e.departmentName == department);
+            await Init();
+            PerformanceDB dataUpdate = await conn.Table<PerformanceDB>().FirstOrDefaultAsync(e => e.departmentName == department);
         
             if(dataUpdate != null)
             {
@@ -76,7 +104,7 @@ namespace HRM_PT;
                 dataUpdate.midYear = _midYear;
                 dataUpdate.endYear = _endYear;
 
-                conn.Update(dataUpdate);
+                await conn.UpdateAsync(dataUpdate);
                 statusMessage = string.Format("{0} updated successfully.", department);
 
                 return true;
@@ -92,6 +120,31 @@ namespace HRM_PT;
                 return false;
         }
     }
+
+    public async Task<bool> DeletePerformanceData(string _department)
+    {
+        try
+        {
+            await Init();
+            PerformanceDB deleteData = await conn.Table<PerformanceDB>().FirstOrDefaultAsync(e => e.departmentName == _department);
+            if(deleteData != null)
+            {
+                await conn.DeleteAsync(deleteData);
+                statusMessage = string.Format("{0} delete successful", _department);
+                return true;
+            }
+            else
+            {
+                statusMessage = string.Format("{0} does not exist.", _department);
+                return false;
+            }
+        }catch(Exception e)
+        {
+            statusMessage = string.Format("failed to delete data. {0}", e.Message);
+            return false;
+        }
+    }
+
 
     }
 

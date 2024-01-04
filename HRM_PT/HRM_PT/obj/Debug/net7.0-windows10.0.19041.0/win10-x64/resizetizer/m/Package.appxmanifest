@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" IgnorableNamespaces="uap rescap">
-  <Identity Name="0a0c8414-d95c-45cb-abda-0a303aa183f4" Publisher="CN=User Name" Version="1.0.0.1" />
+  <Identity Name="0a0c8414-d95c-45cb-abda-0a303aa183f4" Publisher="CN=SKM" Version="0.0.10.0" />
   <mp:PhoneIdentity PhoneProductId="9A207AA9-81BB-42A2-BE7F-31B58D4EE3E7" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>HRM_PT</DisplayName>

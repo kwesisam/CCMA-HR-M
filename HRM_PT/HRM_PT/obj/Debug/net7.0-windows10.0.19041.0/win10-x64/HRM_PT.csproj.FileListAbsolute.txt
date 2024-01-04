@@ -351,7 +351,6 @@ C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Debug\net7.0-windows10.0.1
 C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\HRM_PT.dll
 C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\HRM_PT.pdb
 C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\resources.pri
-C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\AppxManifest.xml
 C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Configuration.dll
 C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.DependencyInjection.dll
@@ -690,4 +689,9 @@ C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.1
 C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\qualifiers.txt
 C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
+C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\white_people_search.scale-100.png
+C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\white_person_add.scale-100.png
+C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\white_renew.scale-100.png
+C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\white_user_delete.scale-100.png
+C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\AppxManifest.xml
 C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt

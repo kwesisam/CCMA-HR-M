@@ -5,6 +5,9 @@ using System.Text.RegularExpressions;
 using HRM_PT.DbModel;
 using System.Globalization;
 using System.Formats.Asn1;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Xaml;
+
 
 namespace HRM_PT;
 
@@ -18,6 +21,23 @@ public partial class ActionPage : ContentPage
 
         InitializeComponent();
 
+        
+        foreach (Logins emp in list)
+        {
+            OneFullname.Text = emp.firstName + " " + emp.surname;
+            TwoFullname.Text = emp.firstName + " " + emp.surname;
+            ThreeFullname.Text = emp.firstName + " " + emp.surname;
+            FourFullname.Text = emp.firstName + " " + emp.surname;
+            FiveFullname.Text = emp.firstName + " " + emp.surname;
+            SixFullname.Text = emp.firstName + " " + emp.surname;
+            OneStaffid.Text = emp.staffID;
+            TwoStaffid.Text = emp.staffID;
+            ThreeStaffid.Text = emp.staffID;
+            FourStaffid.Text = emp.staffID;
+            FiveStaffid.Text = emp.staffID;
+            SixStaffid.Text = emp.staffID;
+            user.Text =  "Hi, " + emp.surname;
+        }
         /*spokenCollection.ItemsSource = GetLanguages();
 		readingCollection.ItemsSource = GetLanguages();
 		writingCollection.ItemsSource = GetLanguages();
@@ -32,8 +52,61 @@ public partial class ActionPage : ContentPage
 		inputNextOfKinCountries.ItemsSource = countries;
         _inputbiographicalDataCountries.ItemsSource = countries;
         _inputNextOfKinCountries.ItemsSource = countries;
-        
-        string folderPath = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.Parent.Parent.FullName;
+
+        string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+        // Append your app's name to the path
+        string folderPath = Path.Combine(desktopPath, "HRM_EXCELFILES");
+        System.Diagnostics.Debug.WriteLine("Folder Path: " + folderPath);
+
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+
+        // Create the file path within the app's folder
+        fullPath = Path.Combine(folderPath, "EmployeeRecord.txt");
+        fullPath1 = Path.Combine(folderPath, "LeaveManagement.txt");
+        fullPath2 = Path.Combine(folderPath, "PerformanceManagement.txt");
+
+        if (!File.Exists(fullPath))
+        {
+            // Write content to the file
+            using (StreamWriter writer = File.CreateText(fullPath))
+            {
+                writer.WriteLine("Staff ID No.,Social Security No., Payment Mode, Sub Metro, NHIS No.,Driver's License No.,Voter's ID No.," +
+                    "INT'L Passport No.,Expiry Date,Title,Surname,First Name, Middle Name, First Appointment Date, Directorate, Department," +
+                    " Unit, Cost Center, Job Class, Job Title, Job Grade, Grade Level,Grade Point, Date of Last Promotion, Retirement Date," +
+                    " Name of Immediate Supervisor,Name of Bank,Branch Name/Code,Account Number,Maiden name,Sex,Marital Status,Place of Birth," +
+                    "Date of Birth,Home Town,Region,Nationality,Religion,House No.,Street Name,Area,Town/City,Residential Region,Postal Address," +
+                    "Email Address,Office Phone No.,Mobile/Cell Phone No.,Disable?,If yes Specify,Next of kin Surname,Next of kin First Name," +
+                    "Next of kin Relationship,Next of kin House No.,Next of kin Street Name,Next of kin Area,Next of kin City/Town,Next of kin State/Region," +
+                    "Next of kin Country,Next of kin Contact Phone No.,Title1,Surname1,First Name1,Middle Name1,Date of Birth1,Relationship1,Title2,Surname2," +
+                    "First Name2,Middle Name2,Date of Birth2,Relationship2,Title3,Surname3,First Name3,Middle Name3,Date of Birth3,Relationship3,Title4,Surname4," +
+                    "First Name4,Middle Name4,Date of Birth4,Relationship4,Title5,Surname5,First Name5,Middle Name5,Date of Birth5,Relationship5,Name of Institution/School," +
+                    "Period Attend From, Period Attend To,Qualification,Main Course of Study, Entry Certificate,Skill/Training1,Training Institution/Organization1,Year Obtained1," +
+                    "Skill/Training2,Training Institution/Organization2,Year Obtained2,Skill/Training3,Training Institution/Organization3,Year Obtained3,Professional Societies and Affiliations1," +
+                    "Professional Societies and Affiliations2,Professional Societies and Affiliations3,Language1,Spoken1,Reading1,Writing1,Language2,Spoken2,Reading2,Writing2,Language1,Spoken3,Reading3,Writing3");
+            }
+        }
+
+        if (!File.Exists(fullPath1))
+        {
+            using (StreamWriter writer = File.CreateText(fullPath1))
+            {
+                writer.WriteLine("StaffID,Type of leave, Date Applied, Date of Resumption, Approval Date," +
+                    " Name of HOD, Offficer Taken Over, Days Requested, Total Leave");
+            }
+        }
+
+        if (!File.Exists(fullPath2))
+        {
+            using(StreamWriter writer = File.CreateText(fullPath2))
+            {
+                writer.WriteLine("Department,Planning Stage, Mid-Year Review, End of Year");
+            }
+        }
+        /*string folderPath = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.Parent.Parent.FullName;
         System.Diagnostics.Debug.WriteLine(folderPath);
         string filename = @"ExcelFiles\EmployeeRecord.txt";
         string filename1 = @"ExcelFiles\LeaveManagement.txt";
@@ -75,7 +148,7 @@ public partial class ActionPage : ContentPage
         else
         {
             System.Diagnostics.Debug.WriteLine("error fil21 does not exist");
-        }
+        }*/
     }
     protected override bool OnBackButtonPressed()
     {
@@ -172,8 +245,13 @@ public partial class ActionPage : ContentPage
     }
 
     private List<EmployeeDB> GetPeopleByStaffIDlist;
-    void submitSearchByStaffID(object sender, EventArgs e)
+    async void submitSearchByStaffID(object sender, EventArgs e)
     {
+        changeButtonSubmitSearchByStaffID.Background = Colors.Teal;
+        await Task.Delay(500); // Wait for 0.5 seconds (adjust time as needed)
+        changeButtonSubmitSearchByStaffID.Background = Colors.DarkSlateGray;
+
+
         byStaffID.IsVisible = true;
 
         byDepartment.IsVisible = false;
@@ -191,8 +269,8 @@ public partial class ActionPage : ContentPage
         }
 
         if (isvalidsearchByStaffIDEntryStaffID)
-            {
-            GetPeopleByStaffIDlist = App.EmployeeRep.GetPeopleByStaffID(searchByStaffIDEntryStaffID);
+        {
+            GetPeopleByStaffIDlist = await App.EmployeeRep.GetPeopleByStaffID(searchByStaffIDEntryStaffID);
             if (App.EmployeeRep.testData)
             {
                 statusSubmitSearchByStaffID.Text = App.EmployeeRep.statusMessage;
@@ -313,12 +391,26 @@ public partial class ActionPage : ContentPage
                     readingA = emp.languageReading1;
                     readingB = emp.languageReading2;
                     readingC = emp.languageReading3;
-
-
+                    skillname1 = emp.skills1Type;
+                    skillname2 = emp.skills2Type;
+                    skillname3 = emp.skills3Type;
+                    init1 = emp.skills1InstitutionName;
+                    init2 = emp.skills2InstitutionName;
+                    init3 = emp.skills3InstitutionName;
+                    year1 = emp.skills1YearObtained;
+                    year2 = emp.skills2YearObtained;
+                    year3 = emp.skills3YearObtained;
+                    asso1 = emp.association1Name;
+                    asso2 = emp.association2Name;
+                    asso3 = emp.association3Name;
 
                 }
 
-                if (!(string.IsNullOrWhiteSpace(surname1) && string.IsNullOrWhiteSpace(surname2) && string.IsNullOrWhiteSpace(surname3)
+                dependantsList.ItemsSource = GetDependants5();
+                skillsList.ItemsSource = GetSkills();
+                associationList.ItemsSource = GetAssociations();
+                languageList.ItemsSource = GetLanguages();
+                /*if (!(string.IsNullOrWhiteSpace(surname1) && string.IsNullOrWhiteSpace(surname2) && string.IsNullOrWhiteSpace(surname3)
                     && string.IsNullOrWhiteSpace(surname4) && string.IsNullOrWhiteSpace(surname5)))
                 {
                     dependantsList.ItemsSource = GetDependants5();
@@ -374,11 +466,12 @@ public partial class ActionPage : ContentPage
                 act1.IsRunning = false;
                 byStaffID.IsVisible = false;
             }
+            }*/
+
+
+
+            }
         }
-        
-
-
-
 
 
     }
@@ -386,18 +479,18 @@ public partial class ActionPage : ContentPage
     private string firstImage = "fivestar_preview.png";
     private string secondImage = "threestar_preview.png";
     private string thirdImage = "twostar_preview.png";
-    private List<Language> GetLanguages3()
+    private List<Language> GetLanguages()
     {
         return new List<Language>
         {
-            new Language {number="A",name = languageA, readimage = readingA, writeimage = writingA, spokenimage = spokenA },
+            new Language {name = languageA, readimage = readingA, writeimage = writingA, spokenimage = spokenA },
 
-            new Language {number="B",name = languageB, readimage = readingB, writeimage = writingB, spokenimage = spokenB },
+            new Language {name = languageB, readimage = readingB, writeimage = writingB, spokenimage = spokenB },
 
-            new Language {number="C",name = languageC, readimage = readingC, writeimage = writingC, spokenimage = spokenC },
+            new Language {name = languageC, readimage = readingC, writeimage = writingC, spokenimage = spokenC },
         };
     }
-    private List<Language> GetLanguages2()
+   /* private List<Language> GetLanguages2()
     {
         return new List<Language>
         {
@@ -415,13 +508,14 @@ public partial class ActionPage : ContentPage
             new Language {number="A",name = languageA, readimage = readingA, writeimage = writingA, spokenimage = spokenA },
 
         };
-    }
+    }*/
     private List<Association> GetAssociations()
     {
         return new List<Association>
         {
-
-            new Association {Name = "CITSA"}
+            new Association{Name = asso1},
+            new Association{Name = asso2},
+            new Association{Name = asso3}
         };
     }
     private string firstName1, surname1, othername1, dateofBirth1, relationship1, title1;
@@ -433,8 +527,10 @@ public partial class ActionPage : ContentPage
     private string spokenA, spokenB, spokenC;
     private string readingA, readingB, readingC;
     private string writingA, writingB, writingC;
-
-
+    private string skillname1, skillname2, skillname3;
+    private string init1, init2, init3;
+    private string year1, year2, year3;
+    private string asso1, asso2, asso3;
 
 
 
@@ -444,21 +540,23 @@ public partial class ActionPage : ContentPage
         return new List<Dependants>
             {
 
-                new Dependants{Number = "I",Title = title1, SurName = surname1, FirstName = firstName1, OtherName = othername1,
+                new Dependants{Title = title1, SurName = surname1, FirstName = firstName1, OtherName = othername1,
                     DateOfBirth = dateofBirth1, Relationship = relationship1},
-                 new Dependants{Number = "II",Title = title2, SurName = surname2, FirstName = firstName2, OtherName = othername2,
+                 new Dependants{Title = title2, SurName = surname2, FirstName = firstName2, OtherName = othername2,
                     DateOfBirth = dateofBirth2, Relationship = relationship2},
-                  new Dependants{Number = "III",Title = title3, SurName = surname3, FirstName = firstName3, OtherName = othername3,
+                  new Dependants{Title = title3, SurName = surname3, FirstName = firstName3, OtherName = othername3,
                     DateOfBirth = dateofBirth3, Relationship = relationship3},
-                   new Dependants{Number = "IV",Title = title4, SurName = surname4, FirstName = firstName4, OtherName = othername4,
+                   new Dependants{Title = title4, SurName = surname4, FirstName = firstName4, OtherName = othername4,
                     DateOfBirth = dateofBirth4, Relationship = relationship4},
-                    new Dependants{Number = "V",Title = title5, SurName = surname5, FirstName = firstName5, OtherName = othername5,
+                    new Dependants{Title = title5, SurName = surname5, FirstName = firstName5, OtherName = othername5,
                     DateOfBirth = dateofBirth5, Relationship = relationship5},
             };
 
 
     }
-    private List<Dependants> GetDependants4()
+
+   
+    /*private List<Dependants> GetDependants4()
     {
 
         return new List<Dependants>
@@ -522,13 +620,15 @@ public partial class ActionPage : ContentPage
             };
 
 
-    }
+    }*/
 
     private List<Skills> GetSkills()
     {
         return new List<Skills>
         {
-
+            new Skills{Name = skillname1, Institution = init1, Year = year1},
+        new Skills { Name = skillname2, Institution = init2, Year = year2 },
+        new Skills { Name = skillname3, Institution = init3, Year = year3 },
         };
     }
 
@@ -544,8 +644,11 @@ public partial class ActionPage : ContentPage
 
 
 
-    void submitSearchByDepartment(object sender, EventArgs e)
+    async void submitSearchByDepartment(object sender, EventArgs e)
     {
+        changeButtonSubmitSearchByDepartment.Background = Colors.Teal;
+        await Task.Delay(500); // Wait for 0.5 seconds (adjust time as needed)
+        changeButtonSubmitSearchByDepartment.Background = Colors.DarkSlateGray;
         byPayment.IsVisible = false;
         bySubMetro.IsVisible = false;
         byStaffID.IsVisible = false;
@@ -560,7 +663,7 @@ public partial class ActionPage : ContentPage
 
         if (isvalidsearchByDepartmentEntry)
         {
-            ByDepartment.ItemsSource = App.EmployeeRep.GetPeopleByDepartment(searchByDepartmentName);
+            ByDepartment.ItemsSource = await App.EmployeeRep.GetPeopleByDepartment(searchByDepartmentName);
             string check = App.EmployeeRep.statusMessage;
 
             act2.IsRunning = false;
@@ -572,26 +675,34 @@ public partial class ActionPage : ContentPage
         }
     }
 
-    void submitSearchBySub_Metro(object sender, EventArgs e)
+    async void submitSearchBySub_Metro(object sender, EventArgs e)
     {
+        changeButtonSubmitSearchBySub_Metro.Background = Colors.Teal;
+        await Task.Delay(500); // Wait for 0.5 seconds (adjust time as needed)
+        changeButtonSubmitSearchBySub_Metro.Background = Colors.DarkSlateGray;
+
         byDepartment.IsVisible = false;
         byPayment.IsVisible = false;
         byStaffID.IsVisible = false;
         bySubMetro.IsVisible = true;
         System.Diagnostics.Debug.WriteLine(searchBySub_Metro);
         act3.IsRunning = true;
-        BySubMetro.ItemsSource = App.EmployeeRep.GetPeopleBySubMetro(searchBySub_Metro);
+        BySubMetro.ItemsSource = await App.EmployeeRep.GetPeopleBySubMetro(searchBySub_Metro);
         act3.IsRunning = false;
     }
 
-    void submitSearchBy_Payment(object sender, EventArgs e)
+    async void submitSearchBy_Payment(object sender, EventArgs e)
     {
+        changeButtonSubmitSearchBy_Payment.Background = Colors.Teal;
+        await Task.Delay(500); // Wait for 0.5 seconds (adjust time as needed)
+        changeButtonSubmitSearchBy_Payment.Background = Colors.DarkSlateGray;
+
         byDepartment.IsVisible = false;
         bySubMetro.IsVisible = false;
         byStaffID.IsVisible = false;
         byPayment.IsVisible = true;
         System.Diagnostics.Debug.WriteLine(searchByPayment_Mode);
-        ByPaymentMode.ItemsSource = App.EmployeeRep.GetPeopleByPaymentMode(searchByPayment_Mode);
+        ByPaymentMode.ItemsSource = await App.EmployeeRep.GetPeopleByPaymentMode(searchByPayment_Mode);
         System.Diagnostics.Debug.WriteLine(App.EmployeeRep.statusMessage);
     }
 
@@ -2834,10 +2945,12 @@ public partial class ActionPage : ContentPage
     
 
     
-    void inputSubmitbtn(object sender, EventArgs e)
+    async void inputSubmitbtn(object sender, EventArgs e)
     {
 
-
+        inputSubmitbName.Background = Colors.Teal;
+        await Task.Delay(500); // Wait for 0.5 seconds (adjust time as needed)
+        inputSubmitbName.Background = Colors.DarkSlateGray;
         //entries 
 
         if (testInputIdentificationStaffIDError == false)
@@ -3146,7 +3259,7 @@ private bool language3 = false;
                                         residentialTownCity,residentialRegion,otherPostalAddress,otherEmailAddress, otherPhoneNo, otherMobileNo, disableState, disableReason,nextOfKinSurname, nextOfKinFirstName, nextOfKinRelationship,
                                         nextOfKinContactHouseNo,nextOfKinContactStreetName, nextOfKinContactArea, nextOfKinContactCityTown, nextOFKinRegion, nextOfKinCountries, nextOfKinContactPhoneNo, dependant1Title, dependant1Surname, dependant1FirstName,
                                         dependant1MiddleName, dependant1DateOfBirth, dependant1Relationship, dependant2Title, dependant2Surname, dependant2FirstName,dependant2MiddleName, dependant2DateOfBirth, dependant2Relationship,
-                                         dependant3Title, dependant3Surname, dependant3FirstName, dependant3MiddleName, dependant3DateOfBirth, dependant3Relationship,dependant4Title, dependant4Surname, dependant4FirstName, dependant4MiddleName, 
+                                        dependant3Title, dependant3Surname, dependant3FirstName, dependant3MiddleName, dependant3DateOfBirth, dependant3Relationship,dependant4Title, dependant4Surname, dependant4FirstName, dependant4MiddleName, 
                                          dependant4DateOfBirth, dependant4Relationship,dependant5Title, dependant5Surname, dependant5FirstName, dependant5MiddleName, dependant5DateOfBirth, dependant5Relationship,educationInstitutionName,educationTo, educationFrom,
                                          educationQualificationObtained,educationCourseStudied,educationEntryCertificate, skills1Type, skills1InstitutionName, skills1YearObtained, skills2Type, skills2InstitutionName, skills2YearObtained
                                          , skills3Type, skills3InstitutionName, skills3YearObtained, association1Name, association2Name, association3Name, language1Name, languageSpoken1, languageReading1, languageWriting1, language2Name, languageSpoken2, 
@@ -3658,7 +3771,15 @@ private bool language3 = false;
 		searchByDepartment.IsVisible = false;
 		searchBySubMetro.IsVisible = false;
 		searchByPaymentMode.IsVisible = false;
-	}
+        openSearchByStaffIDFormLabel.TextColor = Colors.White;
+        openSearchByStaffIDFormFrame.BackgroundColor = Color.Parse("#1B4242");
+        openSearchByDepartmentFormLabel.TextColor = Colors.Black;
+        openSearchByDepartmentFormFrame.BackgroundColor = Color.Parse("#5C8374");
+        openSearchByPaymentModeLabel.TextColor = Colors.Black;
+        openSearchByPaymentModeFrame.BackgroundColor = Color.Parse("#5C8374");
+        openSearchBySubMetroFormLabel.TextColor = Colors.Black;
+        openSearchBySubMetroFormFrame.BackgroundColor = Color.Parse("#5C8374");
+    }
 
 	void openSearchByDepartmentForm(object sender,EventArgs e)
 	{
@@ -3666,48 +3787,82 @@ private bool language3 = false;
 		searchByPaymentMode.IsVisible = false;
 		searchByStaffID.IsVisible=false;
 		searchBySubMetro.IsVisible=false;
-	}
+        openSearchByStaffIDFormLabel.TextColor = Colors.Black;
+        openSearchByStaffIDFormFrame.BackgroundColor = Color.Parse("#5C8374");
+        openSearchByDepartmentFormLabel.TextColor = Colors.White;
+        openSearchByDepartmentFormFrame.BackgroundColor = Color.Parse("#1B4242");
+        openSearchByPaymentModeLabel.TextColor = Colors.Black;
+        openSearchByPaymentModeFrame.BackgroundColor = Color.Parse("#5C8374");
+        openSearchBySubMetroFormLabel.TextColor = Colors.Black;
+        openSearchBySubMetroFormFrame.BackgroundColor = Color.Parse("#5C8374");
+    }
 	void openSearchBySubMetroForm(object sender, EventArgs e)
 	{
 		searchBySubMetro.IsVisible = true;
 		searchByStaffID.IsVisible = false;
 		searchByDepartment.IsVisible = false;
 		searchByPaymentMode.IsVisible = false;
-	}
+        openSearchByStaffIDFormLabel.TextColor = Colors.Black;
+        openSearchByStaffIDFormFrame.BackgroundColor = Color.Parse("#5C8374");
+        openSearchByDepartmentFormLabel.TextColor = Colors.Black;
+        openSearchByDepartmentFormFrame.BackgroundColor = Color.Parse("#5C8374");
+        openSearchByPaymentModeLabel.TextColor = Colors.Black;
+        openSearchByPaymentModeFrame.BackgroundColor = Color.Parse("#5C8374");
+        openSearchBySubMetroFormLabel.TextColor = Colors.White;
+        openSearchBySubMetroFormFrame.BackgroundColor = Color.Parse("#1B4242");
+    }
 	void openSearchByPaymentMode(object sender, EventArgs e)
 	{
 		searchByPaymentMode.IsVisible = true;
 		searchByDepartment.IsVisible = false;
 		searchByStaffID.IsVisible = false;
 		searchBySubMetro.IsVisible = false;
-	}
+        openSearchByStaffIDFormLabel.TextColor = Colors.Black;
+        openSearchByStaffIDFormFrame.BackgroundColor = Color.Parse("#5C8374");
+        openSearchByDepartmentFormLabel.TextColor = Colors.Black;
+        openSearchByDepartmentFormFrame.BackgroundColor = Color.Parse("#5C8374");
+        openSearchByPaymentModeLabel.TextColor = Colors.White;
+        openSearchByPaymentModeFrame.BackgroundColor = Color.Parse("#1B4242");
+        openSearchBySubMetroFormLabel.TextColor = Colors.Black;
+        openSearchBySubMetroFormFrame.BackgroundColor = Color.Parse("#5C8374");
+    }
 
 
 	
 
 
-	void openLeaveAddEmployee(object sender, EventArgs e)
+	async void openLeaveAddEmployee(object sender, EventArgs e)
 	{
-		leaveAddEmployee.IsVisible = true;
+        openLeaveAddEmployeeButton.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        openLeaveAddEmployeeButton.BackgroundColor = Colors.DarkSlateGray;
+
+        leaveAddEmployee.IsVisible = true;
 		leaveDeleteEmployee.IsVisible = false;
 		leaveSearchEmployee.IsVisible = false;
         leaveUpdateEmployee.IsVisible = false;
 
     }
 
-    void openLeaveSearchEmployee(object sender, EventArgs e)
+    async void openLeaveSearchEmployee(object sender, EventArgs e)
 	{
+        openLeaveSearchEmployeeButton.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        openLeaveSearchEmployeeButton.BackgroundColor = Colors.DarkSlateGray;
+
         leaveAddEmployee.IsVisible = false;
         leaveDeleteEmployee.IsVisible = false;
         leaveSearchEmployee.IsVisible = true;
         leaveUpdateEmployee.IsVisible = false;
-        leaveSearch__.ItemsSource = App.LeaveRep.GetAllPeople();
-        
-        
+        leaveSearch__.ItemsSource = await App.LeaveRep.GetAllPeople();
+
     }
 
-    void openLeaveDeleteEmployee(object sender, EventArgs e)
+    async void openLeaveDeleteEmployee(object sender, EventArgs e)
 	{
+        openLeaveDeleteEmployeeButton.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        openLeaveDeleteEmployeeButton.BackgroundColor = Colors.DarkSlateGray;
         leaveAddEmployee.IsVisible = false;
         leaveDeleteEmployee.IsVisible = true;
         leaveSearchEmployee.IsVisible = false;
@@ -3717,8 +3872,10 @@ private bool language3 = false;
 
     async void openLeaveUpdateEmployee(object sender, EventArgs e)
 	{
-
-		leaveUpdateEmployee.IsVisible = true;
+        openLeaveUpdateEmployeeButton.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        openLeaveUpdateEmployeeButton.BackgroundColor = Colors.DarkSlateGray;
+        leaveUpdateEmployee.IsVisible = true;
         leaveAddEmployee.IsVisible = false;
         leaveDeleteEmployee.IsVisible = false;
         leaveSearchEmployee.IsVisible = false;
@@ -3731,29 +3888,75 @@ private bool language3 = false;
         performanceFrame.IsVisible = false;
         deleteEmployeeFrame.IsVisible = false;
         leaveManagementFrame.IsVisible = false;
+        hoverSearch.BorderColor = Colors.White;
+        hoverSearchLabel.TextColor = Colors.White;
+        hoverAdd.BorderColor = Colors.Transparent;
+        hoverAddLabel.TextColor = Colors.Gray;
+        hoverUpdate.BorderColor = Colors.Transparent;
+        hoverUpdateLabel.TextColor = Colors.Gray;
+        hoverDelete.BorderColor = Colors.Transparent;
+        hoverDeleteLabel.TextColor = Colors.Gray;
+        hoverLeave.BorderColor = Colors.Transparent;
+        hoverLeaveLabel.TextColor = Colors.Gray;
+        hoverPerformance.BorderColor = Colors.Transparent;
+        hoverPerformanceLabel.TextColor = Colors.Gray;
+        hoverSearchImage.Source = "white_people_search.png";
+        hoverAddImage.Source = "add_person.png";
+        hoverUpdateImage.Source = "renew.png";
+        hoverDeleteImage.Source = "user_delete_icon.png";
 
     }
 
 
-	void openPerformanceAddEmployee(object sender, EventArgs e)
+    async void openPerformanceAddEmployee(object sender, EventArgs e)
 	{
-		performanceAddEmployee.IsVisible = true;
+        openPerformanceAddEmployeeButton.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        openPerformanceAddEmployeeButton.BackgroundColor = Colors.DarkSlateGray;
+
+        performanceAddEmployee.IsVisible = true;
 		performanceDeleteEmployee.IsVisible = false;
 		performanceUpdateEmployee.IsVisible = false;
-	}
+        performanceSearchEmployee.IsVisible = true;
+        performanceSearchEmployee.IsVisible = false;
 
-	void openPerformanceUpadteEmployee(object sender, EventArgs e)
+    }
+
+    async void openPerformanceUpdateEmployee(object sender, EventArgs e)
 	{
+        openPerformanceUpdateEmployeeButton.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        openPerformanceUpdateEmployeeButton.BackgroundColor = Colors.DarkSlateGray;
         performanceAddEmployee.IsVisible = false;
         performanceDeleteEmployee.IsVisible = false;
         performanceUpdateEmployee.IsVisible = true;
+        performanceSearchEmployee.IsVisible = false;
+
     }
 
-	void openPerformanceDeleteEmployee(object sender, EventArgs e)
+    async void openPerformanceDeleteEmployee(object sender, EventArgs e)
 	{
+        openPerformanceDeleteEmployeeButton.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        openPerformanceDeleteEmployeeButton.BackgroundColor = Colors.DarkSlateGray;
         performanceAddEmployee.IsVisible = false;
         performanceDeleteEmployee.IsVisible = true;
         performanceUpdateEmployee.IsVisible = false;
+        performanceSearchEmployee.IsVisible = false;
+
+    }
+
+    async void openPerformanceSearchEmployee(object sender, EventArgs e)
+    {
+        openPerformanceSearchEmployeeButton.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        openPerformanceSearchEmployeeButton.BackgroundColor = Colors.DarkSlateGray;
+        performanceSearchEmployee.IsVisible = true;
+        performanceAddEmployee.IsVisible = false;
+        performanceDeleteEmployee.IsVisible = false;
+        performanceUpdateEmployee.IsVisible = false;
+
+        _showAllPerformanceReview.ItemsSource = await App.PerformanceRep.GetAllPeople();
     }
 
 
@@ -3766,7 +3969,24 @@ private bool language3 = false;
         performanceFrame.IsVisible = false;
         leaveManagementFrame.IsVisible = false;
         reset.IsVisible = false;
-
+        hoverSearch.BorderColor = Colors.Transparent;
+        hoverSearchLabel.TextColor = Colors.Gray;
+        hoverAdd.BorderColor = Colors.White;
+        hoverAddLabel.TextColor = Colors.White;
+        hoverUpdate.BorderColor = Colors.Transparent;
+        hoverUpdateLabel.TextColor = Colors.Gray;
+        hoverDelete.BorderColor = Colors.Transparent;
+        hoverDeleteLabel.TextColor = Colors.Gray;
+        hoverLeave.BorderColor = Colors.Transparent;
+        hoverLeaveLabel.TextColor = Colors.Gray;
+        hoverPerformance.BorderColor = Colors.Transparent;
+        hoverPerformanceLabel.TextColor = Colors.Gray;
+        hoverSearchImage.Source = "search_person.png";
+        hoverAddImage.Source = "white_person_add.png";
+        hoverUpdateImage.Source = "renew.png";
+        hoverDeleteImage.Source = "user_delete_icon.png";
+        hoverLeaveImage.Source = "leave_manage.png";
+        hoverPerformanceImage.Source = "assessment.png";
     }
 
     void openUpdateEmployeeFrame(object sender, EventArgs e)
@@ -3778,7 +3998,24 @@ private bool language3 = false;
         leaveManagementFrame.IsVisible = false;
         performanceFrame.IsVisible = false;
         reset.IsVisible = false;
-
+        hoverSearch.BorderColor = Colors.Transparent;
+        hoverSearchLabel.TextColor = Colors.Gray;
+        hoverAdd.BorderColor = Colors.Transparent;
+        hoverAddLabel.TextColor = Colors.Gray;
+        hoverUpdate.BorderColor = Colors.White;
+        hoverUpdateLabel.TextColor = Colors.White;
+        hoverDelete.BorderColor = Colors.Transparent;
+        hoverDeleteLabel.TextColor = Colors.Gray;
+        hoverLeave.BorderColor = Colors.Transparent;
+        hoverLeaveLabel.TextColor = Colors.Gray;
+        hoverPerformance.BorderColor = Colors.Transparent;
+        hoverPerformanceLabel.TextColor = Colors.Gray;
+        hoverSearchImage.Source = "search_person.png";
+        hoverAddImage.Source = "add_person.png";
+        hoverUpdateImage.Source = "white_renew.png";
+        hoverDeleteImage.Source = "user_delete_icon.png";
+        hoverLeaveImage.Source = "leave_manage.png";
+        hoverPerformanceImage.Source = "assessment.png";
     }
 
     void openDeleteEmployeeFrame(object sender, EventArgs e)
@@ -3790,7 +4027,24 @@ private bool language3 = false;
         leaveManagementFrame.IsVisible = false;
         performanceFrame.IsVisible = false;
         reset.IsVisible = false;
-
+        hoverSearch.BorderColor = Colors.Transparent;
+        hoverSearchLabel.TextColor = Colors.Gray;
+        hoverAdd.BorderColor = Colors.Transparent;
+        hoverAddLabel.TextColor = Colors.Gray;
+        hoverUpdate.BorderColor = Colors.Transparent;
+        hoverUpdateLabel.TextColor = Colors.Gray;
+        hoverDelete.BorderColor = Colors.White;
+        hoverDeleteLabel.TextColor = Colors.White;
+        hoverLeave.BorderColor = Colors.Transparent;
+        hoverLeaveLabel.TextColor = Colors.Gray;
+        hoverPerformance.BorderColor = Colors.Transparent;
+        hoverPerformanceLabel.TextColor = Colors.Gray;
+        hoverSearchImage.Source = "search_person.png";
+        hoverAddImage.Source = "add_person.png";
+        hoverUpdateImage.Source = "renew.png";
+        hoverDeleteImage.Source = "white_user_delete.png";
+        hoverLeaveImage.Source = "leave_manage.png";
+        hoverPerformanceImage.Source = "assessment.png";
 
 
     }
@@ -3804,6 +4058,26 @@ private bool language3 = false;
         deleteEmployeeFrame.IsVisible = false;
         performanceFrame.IsVisible = false;
         reset.IsVisible = false;
+        hoverSearch.BorderColor = Colors.Transparent;
+        hoverSearchLabel.TextColor = Colors.Gray;
+        hoverAdd.BorderColor = Colors.Transparent;
+        hoverAddLabel.TextColor = Colors.Gray;
+        hoverUpdate.BorderColor = Colors.Transparent;
+        hoverUpdateLabel.TextColor = Colors.Gray;
+        hoverDelete.BorderColor = Colors.Transparent;
+        hoverDeleteLabel.TextColor = Colors.Gray;
+        hoverLeave.BorderColor = Colors.White;
+        hoverLeaveLabel.TextColor = Colors.White;
+        hoverPerformance.BorderColor = Colors.Transparent;
+        hoverPerformanceLabel.TextColor = Colors.Gray;
+        hoverSearchImage.Source = "search_person.png";
+        hoverAddImage.Source = "add_person.png";
+        hoverUpdateImage.Source = "renew.png";
+        hoverDeleteImage.Source = "user_delete_icon.png";
+        hoverLeaveImage.Source = "white_green.png";
+        hoverPerformanceImage.Source = "assessment.png";
+
+
 
     }
 
@@ -3816,7 +4090,24 @@ private bool language3 = false;
         deleteEmployeeFrame.IsVisible = false;
         leaveManagementFrame.IsVisible = false;
         reset.IsVisible = false;
-
+        hoverSearch.BorderColor = Colors.Transparent;
+        hoverSearchLabel.TextColor = Colors.Gray;
+        hoverAdd.BorderColor = Colors.Transparent;
+        hoverAddLabel.TextColor = Colors.Gray;
+        hoverUpdate.BorderColor = Colors.Transparent;
+        hoverUpdateLabel.TextColor = Colors.Gray;
+        hoverDelete.BorderColor = Colors.Transparent;
+        hoverDeleteLabel.TextColor = Colors.Gray;
+        hoverLeave.BorderColor = Colors.Transparent;
+        hoverLeaveLabel.TextColor = Colors.Gray;
+        hoverPerformance.BorderColor = Colors.White;
+        hoverPerformanceLabel.TextColor = Colors.White;
+        hoverSearchImage.Source = "search_person.png";
+        hoverAddImage.Source = "add_person.png";
+        hoverUpdateImage.Source = "renew.png";
+        hoverDeleteImage.Source = "user_delete_icon.png";
+        hoverLeaveImage.Source= "leave_manage.png";
+        hoverPerformanceImage.Source = "white_assignment.png";
     }
 
     void openReset(object sender, EventArgs e)
@@ -3831,7 +4122,9 @@ private bool language3 = false;
     }
 	async void logout(object sender, EventArgs e)
 	{
+        logoutButton.BackgroundColor = Colors.Coral;
         await Navigation.PopAsync();
+        logoutButton.BackgroundColor = Colors.IndianRed;
 	}
 
 	private List<string> countries = new List<string>
@@ -3868,8 +4161,11 @@ private bool language3 = false;
         }
     }
 
-    void openConfirmDelete(object sender, EventArgs e)
+    async void openConfirmDelete(object sender, EventArgs e)
     {
+        openConfirmDeleteName.Background = Colors.Teal;
+        await Task.Delay(500);
+        openConfirmDeleteName.Background = Colors.DarkSlateGray;
         deAct.IsRunning = true;
         if (!test_recordDeleteStaffID)
         {
@@ -3880,7 +4176,7 @@ private bool language3 = false;
 
         if (isvalid_recordDeleteStaffID)
         {
-            List<EmployeeDB>  list = App.EmployeeRep.GetPeopleDeleteByStaffID(recordDelete_staffID);
+            List<EmployeeDB>  list = await App.EmployeeRep.GetPeopleDeleteByStaffID(recordDelete_staffID);
             bool done = App.EmployeeRep.done;
             if (App.EmployeeRep.testData)
             {
@@ -3917,10 +4213,10 @@ private bool language3 = false;
 
     }
 
-    void deleteEmployeeButton(object sender, EventArgs e)
+    async void deleteEmployeeButton(object sender, EventArgs e)
     {
         deAct1.IsRunning = true;
-        bool result = App.EmployeeRep.DeleteEmployeeByStaffID(recordDelete_staffID);
+        bool result = await App.EmployeeRep.DeleteEmployeeByStaffID(recordDelete_staffID);
         successfulDelete.Text = App.EmployeeRep.statusMessage;
         successfulDelete.IsVisible = true;
         confirmDeleteFrmae.IsVisible = false;
@@ -6315,9 +6611,11 @@ private bool language3 = false;
         }
     }
 
-    void _inputSubmitbtn(object sender, EventArgs e)
+    async void _inputSubmitbtn(object sender, EventArgs e)
     {
-
+        _inputSubmitbtnName.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        _inputSubmitbtnName.BackgroundColor = Colors.DarkSlateGray;
 
         //entries 
 
@@ -6664,7 +6962,7 @@ private bool language3 = false;
             _languageReading3;
             _languageWriting3;*/
 
-            bool result = App.EmployeeRep.UpdateEmployeeByStaffID(__StaffID, _identificationStaffID, _identificationSocialSecurity, _identificationNHIS, _identificationIntPassport,
+            bool result = await App.EmployeeRep.UpdateEmployeeByStaffID(__StaffID, _identificationStaffID, _identificationSocialSecurity, _identificationNHIS, _identificationIntPassport,
                 _identificationVotersID, _identificationNationalID, _identificationDriversLicense, _employeeDetialsSurname, _employeeDetialsFirstName,
                 _employeeDetialsMiddleName, _employeeDetialsDirectorate, _employeeDetialsDepartment, _employeeDetialsUnit, _employeeDetialsImmediateSupervisor,
                 _employeeDetialsCostCenter, _employeeDetialsJobClass, _employeeDetialsJobTitle, _employeeDetialsJobGrade, _employeeDetialsGradeLevel,
@@ -7211,8 +7509,11 @@ private bool language3 = false;
     }
 
 
-    void submitUpdate_Query(object sender, EventArgs e)
+    async void submitUpdate_Query(object sender, EventArgs e)
     {
+        submitUpdate_QueryName.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        submitUpdate_QueryName.BackgroundColor = Colors.DarkSlateGray;
 
         if (!test__staffID)
         {
@@ -7222,7 +7523,7 @@ private bool language3 = false;
 
         if (_isvalidTest__staffID)
         {
-            List<EmployeeDB> list = App.EmployeeRep.GetUpdatePeopleByStaffID(__StaffID);
+            List<EmployeeDB> list = await App.EmployeeRep.GetUpdatePeopleByStaffID(__StaffID);
 
 
 
@@ -8014,8 +8315,11 @@ private bool language3 = false;
         }
     }
 
-    void btn_leaveAdd(object sender, EventArgs e)
+    async void btn_leaveAdd(object sender, EventArgs e)
     {
+        btn_leaveAddButton.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        btn_leaveAddButton.BackgroundColor = Colors.DarkSlateGray;
         if (testAddStaffIDError == false)
         {
             leaveAddStaffIDError.Text = "This field cannot be empty";
@@ -8075,7 +8379,7 @@ private bool language3 = false;
                 addTypeofLeave, addResumeDate, addOfficer, addApprovalDate, addTotalLeaveDays
                 );
 
-            addRecord1(addStaffID, addTypeofLeave, addDateApplied, addResumeDate, addApprovalDate,addNameOfHOD, addOfficer, addDaysRequested
+           addRecord1(addStaffID, addTypeofLeave, addDateApplied, addResumeDate, addApprovalDate,addNameOfHOD, addOfficer, addDaysRequested
                 , addTotalLeaveDays, fullPath1);
             leavesuccess.Text = App.LeaveRep.message;
             leavesuccess.IsVisible = true;
@@ -8218,8 +8522,11 @@ private bool language3 = false;
     }
 
     private int i, o, p;
-    void leaveUpdate_Submit_(object sender, EventArgs e)
+    async void leaveUpdate_Submit_(object sender, EventArgs e)
     {
+        leaveUpdate_Submit_Button.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        leaveUpdate_Submit_Button.BackgroundColor = Colors.DarkSlateGray;
         if (!__testStaffID__)
         {
             errorLeaveUpdate_StaffID_.Text = "This feild cannot be empty";
@@ -8231,7 +8538,7 @@ private bool language3 = false;
         if (__isvalidStaffID__)
         {
             leaveUpdate_StaffID_.Text = string.Empty;
-            List<LeaveManagementDB> list = App.LeaveRep.GetPeopleByStaffID(__staffID__);
+            List<LeaveManagementDB> list = await App.LeaveRep.GetPeopleByStaffID(__staffID__);
             bool done = App.LeaveRep.done;
             updateCheckSuccess.Text = App.LeaveRep.message;
             updateCheckSuccess.IsVisible = true;
@@ -8499,8 +8806,11 @@ private bool language3 = false;
         }
     }
 
-    void __btn_leaveAdd(object sender, EventArgs e)
+    async void __btn_leaveAdd(object sender, EventArgs e)
     {
+        __btn_leaveAddButton.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        __btn_leaveAddButton.BackgroundColor = Colors.DarkSlateGray;
         if (_testAddStaffIDError == false)
         {
             _leaveAddStaffIDError.Text = "This field cannot be empty";
@@ -8573,7 +8883,7 @@ private bool language3 = false;
         {
            // _showLeaveAddResult.Text = _addStaffID + " " + _addDateApplied + " " + _addNameOfHOD + " " + _addDaysRequested + " " + _addTypeofLeave + " " + _addResumeDate + " " + _addOfficer + " " + _addApprovalDate + " " + _addTotalLeaveDays + " " + _addNumberofDaysLeft;
 
-            bool result = App.LeaveRep.UpdateAddLeaveEmployee(__staffID__, _addStaffID, _addDateApplied, _addNameOfHOD, _addDaysRequested,
+            bool result = await App.LeaveRep.UpdateAddLeaveEmployee(__staffID__, _addStaffID, _addDateApplied, _addNameOfHOD, _addDaysRequested,
                  _addTypeofLeave, _addResumeDate, _addOfficer, _addApprovalDate, _addTotalLeaveDays);
 
             if (result)
@@ -8599,10 +8909,10 @@ private bool language3 = false;
        
 
     }
-    void _btn_leaveAdd(object sender, EventArgs e)
+    async void _btn_leaveAdd(object sender, EventArgs e)
     {
 
-        bool result = App.LeaveRep.UpdateAddLeaveEmployee(__staffID__, _addStaffID, _addDateApplied, _addNameOfHOD, _addDaysRequested,
+        bool result = await App.LeaveRep.UpdateAddLeaveEmployee(__staffID__, _addStaffID, _addDateApplied, _addNameOfHOD, _addDaysRequested,
              _addTypeofLeave, _addResumeDate, _addOfficer, _addApprovalDate, _addTotalLeaveDays);
 
         //_showLeaveAddResult.Text = App.LeaveRep.message;
@@ -8719,9 +9029,12 @@ private bool language3 = false;
 
     }
 
-    void OnDeleteStaffIDSubmit(object sender, EventArgs e)
+    async void OnDeleteStaffIDSubmit(object sender, EventArgs e)
     {
-        if(test_leave_delete_staff_id == false)
+        OnDeleteStaffIDSubmitButton.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        OnDeleteStaffIDSubmitButton.BackgroundColor = Colors.DarkSlateGray;
+        if (test_leave_delete_staff_id == false)
         {
             leave_delete_staffid_error.Text = "This field cannot be empty";
             leave_delete_staffid_error.IsVisible = true;
@@ -8729,7 +9042,7 @@ private bool language3 = false;
 
         if (isvalid_leave_delete_staff_id)
         {
-            bool result = App.LeaveRep.DeleteAddLeaveEmployee(leave_delete_staffID);
+            bool result = await App.LeaveRep.DeleteAddLeaveEmployee(leave_delete_staffID);
             delete_leave_status.Text = App.LeaveRep.message;
             delete_leave_status.IsVisible = true;
 
@@ -8747,13 +9060,28 @@ private bool language3 = false;
     private string performancePlanning;
     private string performanceMidYear;
     private string performanceEndYear;
+    private string performanceDepartmentName;
+    private bool test_performancename = false;
 
 
 
 
 
+    void OnPerformanceDepartmentNameTextChange(object sender, TextChangedEventArgs e)
+    {
+        performanceUpdate_status.IsVisible = false;
+        error_performanceDepartname.IsVisible = false;
+        string entryValue = performanceDepartname.Text;
+        if (!string.IsNullOrEmpty(entryValue))
+        {
+            performanceDepartmentName = entryValue;
+            test_performancename = true;
+        }
+    }
     void OnDatePickerPerformancePlanning(object sender, DateChangedEventArgs e)
     {
+        performanceUpdate_status.IsVisible = false;
+
         var selectedDate = e.NewDate;
         string selectedDateFormat = selectedDate.ToString("dd/MM/yyyy");
 
@@ -8772,6 +9100,8 @@ private bool language3 = false;
 
     void OnDatePickerPerformanceMidYear(object sender, DateChangedEventArgs e)
     {
+        performanceUpdate_status.IsVisible = false;
+
         var selectedDate = e.NewDate;
         string selectedDateFormat = selectedDate.ToString("dd/MM/yyyy");
 
@@ -8790,6 +9120,8 @@ private bool language3 = false;
 
     void OnDatePickerPerformanceEndYear(object sender, DateChangedEventArgs e)
     {
+        performanceUpdate_status.IsVisible = false;
+
         var selectedDate = e.NewDate;
         string selectedDateFormat = selectedDate.ToString("dd/MM/yyyy");
 
@@ -8806,9 +9138,35 @@ private bool language3 = false;
         }
     }
 
-    void performance_btn(object sender, EventArgs e)
+    async void performance_btn(object sender, EventArgs e)
     {
+        performance_btnButton.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        performance_btnButton.BackgroundColor = Colors.DarkSlateGray;
+        if (!test_performancename)
+        {
+            System.Diagnostics.Debug.WriteLine("error");
+            error_performanceDepartname.IsVisible = true;
+            error_performanceDepartname.Text = "This field cannot be empty";
+        }
+        else
+        {
+            System.Diagnostics.Debug.WriteLine( performanceDepartmentName + " " + performancePlanning + " " + performanceMidYear + " " + performanceEndYear);
 
+            await App.PerformanceRep.AddData(performanceDepartmentName, performancePlanning, performanceMidYear, performanceEndYear);
+            performanceUpdate_status.Text = App.PerformanceRep.statusMessage;
+            performanceUpdate_status.IsVisible = true;
+
+            string isSuccess = App.PerformanceRep.statusMessage;
+            if (isSuccess.Equals("Success"))
+            {
+                if (File.Exists(fullPath2))
+                {
+                    addRecord2(performanceDepartmentName, performancePlanning, performanceMidYear, performanceEndYear, fullPath2);
+                }
+            }
+
+        }
     }
 
     //update
@@ -8816,8 +9174,23 @@ private bool language3 = false;
     private string _performancePlanning;
     private string _performanceMidYear;
     private string _performanceEndYear;
+    private string _performanceDepartmentName;
+    private bool _test_performancename = false;
 
-
+    void _OnPerformanceDepartmentNameTextChange(object sender, TextChangedEventArgs e)
+    {
+        _error_performanceDepartname.IsVisible = false;
+        performupdatebtn.IsVisible = false;
+        _check_exitstPerformance.IsVisible = false;
+        showPerfomanceUpdate.IsVisible = false;
+        _performanceUpdate_status.IsVisible = false;
+        string entryValue = _performanceDepartname.Text;
+        if (!string.IsNullOrEmpty(entryValue))
+        {
+            _performanceDepartmentName = entryValue;
+            _test_performancename = true;
+        }
+    }
     void _OnDatePickerPerformancePlanning(object sender, DateChangedEventArgs e)
     {
         var selectedDate = e.NewDate;
@@ -8873,10 +9246,133 @@ private bool language3 = false;
     }
 
 
-    void _performance_btn(object sender, EventArgs e)
+    async void _performance_btn(object sender, EventArgs e)
     {
 
+        performupdatebtn.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        performupdatebtn.BackgroundColor = Colors.DarkSlateGray;
+        if (!_test_performancename)
+        {
+            System.Diagnostics.Debug.WriteLine("error update");
+            _error_performanceDepartname.IsVisible = true;
+            _error_performanceDepartname.Text = "This field cannot be empty";
+        }
+        else
+        {
+            System.Diagnostics.Debug.WriteLine("cannn");
+            System.Diagnostics.Debug.WriteLine(_performanceDepartmentName + " " + _performancePlanning + " " + _performanceMidYear + " " + _performanceEndYear);
+            App.PerformanceRep.UpdateData(_performanceDepartmentName, _performanceDepartmentName, _performancePlanning, _performanceMidYear, _performanceEndYear);
+            _performanceUpdate_status.IsVisible = true;
+            _performanceUpdate_status.Text = App.PerformanceRep.statusMessage;
+        }
     }
+
+
+    async void _performanceCheckDepartment(object sender, EventArgs e)
+    {
+            _performanceCheckDepartmentButton.BackgroundColor = Colors.Teal;
+            await Task.Delay(500);
+            _performanceCheckDepartmentButton.BackgroundColor = Colors.DarkSlateGray;
+        if (_test_performancename)
+        {
+            List<PerformanceDB> list = await App.PerformanceRep.GetPerformanceRecord(_performanceDepartmentName);
+            bool done = App.PerformanceRep.done;
+            _check_exitstPerformance.IsVisible = true;
+            _check_exitstPerformance.Text = App.PerformanceRep.statusMessage;
+
+            if (done)
+            {
+                showPerfomanceUpdate.IsVisible = true;
+                performupdatebtn.IsVisible = true;
+                foreach (PerformanceDB data in list)
+                {
+                    var dataString_ = data.planningStage;
+                    if (!(string.IsNullOrWhiteSpace(dataString_)))
+                    {
+                        DateTime selectedDate;
+                        if (DateTime.TryParseExact(dataString_, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedDate))
+                        {
+                            _performancePlanningStage.Date = selectedDate;
+                        }
+                    }
+                    else
+                    {
+                        DateTime specificDate = new DateTime(1960, 02, 01);
+                        _performancePlanningStage.Date = specificDate;
+
+                    }
+
+                    var dataStringa__ = data.midYear;
+                    if (!(string.IsNullOrWhiteSpace(dataStringa__)))
+                    {
+                        DateTime selectedDate;
+                        if (DateTime.TryParseExact(dataStringa__, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedDate))
+                        {
+                            _performanceMidYeatStage.Date = selectedDate;
+                        }
+                    }
+                    else
+                    {
+                        DateTime specificDate = new DateTime(1960, 02, 01);
+                        _performanceMidYeatStage.Date = specificDate;
+
+                    }
+
+                    var dataStringc__ = data.endYear;
+                    if (!(string.IsNullOrWhiteSpace(dataStringc__)))
+                    {
+                        DateTime selectedDate;
+                        if (DateTime.TryParseExact(dataStringc__, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedDate))
+                        {
+                            _performanceEndYearStage.Date = selectedDate;
+                        }
+                    }
+                    else
+                    {
+                        DateTime specificDate = new DateTime(1960, 02, 01);
+                        _performanceEndYearStage.Date = specificDate;
+
+                    }
+                }
+            }
+        }
+    
+
+
+}
+    private string performanaceValue;
+    private bool test_performanceValue = false;
+    void deleteperformanceTextChange(object sender, TextChangedEventArgs e)
+    {
+        statusdeleteperformance__.IsVisible = false;
+        errordeleteperformance__.IsVisible = false;
+        string entryValue = deleteperformance__.Text;
+        if (!string.IsNullOrEmpty(entryValue))
+        {
+            performanaceValue = entryValue;
+            test_performanceValue = true;
+        }
+    }
+    async void delete_performancerecord(object sender, EventArgs e)
+    {
+        delete_performancerecordButton.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        delete_performancerecordButton.BackgroundColor = Colors.DarkSlateGray;
+        if (test_performanceValue)
+        {
+            bool result = await App.PerformanceRep.DeletePerformanceData(performanaceValue);
+            statusdeleteperformance__.Text = App.PerformanceRep.statusMessage;
+            statusdeleteperformance__.IsVisible = true;
+            System.Diagnostics.Debug.WriteLine(performanaceValue);
+        }
+        else
+        {
+            errordeleteperformance__.Text = "The field cannot be empty";
+            errordeleteperformance__.IsVisible = true;
+        }
+    }
+    //_showAllPerformanceReview
 
 
     //excel files
@@ -8897,9 +9393,9 @@ private bool language3 = false;
     {
         try
         {
-            using(System.IO.StreamWriter file = new System.IO.StreamWriter(filePath, true))
+            using(StreamWriter file = File.AppendText(filePath))
             {
-                file.WriteLine(Staff_ID_No + "," + Social_Security_No + ","+ Payment_Mode +","+ Sub_Metro + "," + NHIS_No + "," + Drivers_License_No + "," + Voters_ID_No + "," + INTL_Passport_No + "," + Expiry_Date + "," + Title + "," + Surname
+                file.Write(Staff_ID_No + "," + Social_Security_No + ","+ Payment_Mode +","+ Sub_Metro + "," + NHIS_No + "," + Drivers_License_No + "," + Voters_ID_No + "," + INTL_Passport_No + "," + Expiry_Date + "," + Title + "," + Surname
         + "," + First_Name + "," + Middle_Name + "," + First_Appointment_Date + "," + Directorate + "," + Department + "," + Unit + "," + Cost_Center + "," + Job_Class + "," + Job_Title + "," + Job_Grade + "," + Grade_Level
         +"," + Grade_Point + "," + Date_of_Last_Promotion + "," + Retirement_Date + "," + Name_of_Immediate_Supervisor + "," + Name_of_Bank + "," + Branch_Name_Code + "," + Account_Number + "," + Maiden_name + "," + Sex + "," + Marital_Status
         +"," + Place_of_Birth + "," + Date_of_Birth + "," + Home_Town + "," + Region + "," + Nationality + "," + Religion + "," + House_No + "," + Street_Name + "," + Area + "," + Town_City + "," + Residential_Region + "," + Postal_Address
@@ -8910,7 +9406,7 @@ private bool language3 = false;
         +"," + Middle_Name5 + "," + Date_of_Birth5 + "," + Relationship5 + "," + Name_of_Institution_School + "," + Period_Attend_From + "," + Period_Attend_To + "," + Qualification + "," + Main_Course_of_Study + "," + Entry_Certificate
         +"," + Skill_Training1 + "," + Training_Institution_Organization1 + "," + Year_Obtained1 + "," + Skill_Training2 + "," + Training_Institution_Organization2 + "," + Year_Obtained2 + "," + Skill_Training3 + "," + Training_Institution_Organization3
         +"," + Year_Obtained3 + "," + Professional_Societies_and_Affiliations1 + "," + Professional_Societies_and_Affiliations2 + "," + Professional_Societies_and_Affiliations3 + "," + Language1 + "," + Spoken1 + "," + Reading1 + "," + Writing1
-        +"," + Language2 + "," + Spoken2 + "," + Reading2 + "," + Writing2 + "," + Language3 + "," + Spoken3 + "," + Reading3 + "," + Writing3);
+        +"," + Language2 + "," + Spoken2 + "," + Reading2 + "," + Writing2 + "," + Language3 + "," + Spoken3 + "," + Reading3 + "," + Writing3 + "\n");
             }
         }catch(Exception e)
         {
@@ -8928,10 +9424,10 @@ private bool language3 = false;
             int b = int.Parse(requestedDays);
             int c = a - b;
             string d = c.ToString();
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(filePath, true))
+            using (StreamWriter file = File.AppendText(filePath))
             {
-                file.WriteLine(staffID + "," + typeOfLeave + "," + dateApplied + "," + dateOfResumption + "," + approvalDate + "," + nameOfHOD
-                    + "," + officer + "," + requestedDays + "," + d + "," + totalLeave);
+                file.Write(staffID + "," + typeOfLeave + "," + dateApplied + "," + dateOfResumption + "," + approvalDate + "," + nameOfHOD
+                    + "," + officer + "," + requestedDays + "," + d + "," + totalLeave+ "\n");
             }
         }catch(Exception e)
         {
@@ -8943,9 +9439,9 @@ private bool language3 = false;
     {
         try
         {
-            using(System.IO.StreamWriter file = new System.IO.StreamWriter(filePath, true))
+            using (StreamWriter file = File.AppendText(filePath))
             {
-                file.WriteLine(department + "," + planningStage + "," + midYear + "," + endYear);
+                file.Write(department + "," + planningStage + "," + midYear + "," + endYear + "\n");
             }
         }catch(Exception e)
         {

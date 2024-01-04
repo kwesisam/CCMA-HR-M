@@ -5,7 +5,9 @@ namespace HRM_PT.DbModel;
     [Table("performance_db")]
     public class PerformanceDB
     {
-    [MaxLength(150)]
+
+
+    [PrimaryKey,MaxLength(150)]
     public string departmentName { get; set; }
     [MaxLength(50)]
     public string planningStage { get; set; }

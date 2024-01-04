@@ -11,19 +11,19 @@ namespace HRM_PT;
 
     public class LeaveRepository
     {
-    private static SQLiteConnection conn;
+    private static SQLiteAsyncConnection conn;
     string _dbPath;
 
     public string message { get; set; }
     public bool done { get; set; }
 
-    private void Init()
+    private async Task Init()
     {
         if (conn != null)
             return;
 
-        conn = new SQLiteConnection(_dbPath);
-        conn.CreateTable<LeaveManagementDB>();
+        conn = new SQLiteAsyncConnection(_dbPath);
+        await conn.CreateTableAsync<LeaveManagementDB>();
 
       
     }
@@ -33,14 +33,16 @@ namespace HRM_PT;
     }
 
         
-    public void AddLeaveEmployee(string _staffID, string _dateApplied, string _nameOfHOD, string _daysRequested, 
+    public async Task AddLeaveEmployee(string _staffID, string _dateApplied, string _nameOfHOD, string _daysRequested, 
         string _typeOfLeave, string _resumptionDate, string _officerTakenOver, string _approvedDate, string _totalLeave)
     {
         try
         {
             int result = 0;
 
-            Init();
+            await Init();
+            message = string.Empty;
+
             var employeeInformation = new LeaveManagementDB
             {
             staffID = _staffID,
@@ -55,24 +57,30 @@ namespace HRM_PT;
             };
             message = "Success";
             done = true;
-            result = conn.Insert(employeeInformation);
+            result = await conn.InsertAsync(employeeInformation);
         }
         catch(Exception e)
         {
+            message = string.Empty;
+
             message = string.Format("Failed to add {0}{1}", e.Message, _staffID);
             done = false;
         }
         
     }
 
-    public List<LeaveManagementDB>GetAllPeople()
+    public async Task<List<LeaveManagementDB>>GetAllPeople()
     {
         try
         {
-            Init();
-            return conn.Table<LeaveManagementDB>().ToList();
+            await Init();
+            message = string.Empty;
+
+            return await conn.Table<LeaveManagementDB>().ToListAsync();
         }catch(Exception ex)
         {
+            message = string.Empty;
+
             message = string.Format("failed to retrieve data. {0}", ex.Message);
         }
 
@@ -80,16 +88,20 @@ namespace HRM_PT;
 
     }
 
-    public List<LeaveManagementDB>GetPeopleByStaffID(string _staffID)
+    public async Task<List<LeaveManagementDB>>GetPeopleByStaffID(string _staffID)
     {
         try
         {
-            Init();
+            await Init();
+            message = string.Empty;
+
             message = "Success";
             done = true;
-            return conn.Table<LeaveManagementDB>().Where(e => e.staffID == _staffID).ToList();
+            return await conn.Table<LeaveManagementDB>().Where(e => e.staffID == _staffID).ToListAsync();
         }catch(Exception e)
         {
+            message = string.Empty;
+
             message = String.Format("Failed to retriev data.{0}{1}", e.Message, _staffID);
             done = false;
         }
@@ -98,13 +110,15 @@ namespace HRM_PT;
         return new List<LeaveManagementDB>();
     }
 
-    public bool UpdateAddLeaveEmployee(string staffID_, string _staffID, string _dateApplied, string _nameOfHOD, string _daysRequested,
+    public async Task<bool> UpdateAddLeaveEmployee(string staffID_, string _staffID, string _dateApplied, string _nameOfHOD, string _daysRequested,
         string _typeOfLeave, string _resumptionDate, string _officerTakenOver, string _approvedDate, string _totalLeave)
     {
         try
         {
-            Init();
-            LeaveManagementDB leaveUpdate = conn.Table<LeaveManagementDB>().FirstOrDefault(e => e.staffID == staffID_);
+            await Init();
+            message = string.Empty;
+
+            LeaveManagementDB leaveUpdate = await conn.Table<LeaveManagementDB>().FirstOrDefaultAsync(e => e.staffID == staffID_);
             if(leaveUpdate != null) 
             {
                 leaveUpdate.staffID = _staffID;
@@ -117,32 +131,36 @@ namespace HRM_PT;
                 leaveUpdate.approvedDate = _approvedDate;
                 leaveUpdate.totalLeave = _totalLeave;
 
-                conn.Update(leaveUpdate);
+                await conn.UpdateAsync(leaveUpdate);
                 message = string.Format("{0} deleted successfully", staffID_);
                 return true;
             }
             else
             {
+
                 message = string.Format("{0} does not exist", staffID_);
                 return false;
             }
         }catch (Exception e)
         {
+            message = string.Empty;
+
             message = string.Format("failed to update data.{0}", e.Message);
             return false;
         }
     }
 
-    public bool DeleteAddLeaveEmployee(string _staffID)
+    public async Task<bool> DeleteAddLeaveEmployee(string _staffID)
     {
         try
         {
-            Init();
+            await Init();
+            message = string.Empty;
 
-            LeaveManagementDB deleteDate = conn.Table<LeaveManagementDB>().FirstOrDefault(e => e.staffID == _staffID);
+            LeaveManagementDB deleteDate = await conn.Table<LeaveManagementDB>().FirstOrDefaultAsync(e => e.staffID == _staffID);
             if (deleteDate != null)
             {
-                conn.Delete(deleteDate);
+                await conn.DeleteAsync(deleteDate);
                 message = string.Format("{0} deleted successfully", _staffID);
                 return true;
             }
@@ -153,6 +171,8 @@ namespace HRM_PT;
             }
         }catch(Exception e)
         {
+            message = string.Empty;
+
             message = string.Format("failed to delete data.{0}", e.Message);
             return false;
         }

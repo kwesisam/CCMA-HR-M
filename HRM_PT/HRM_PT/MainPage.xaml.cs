@@ -88,7 +88,7 @@ namespace HRM_PT;
         password.Text = string.Empty;
         if (!string.IsNullOrEmpty(entryValue))
         {
-            List<Logins> list = App.LoginsRep.CheckUserStaffID(entryValue);
+            List<Logins> list = await App.LoginsRep.CheckUserStaffID(entryValue);
 
              
             try
@@ -138,13 +138,13 @@ namespace HRM_PT;
     }
 
     string upassword;
-    void setUserPassword(object sender, TextChangedEventArgs e)
+    async void setUserPassword(object sender, TextChangedEventArgs e)
     {
         string entryValue = password.Text;
         if (!string.IsNullOrEmpty(entryValue))
         {
             upassword = entryValue;
-            List<Logins> list = App.LoginsRep.CheckUser(staffID, entryValue);
+            List<Logins> list = await App.LoginsRep.CheckUser(staffID, entryValue);
 
             try
             {
@@ -212,7 +212,10 @@ namespace HRM_PT;
         // Revert to the original color after 1 second (adjust time as needed)
         clickedButton.BackgroundColor = Colors.NavajoWhite;
 
-        List<Logins> list = App.LoginsRep.CheckUser(staffID, upassword);
+        List<Logins> list = await  App.LoginsRep.CheckUser(staffID, upassword);
+
+        
+        
 
         if (App.LoginsRep.statusMessage.Equals("Success"))
         {

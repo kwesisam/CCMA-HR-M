@@ -9,20 +9,20 @@ namespace HRM_PT;
 public class EmployeeRepository
 {
 
-    private static SQLiteConnection conn;
+    private static SQLiteAsyncConnection conn;
     string _dbPath;
     public string statusMessage {get; set;}
     public bool done { get; set; }
 
     public bool testData { get; set; }
 
-    private void Init()
+    private async Task Init()
     {
         if (conn != null)
             return;
 
-        conn = new SQLiteConnection(_dbPath);
-        conn.CreateTable<EmployeeDB>();
+        conn = new SQLiteAsyncConnection(_dbPath);
+        await conn.CreateTableAsync<EmployeeDB>();
     }
 
     public EmployeeRepository(string dbPath)
@@ -30,7 +30,7 @@ public class EmployeeRepository
         _dbPath = dbPath;
     }
 
-    public void AddNewEmployee(string _identificationStaffID, string _identificationSocialSecurity, string _identificationNHIS, string _identificationIntPassport, 
+    public async Task AddNewEmployee(string _identificationStaffID, string _identificationSocialSecurity, string _identificationNHIS, string _identificationIntPassport, 
         string _identificationVotersID,string _identificationNationalID, string _identificationDriversLicense, string _employeeDetialsSurname, string _employeeDetialsFirstName,
         string _employeeDetialsMiddleName,string _employeeDetialsDirectorate, string _employeeDetialsDepartment, string _employeeDetialsUnit, string _employeeDetialsImmediateSupervisor,
         string _employeeDetialsCostCenter, string _employeeDetialsJobClass, string _employeeDetialsJobTitle, string _employeeDetialsJobGrade, string _employeeDetialsGradeLevel,
@@ -57,8 +57,8 @@ public class EmployeeRepository
         try
         {
             int result = 0;
-
-            Init();
+            statusMessage = string.Empty;
+            await Init();
             var employeeInformation = new EmployeeDB
             {
                 identificationStaffID = _identificationStaffID,
@@ -184,43 +184,48 @@ public class EmployeeRepository
 
             };
 
-            result = conn.Insert(employeeInformation);
+            result = await conn.InsertAsync(employeeInformation);
             statusMessage = "Success";
 
         }
         catch (Exception e)
         {
+            statusMessage = string.Empty;
             statusMessage = string.Format("Failed to add {0}{1}", e.Message, _identificationStaffID);
 
         }
     }
 
-    public List<EmployeeDB> GetAllPeople()
+    public async Task<List<EmployeeDB>> GetAllPeople()
     {
         try
         {
-            Init();
-            return conn.Table<EmployeeDB>().ToList();
+            await Init();
+            statusMessage = string.Empty;
+
+            return await conn.Table<EmployeeDB>().ToListAsync();
         }catch(Exception ex)
         {
+            statusMessage = string.Empty;
             statusMessage = string.Format("failed to retrieve data. {0}", ex.Message);
         }
 
         return new List<EmployeeDB>();
     }
 
-    public List<EmployeeDB> GetPeopleByStaffID(string staffID)
+    public async Task<List<EmployeeDB>> GetPeopleByStaffID(string staffID)
     {
         try
         {
-            Init();
+            await Init();
+            statusMessage = string.Empty;
 
-            EmployeeDB test = conn.Table<EmployeeDB>().FirstOrDefault(e => e.identificationStaffID == staffID);
+            EmployeeDB test = await conn.Table<EmployeeDB>().FirstOrDefaultAsync(e => e.identificationStaffID == staffID);
             if(test != null)
             {
                 statusMessage = "success";
                 testData = true;
-                return conn.Table<EmployeeDB>().Where(e => e.identificationStaffID == staffID).ToList();
+                return await conn.Table<EmployeeDB>().Where(e => e.identificationStaffID == staffID).ToListAsync();
                 
             }
             else
@@ -230,23 +235,26 @@ public class EmployeeRepository
            
         }catch (Exception e)
         {
+            statusMessage = string.Empty;
+
             statusMessage = string.Format("Failed to retrieve data. {0}", e.Message);
         }
 
         return new List<EmployeeDB>();
     }
 
-    public List<EmployeeDB> GetUpdatePeopleByStaffID(string staffID)
+    public async Task<List<EmployeeDB>> GetUpdatePeopleByStaffID(string staffID)
     {
         try
         {
-            Init();
+            await Init();
+            statusMessage = string.Empty;
 
-            EmployeeDB test = conn.Table<EmployeeDB>().FirstOrDefault(e => e.identificationStaffID == staffID);
+            EmployeeDB test = await conn.Table<EmployeeDB>().FirstOrDefaultAsync(e => e.identificationStaffID == staffID);
             if(test != null){
                 statusMessage = "success";
                 testData = true; 
-                return conn.Table<EmployeeDB>().Where(e => e.identificationStaffID == staffID).ToList();
+                return await conn.Table<EmployeeDB>().Where(e => e.identificationStaffID == staffID).ToListAsync();
             }
             else
             {
@@ -256,24 +264,28 @@ public class EmployeeRepository
         }
         catch (Exception e)
         {
+            statusMessage = string.Empty;
+
+
             statusMessage = string.Format("Failed to retrieve data. {0}", e.Message);
         }
 
         return new List<EmployeeDB>();
     }
-    public List<EmployeeDB> GetPeopleByDepartment(string department)
+    public async Task<List<EmployeeDB>> GetPeopleByDepartment(string department)
     {
         try
         {
 
-            Init();
-            EmployeeDB test = conn.Table<EmployeeDB>().FirstOrDefault(e => e.employeeDetialsDepartment == department);
+            await Init();
+            EmployeeDB test = await conn.Table<EmployeeDB>().FirstOrDefaultAsync(e => e.employeeDetialsDepartment == department);
+            statusMessage = string.Empty;
 
             if (test != null)
             {
                 statusMessage = "Success";
                 testData = true;
-                return conn.Table<EmployeeDB>().Where(e => e.employeeDetialsDepartment == department).ToList();
+                return await conn.Table<EmployeeDB>().Where(e => e.employeeDetialsDepartment == department).ToListAsync();
                 
             }
             else
@@ -284,35 +296,45 @@ public class EmployeeRepository
         }
         catch(Exception e)
         {
+            statusMessage = string.Empty;
+
             statusMessage = string.Format("Failed to retrieve data. {0}", e.Message);
         }
 
         return new List<EmployeeDB>();
     }
 
-    public List<EmployeeDB> GetPeopleBySubMetro(string subMetro)
+    public async Task<List<EmployeeDB>> GetPeopleBySubMetro(string subMetro)
     {
         try
         {
-            Init();
-            return conn.Table<EmployeeDB>().Where(e => e.LgsSubMetro == subMetro).ToList();
+            await Init();
+            statusMessage = string.Empty;
+
+            return await conn.Table<EmployeeDB>().Where(e => e.LgsSubMetro == subMetro).ToListAsync();
         }catch (Exception e)
         {
+            statusMessage = string.Empty;
             statusMessage = string.Format("Failed to retrieve data. {0}", e.Message);
         }
 
         return new List<EmployeeDB>();
     }
 
-    public List<EmployeeDB> GetPeopleByPaymentMode(string paymentMode)
+    public async Task<List<EmployeeDB>> GetPeopleByPaymentMode(string paymentMode)
     {
         try
         {
-            Init();
+
+            await Init();
+            statusMessage = string.Empty;
+
             statusMessage = "Success";
-            return conn.Table<EmployeeDB>().Where(e => e.identificationPaymentMode == paymentMode).ToList();
+            return await conn.Table<EmployeeDB>().Where(e => e.identificationPaymentMode == paymentMode).ToListAsync();
         }catch (Exception e)
         {
+            statusMessage = string.Empty;
+
             statusMessage = string.Format("Failed to retrieve data. {0}", e.Message);
         }
 
@@ -320,7 +342,7 @@ public class EmployeeRepository
     }
 
 
-    public bool UpdateEmployeeByStaffID(string staffID, string _identificationStaffID, string _identificationSocialSecurity, string _identificationNHIS, string _identificationIntPassport,
+    public async Task<bool> UpdateEmployeeByStaffID(string staffID, string _identificationStaffID, string _identificationSocialSecurity, string _identificationNHIS, string _identificationIntPassport,
         string _identificationVotersID, string _identificationNationalID, string _identificationDriversLicense, string _employeeDetialsSurname, string _employeeDetialsFirstName,
         string _employeeDetialsMiddleName, string _employeeDetialsDirectorate, string _employeeDetialsDepartment, string _employeeDetialsUnit, string _employeeDetialsImmediateSupervisor,
         string _employeeDetialsCostCenter, string _employeeDetialsJobClass, string _employeeDetialsJobTitle, string _employeeDetialsJobGrade, string _employeeDetialsGradeLevel,
@@ -346,8 +368,10 @@ public class EmployeeRepository
 
         try
         {
-            Init();
-            EmployeeDB employeeUpdate = conn.Table<EmployeeDB>().FirstOrDefault(e => e.identificationStaffID == staffID);
+            await Init();
+            statusMessage = string.Empty;
+
+            EmployeeDB employeeUpdate = await conn.Table<EmployeeDB>().FirstOrDefaultAsync(e => e.identificationStaffID == staffID);
 
             if (employeeUpdate != null)
             {
@@ -473,7 +497,7 @@ public class EmployeeRepository
                 employeeUpdate.languageWriting3 = _languageWriting3;
 
 
-                conn.Update(employeeUpdate);
+                conn.UpdateAsync(employeeUpdate);
                 statusMessage = string.Format("{0} updated successfully.", staffID);
 
                 return true;
@@ -485,6 +509,8 @@ public class EmployeeRepository
             }
         }catch (Exception e)
         {
+            statusMessage = string.Empty;
+
             statusMessage = string.Format("Failed to update data. {0}", e.Message);
             return false;
         }
@@ -493,20 +519,22 @@ public class EmployeeRepository
     }
 
 
-    public List<EmployeeDB> GetPeopleDeleteByStaffID(string staffID)
+    public async Task<List<EmployeeDB>> GetPeopleDeleteByStaffID(string staffID)
     {
         try
         {
 
-            Init();
-            EmployeeDB test = conn.Table<EmployeeDB>().FirstOrDefault(e => e.identificationStaffID == staffID);
+            await Init();
+            statusMessage = string.Empty;
+
+            EmployeeDB test = await conn.Table<EmployeeDB>().FirstOrDefaultAsync(e => e.identificationStaffID == staffID);
 
             if(test != null)
             {
                 statusMessage = "success";
                 done = true;
                 testData = true;
-                return conn.Table<EmployeeDB>().Where(e => e.identificationStaffID == staffID).ToList();
+                return await conn.Table<EmployeeDB>().Where(e => e.identificationStaffID == staffID).ToListAsync();
             }
             else
             {
@@ -516,6 +544,8 @@ public class EmployeeRepository
         }
         catch (Exception e)
         {
+            statusMessage = string.Empty;
+
             done = true;
             statusMessage = string.Format("Failed to retrieve data. {0}", e.Message);
         }
@@ -523,15 +553,17 @@ public class EmployeeRepository
         return new List<EmployeeDB>();
     }
 
-    public bool DeleteEmployeeByStaffID(string _staffID)
+    public async Task<bool> DeleteEmployeeByStaffID(string _staffID)
     {
         try
         {
-            Init();
-            EmployeeDB deleteData = conn.Table<EmployeeDB>().FirstOrDefault(e => e.identificationStaffID == _staffID);
+            await Init(); 
+            statusMessage = string.Empty;
+
+            EmployeeDB deleteData = await conn.Table<EmployeeDB>().FirstOrDefaultAsync(e => e.identificationStaffID == _staffID);
             if(deleteData != null)
             {
-                conn.Delete(deleteData);
+                await conn.DeleteAsync(deleteData);
                 statusMessage = string.Format("{0} deleted successfully.", _staffID);
                 return true;
             }
@@ -542,6 +574,8 @@ public class EmployeeRepository
             }
         }catch(Exception e)
         {
+            statusMessage = string.Empty;
+
             statusMessage = string.Format("failed to delete data. {0}", e.Message);
             return false;
         }

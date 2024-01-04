@@ -3,36 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|c:\\users\\skm\\work station\\ccma-hr-m\\hrm_pt\\hrm_pt\\performancerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|solutionrelative:hrm_pt\\performancerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|c:\\users\\skm\\work station\\ccma-hr-m\\hrm_pt\\hrm_pt\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|solutionrelative:hrm_pt\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|c:\\users\\skm\\work station\\ccma-hr-m\\hrm_pt\\hrm_pt\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|solutionrelative:hrm_pt\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|c:\\users\\skm\\work station\\ccma-hr-m\\hrm_pt\\hrm_pt\\dbmodel\\employeedb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|solutionrelative:hrm_pt\\dbmodel\\employeedb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|c:\\users\\skm\\work station\\ccma-hr-m\\hrm_pt\\hrm_pt\\dbmodel\\performancedb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|solutionrelative:hrm_pt\\dbmodel\\performancedb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|c:\\users\\skm\\work station\\ccma-hr-m\\hrm_pt\\hrm_pt\\actionpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|solutionrelative:hrm_pt\\actionpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|c:\\users\\skm\\work station\\ccma-hr-m\\hrm_pt\\hrm_pt\\actionpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|solutionrelative:hrm_pt\\actionpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|c:\\users\\skm\\work station\\ccma-hr-m\\hrm_pt\\hrm_pt\\actionpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|solutionrelative:hrm_pt\\actionpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|c:\\users\\skm\\work station\\ccma-hr-m\\hrm_pt\\hrm_pt\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|solutionrelative:hrm_pt\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|c:\\users\\skm\\work station\\ccma-hr-m\\hrm_pt\\hrm_pt\\signuppage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|solutionrelative:hrm_pt\\signuppage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|c:\\users\\skm\\work station\\ccma-hr-m\\hrm_pt\\hrm_pt\\dbmodel\\performancedb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|solutionrelative:hrm_pt\\dbmodel\\performancedb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|c:\\users\\skm\\work station\\ccma-hr-m\\hrm_pt\\hrm_pt\\loginsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|solutionrelative:hrm_pt\\loginsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|c:\\users\\skm\\work station\\ccma-hr-m\\hrm_pt\\hrm_pt\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|solutionrelative:hrm_pt\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|c:\\users\\skm\\work station\\ccma-hr-m\\hrm_pt\\hrm_pt\\newfolder3\\language.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|solutionrelative:hrm_pt\\newfolder3\\language.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|c:\\users\\skm\\work station\\ccma-hr-m\\hrm_pt\\hrm_pt\\newfolder3\\dependants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D970AB-8089-4408-947A-79CF62CD8317}|HRM_PT\\HRM_PT.csproj|solutionrelative:hrm_pt\\newfolder3\\dependants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,8 +41,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 492,
-          "SelectedChildIndex": 2,
+          "DockedWidth": 12,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,108 +54,107 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EmployeeRepository.cs",
+              "DocumentMoniker": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\EmployeeRepository.cs",
+              "RelativeDocumentMoniker": "HRM_PT\\EmployeeRepository.cs",
+              "ToolTip": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\EmployeeRepository.cs",
+              "RelativeToolTip": "HRM_PT\\EmployeeRepository.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAxwB0AAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-01T14:27:52.353Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PerformanceRepository.cs",
-              "DocumentMoniker": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\PerformanceRepository.cs",
-              "RelativeDocumentMoniker": "HRM_PT\\PerformanceRepository.cs",
-              "ToolTip": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\PerformanceRepository.cs",
-              "RelativeToolTip": "HRM_PT\\PerformanceRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-12-14T15:25:06.209Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PerformanceDB.cs",
-              "DocumentMoniker": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\DbModel\\PerformanceDB.cs",
-              "RelativeDocumentMoniker": "HRM_PT\\DbModel\\PerformanceDB.cs",
-              "ToolTip": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\DbModel\\PerformanceDB.cs",
-              "RelativeToolTip": "HRM_PT\\DbModel\\PerformanceDB.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-12-14T15:00:59.48Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "SignUpPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\SignUpPage.xaml.cs",
-              "RelativeDocumentMoniker": "HRM_PT\\SignUpPage.xaml.cs",
-              "ToolTip": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\SignUpPage.xaml.cs",
-              "RelativeToolTip": "HRM_PT\\SignUpPage.xaml.cs",
-              "ViewState": "AQIAAIkAAAAAAAAAAAAAwJYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-12-12T12:31:32.21Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ActionPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\ActionPage.xaml.cs",
-              "RelativeDocumentMoniker": "HRM_PT\\ActionPage.xaml.cs",
-              "ToolTip": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\ActionPage.xaml.cs",
-              "RelativeToolTip": "HRM_PT\\ActionPage.xaml.cs",
-              "ViewState": "AQIAAEoPAAAAAAAAAAAUwFkPAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-12-12T12:31:05.075Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "ActionPage.xaml",
               "DocumentMoniker": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\ActionPage.xaml",
               "RelativeDocumentMoniker": "HRM_PT\\ActionPage.xaml",
               "ToolTip": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\ActionPage.xaml",
               "RelativeToolTip": "HRM_PT\\ActionPage.xaml",
-              "ViewState": "AQIAAKcOAAAAAAAAAAAgwLcOAAAAAAAA",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAAAGEAAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2023-12-12T12:28:02.808Z",
+              "WhenOpened": "2024-01-01T14:52:05.928Z",
               "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedWidth": 34,
-          "SelectedChildIndex": 0,
+          "DockedWidth": 438,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MauiProgram.cs",
-              "DocumentMoniker": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\MauiProgram.cs",
-              "RelativeDocumentMoniker": "HRM_PT\\MauiProgram.cs",
-              "ToolTip": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\MauiProgram.cs",
-              "RelativeToolTip": "HRM_PT\\MauiProgram.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAgwBIAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-12-14T15:59:01.733Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\App.xaml.cs",
-              "RelativeDocumentMoniker": "HRM_PT\\App.xaml.cs",
-              "ToolTip": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\App.xaml.cs",
-              "RelativeToolTip": "HRM_PT\\App.xaml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-12-14T15:57:00.081Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "EmployeeDB.cs",
-              "DocumentMoniker": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\DbModel\\EmployeeDB.cs",
-              "RelativeDocumentMoniker": "HRM_PT\\DbModel\\EmployeeDB.cs",
-              "ToolTip": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\DbModel\\EmployeeDB.cs",
-              "RelativeToolTip": "HRM_PT\\DbModel\\EmployeeDB.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAfAAAA",
+              "Title": "PerformanceDB.cs",
+              "DocumentMoniker": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\DbModel\\PerformanceDB.cs",
+              "RelativeDocumentMoniker": "HRM_PT\\DbModel\\PerformanceDB.cs",
+              "ToolTip": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\DbModel\\PerformanceDB.cs",
+              "RelativeToolTip": "HRM_PT\\DbModel\\PerformanceDB.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-12-14T15:04:19.531Z"
+              "WhenOpened": "2024-01-01T14:53:38.035Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LoginsRepository.cs",
+              "DocumentMoniker": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\LoginsRepository.cs",
+              "RelativeDocumentMoniker": "HRM_PT\\LoginsRepository.cs",
+              "ToolTip": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\LoginsRepository.cs",
+              "RelativeToolTip": "HRM_PT\\LoginsRepository.cs",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAuwAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-01T14:04:53.291Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\MainPage.xaml",
+              "RelativeDocumentMoniker": "HRM_PT\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\MainPage.xaml",
+              "RelativeToolTip": "HRM_PT\\MainPage.xaml",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA0AAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2023-12-28T00:55:07.845Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Language.cs",
+              "DocumentMoniker": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\NewFolder3\\Language.cs",
+              "RelativeDocumentMoniker": "HRM_PT\\NewFolder3\\Language.cs",
+              "ToolTip": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\NewFolder3\\Language.cs",
+              "RelativeToolTip": "HRM_PT\\NewFolder3\\Language.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-12-27T13:17:57.914Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Dependants.cs",
+              "DocumentMoniker": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\NewFolder3\\Dependants.cs",
+              "RelativeDocumentMoniker": "HRM_PT\\NewFolder3\\Dependants.cs",
+              "ToolTip": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\NewFolder3\\Dependants.cs",
+              "RelativeToolTip": "HRM_PT\\NewFolder3\\Dependants.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-12-27T13:17:42.881Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ActionPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\ActionPage.xaml.cs",
+              "RelativeDocumentMoniker": "HRM_PT\\ActionPage.xaml.cs",
+              "ToolTip": "C:\\Users\\SKM\\Work Station\\CCMA-HR-M\\HRM_PT\\HRM_PT\\ActionPage.xaml.cs",
+              "RelativeToolTip": "HRM_PT\\ActionPage.xaml.cs",
+              "ViewState": "AQIAABcQAAAAAAAAAAAgwJQPAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-12-12T12:31:05.075Z",
+              "EditorCaption": ""
             }
           ]
         }

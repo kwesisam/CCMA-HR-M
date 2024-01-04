@@ -7,7 +7,7 @@
 
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="0a0c8414-d95c-45cb-abda-0a303aa183f4" Publisher="CN=User Name" Version="1.0.0.1" ProcessorArchitecture="x64" />
+  <Identity Name="0a0c8414-d95c-45cb-abda-0a303aa183f4" Publisher="CN=SKM" Version="0.0.8.0" ProcessorArchitecture="x64" />
   <mp:PhoneIdentity PhoneProductId="9A207AA9-81BB-42A2-BE7F-31B58D4EE3E7" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>HRM_PT</DisplayName>

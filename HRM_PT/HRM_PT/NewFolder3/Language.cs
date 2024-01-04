@@ -8,7 +8,6 @@ namespace HRM_PTl;
     public class Language
     {
 
-        public string number { get; set; }
         public string name { get; set; }
         public string readimage { get; set; }
         public string writeimage { get; set; }

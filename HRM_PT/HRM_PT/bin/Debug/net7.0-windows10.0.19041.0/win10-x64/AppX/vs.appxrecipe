@@ -9,7 +9,7 @@
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>x64</PackageArchitecture>
     <PackageIdentityName>0a0c8414-d95c-45cb-abda-0a303aa183f4</PackageIdentityName>
-    <PackageIdentityPublisher>CN=User Name</PackageIdentityPublisher>
+    <PackageIdentityPublisher>CN=SKM</PackageIdentityPublisher>
     <IntermediateOutputPath>C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\</IntermediateOutputPath>
     <RemoteDeploymentType>CopyToDevice</RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -19,24 +19,24 @@
     <WindowsSdkPath>
     </WindowsSdkPath>
     <LayoutDir>C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\AppX</LayoutDir>
-    <RegisteredManifestChecksum>7D54F263B816AB0E731C69656883B80F9DEBB55C538D0CA422160EA0E54DA5FC</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>0a0c8414-d95c-45cb-abda-0a303aa183f4_1.0.0.1_x64__9zz4h110yvjzm</RegisteredPackageMoniker>
-    <RegisteredUserModeAppID>0a0c8414-d95c-45cb-abda-0a303aa183f4_9zz4h110yvjzm!App</RegisteredUserModeAppID>
+    <RegisteredManifestChecksum>9F2CC1C5A7840E614D57D489FD7985F90D1B4803C82D4419CD2F32DFA8C3F80A</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>0a0c8414-d95c-45cb-abda-0a303aa183f4_1.0.0.1_x64__g02v9ae8fczym</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>0a0c8414-d95c-45cb-abda-0a303aa183f4_g02v9ae8fczym!App</RegisteredUserModeAppID>
     <RegisteredPackageID>0a0c8414-d95c-45cb-abda-0a303aa183f4</RegisteredPackageID>
-    <RegisteredPackagePublisher>CN=User Name</RegisteredPackagePublisher>
+    <RegisteredPackagePublisher>CN=SKM</RegisteredPackagePublisher>
     <RegisteredVersion>1.0.0.1</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
     <AppXManifest Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2023-12-14T14:32:28.304</Modified>
+      <Modified>2023-12-30T20:32:34.908</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2023-12-14T14:32:24.194</Modified>
+      <Modified>2023-12-30T20:32:34.245</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\HRM_PT.runtimeconfig.json">
       <PackagePath>HRM_PT.runtimeconfig.json</PackagePath>
@@ -44,15 +44,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\HRM_PT.dll">
       <PackagePath>HRM_PT.dll</PackagePath>
-      <Modified>2023-12-14T14:31:55.818</Modified>
+      <Modified>2023-12-30T20:32:27.881</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>HRM_PT.exe</PackagePath>
-      <Modified>2023-12-14T14:31:56.846</Modified>
+      <Modified>2023-12-30T20:32:27.936</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\HRM_PT.deps.json">
       <PackagePath>HRM_PT.deps.json</PackagePath>
-      <Modified>2023-11-29T14:34:27.252</Modified>
+      <Modified>2023-12-30T20:27:51.376</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\.nuget\packages\microsoft.netcore.app.runtime.win-x64\7.0.14\runtimes\win-x64\lib\net7.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -996,187 +996,187 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appicon.ico">
       <PackagePath>appicon.ico</PackagePath>
-      <Modified>2023-11-21T01:40:54.705</Modified>
+      <Modified>2023-12-20T10:28:34.573</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-100.png">
       <PackagePath>appiconLargeTile.scale-100.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.418</Modified>
+      <Modified>2023-12-20T10:28:35.632</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-125.png">
       <PackagePath>appiconLargeTile.scale-125.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.440</Modified>
+      <Modified>2023-12-20T10:28:35.674</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-150.png">
       <PackagePath>appiconLargeTile.scale-150.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.461</Modified>
+      <Modified>2023-12-20T10:28:35.697</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-200.png">
       <PackagePath>appiconLargeTile.scale-200.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.498</Modified>
+      <Modified>2023-12-20T10:28:35.747</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-400.png">
       <PackagePath>appiconLargeTile.scale-400.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.630</Modified>
+      <Modified>2023-12-20T10:28:36.030</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-16.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.852</Modified>
+      <Modified>2023-12-20T10:28:34.937</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-24.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.858</Modified>
+      <Modified>2023-12-20T10:28:34.947</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-256.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.889</Modified>
+      <Modified>2023-12-20T10:28:34.995</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-32.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.865</Modified>
+      <Modified>2023-12-20T10:28:34.959</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-48.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.874</Modified>
+      <Modified>2023-12-20T10:28:34.970</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-16.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.811</Modified>
+      <Modified>2023-12-20T10:28:34.832</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-24.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.818</Modified>
+      <Modified>2023-12-20T10:28:34.840</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-256.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.845</Modified>
+      <Modified>2023-12-20T10:28:34.922</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-32.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.824</Modified>
+      <Modified>2023-12-20T10:28:34.851</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-48.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.830</Modified>
+      <Modified>2023-12-20T10:28:34.895</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-100.png">
       <PackagePath>appiconLogo.scale-100.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.732</Modified>
+      <Modified>2023-12-20T10:28:34.670</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-125.png">
       <PackagePath>appiconLogo.scale-125.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.739</Modified>
+      <Modified>2023-12-20T10:28:34.682</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-150.png">
       <PackagePath>appiconLogo.scale-150.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.747</Modified>
+      <Modified>2023-12-20T10:28:34.693</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-200.png">
       <PackagePath>appiconLogo.scale-200.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.756</Modified>
+      <Modified>2023-12-20T10:28:34.712</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-400.png">
       <PackagePath>appiconLogo.scale-400.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.767</Modified>
+      <Modified>2023-12-20T10:28:34.728</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-16.png">
       <PackagePath>appiconLogo.targetsize-16.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.773</Modified>
+      <Modified>2023-12-20T10:28:34.736</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-24.png">
       <PackagePath>appiconLogo.targetsize-24.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.779</Modified>
+      <Modified>2023-12-20T10:28:34.756</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-256.png">
       <PackagePath>appiconLogo.targetsize-256.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.805</Modified>
+      <Modified>2023-12-20T10:28:34.822</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-32.png">
       <PackagePath>appiconLogo.targetsize-32.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.785</Modified>
+      <Modified>2023-12-20T10:28:34.772</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-48.png">
       <PackagePath>appiconLogo.targetsize-48.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.792</Modified>
+      <Modified>2023-12-20T10:28:34.786</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-100.png">
       <PackagePath>appiconMediumTile.scale-100.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.159</Modified>
+      <Modified>2023-12-20T10:28:35.210</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-125.png">
       <PackagePath>appiconMediumTile.scale-125.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.175</Modified>
+      <Modified>2023-12-20T10:28:35.231</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-150.png">
       <PackagePath>appiconMediumTile.scale-150.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.195</Modified>
+      <Modified>2023-12-20T10:28:35.261</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-200.png">
       <PackagePath>appiconMediumTile.scale-200.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.217</Modified>
+      <Modified>2023-12-20T10:28:35.300</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-400.png">
       <PackagePath>appiconMediumTile.scale-400.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.249</Modified>
+      <Modified>2023-12-20T10:28:35.385</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-100.png">
       <PackagePath>appiconSmallTile.scale-100.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.079</Modified>
+      <Modified>2023-12-20T10:28:35.081</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-125.png">
       <PackagePath>appiconSmallTile.scale-125.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.097</Modified>
+      <Modified>2023-12-20T10:28:35.092</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-150.png">
       <PackagePath>appiconSmallTile.scale-150.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.113</Modified>
+      <Modified>2023-12-20T10:28:35.106</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-200.png">
       <PackagePath>appiconSmallTile.scale-200.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.126</Modified>
+      <Modified>2023-12-20T10:28:35.126</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-400.png">
       <PackagePath>appiconSmallTile.scale-400.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.146</Modified>
+      <Modified>2023-12-20T10:28:35.186</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-100.png">
       <PackagePath>appiconStoreLogo.scale-100.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.895</Modified>
+      <Modified>2023-12-20T10:28:35.007</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-125.png">
       <PackagePath>appiconStoreLogo.scale-125.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.902</Modified>
+      <Modified>2023-12-20T10:28:35.017</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-150.png">
       <PackagePath>appiconStoreLogo.scale-150.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.909</Modified>
+      <Modified>2023-12-20T10:28:35.028</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-200.png">
       <PackagePath>appiconStoreLogo.scale-200.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.916</Modified>
+      <Modified>2023-12-20T10:28:35.042</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-400.png">
       <PackagePath>appiconStoreLogo.scale-400.png</PackagePath>
-      <Modified>2023-11-21T01:40:54.930</Modified>
+      <Modified>2023-12-20T10:28:35.061</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-100.png">
       <PackagePath>appiconWideTile.scale-100.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.261</Modified>
+      <Modified>2023-12-20T10:28:35.406</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-125.png">
       <PackagePath>appiconWideTile.scale-125.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.277</Modified>
+      <Modified>2023-12-20T10:28:35.429</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-150.png">
       <PackagePath>appiconWideTile.scale-150.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.295</Modified>
+      <Modified>2023-12-20T10:28:35.461</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-200.png">
       <PackagePath>appiconWideTile.scale-200.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.321</Modified>
+      <Modified>2023-12-20T10:28:35.499</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png">
       <PackagePath>appiconWideTile.scale-400.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.400</Modified>
+      <Modified>2023-12-20T10:28:35.597</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\assessment.scale-100.png">
       <PackagePath>assessment.scale-100.png</PackagePath>
@@ -1188,23 +1188,23 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png">
       <PackagePath>dotnet_bot.scale-100.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.148</Modified>
+      <Modified>2023-12-20T10:28:34.590</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-125.png">
       <PackagePath>dotnet_bot.scale-125.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.171</Modified>
+      <Modified>2023-12-20T10:28:34.682</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-150.png">
       <PackagePath>dotnet_bot.scale-150.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.203</Modified>
+      <Modified>2023-12-20T10:28:34.749</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-200.png">
       <PackagePath>dotnet_bot.scale-200.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.243</Modified>
+      <Modified>2023-12-20T10:28:34.851</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png">
       <PackagePath>dotnet_bot.scale-400.png</PackagePath>
-      <Modified>2023-11-21T01:40:55.347</Modified>
+      <Modified>2023-12-20T10:28:35.070</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\eye_slash_icon.scale-100.png">
       <PackagePath>eye_slash_icon.scale-100.png</PackagePath>
@@ -1257,6 +1257,22 @@
     <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\user_delete_icon.scale-100.png">
       <PackagePath>user_delete_icon.scale-100.png</PackagePath>
       <Modified>2023-10-24T01:00:36.447</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\white_people_search.scale-100.png">
+      <PackagePath>white_people_search.scale-100.png</PackagePath>
+      <Modified>2023-12-20T10:13:48.176</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\white_person_add.scale-100.png">
+      <PackagePath>white_person_add.scale-100.png</PackagePath>
+      <Modified>2023-12-19T15:30:56.261</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\white_renew.scale-100.png">
+      <PackagePath>white_renew.scale-100.png</PackagePath>
+      <Modified>2023-12-20T10:28:00.634</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\SKM\Work Station\CCMA-HR-M\HRM_PT\HRM_PT\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\white_user_delete.scale-100.png">
+      <PackagePath>white_user_delete.scale-100.png</PackagePath>
+      <Modified>2023-12-20T10:26:38.615</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@ using HRM_PT.DbModel;
 namespace HRM_PT;
 public class LoginsRepository
 {
-    private static SQLiteConnection conn;
+    private static SQLiteAsyncConnection conn;
     string _dbPath;
 
     public string statusMessage { get; set; }
@@ -13,13 +13,13 @@ public class LoginsRepository
 
     public bool testData { get; set; }
 
-    private void Init()
+    private async Task Init()
     {
         if (conn != null)
             return;
 
-        conn = new SQLiteConnection(_dbPath);
-        conn.CreateTable<Logins>();
+        conn = new SQLiteAsyncConnection(_dbPath);
+        await conn.CreateTableAsync<Logins>();
     }
 
     public LoginsRepository(string dbPath)
@@ -28,12 +28,13 @@ public class LoginsRepository
     }
 
 
-    public void AddNewEmployee(string _staffID, string _firstName, string _surname, string _password)
+    public async Task AddNewEmployee(string _staffID, string _firstName, string _surname, string _password)
     {
         try
         {
             int result = 0;
-            Init();
+            await Init();
+            statusMessage = string.Empty;
 
             var employeeInformation = new Logins
             {
@@ -44,26 +45,29 @@ public class LoginsRepository
 
             };
 
-            result = conn.Insert(employeeInformation);
+            result = await conn.InsertAsync(employeeInformation);
             statusMessage = "Success";
         }catch (Exception e)
         {
+            statusMessage = string.Empty;
+
             statusMessage = string.Format("Failed to add {0} {1}", e.Message, _staffID);
         }
     }
 
-    public List<Logins> CheckUserStaffID(string _staffID)
+    public async Task<List<Logins>> CheckUserStaffID(string _staffID)
     {
         try
         {
-            Init();
+            await Init();
+            statusMessage = string.Empty;
 
-            Logins test = conn.Table<Logins>().FirstOrDefault(e => e.staffID == _staffID);
+            Logins test = await conn.Table<Logins>().FirstOrDefaultAsync(e => e.staffID == _staffID);
             
             if(test != null)
             {
                 statusMessage = "Success";
-                return conn.Table<Logins>().Where(e => e.staffID == _staffID).ToList();
+                return await conn.Table<Logins>().Where(e => e.staffID == _staffID).ToListAsync();
 
             }
             else
@@ -72,25 +76,28 @@ public class LoginsRepository
             }
         }catch (Exception e)
         {
+            statusMessage = string.Empty;
+
             statusMessage = string.Format("Invalid staff ID or password");
         }
 
         return new List<Logins>();
     }
 
-    public List<Logins> CheckUser(string _staffID, string _password)
+    public async Task<List<Logins>> CheckUser(string _staffID, string _password)
     {
         try
         {
-            Init();
+            await Init();
+            statusMessage = string.Empty;
 
-            Logins test = conn.Table<Logins>().FirstOrDefault(e => e.staffID == _staffID && e.password == _password);
+            Logins test =await conn.Table<Logins>().FirstOrDefaultAsync(e => e.staffID == _staffID && e.password == _password);
 
             if (test != null)
             {
                 statusMessage = "Success";
 
-                return conn.Table<Logins>().Where(e => e.staffID == _staffID).ToList();
+                return await  conn.Table<Logins>().Where(e => e.staffID == _staffID).ToListAsync();
             }
             else
             {
@@ -100,6 +107,8 @@ public class LoginsRepository
         }
         catch (Exception e)
         {
+            statusMessage = string.Empty;
+
             statusMessage = string.Format("Invalid staff ID or password");
         }
 

@@ -10,7 +10,7 @@ namespace HRM_PT.DbModel;
     public class LeaveManagementDB
     {
 
-    [PrimaryKey, Unique]
+    [PrimaryKey]
     public string staffID { get; set; }
 
     [MaxLength(100)]

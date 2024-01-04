@@ -14,6 +14,10 @@ obj\Debug\net7.0-android\resizetizer\r\drawable\star.png
 obj\Debug\net7.0-android\resizetizer\r\drawable\threestar_preview.png
 obj\Debug\net7.0-android\resizetizer\r\drawable\twostar_preview.png
 obj\Debug\net7.0-android\resizetizer\r\drawable\user_delete_icon.png
+obj\Debug\net7.0-android\resizetizer\r\drawable\white_people_search.png
+obj\Debug\net7.0-android\resizetizer\r\drawable\white_person_add.png
+obj\Debug\net7.0-android\resizetizer\r\drawable\white_renew.png
+obj\Debug\net7.0-android\resizetizer\r\drawable\white_user_delete.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\dotnet_bot.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-hdpi\splash.png
 obj\Debug\net7.0-android\resizetizer\r\drawable-mdpi\dotnet_bot.png

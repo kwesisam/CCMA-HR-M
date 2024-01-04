@@ -179,13 +179,13 @@ public partial class SignUpPage : ContentPage
 		{
             submitInfo.IsVisible = true;
             signUpActivitor.IsRunning = false;
-            App.LoginsRep.AddNewEmployee(staffID_, firstName_, surname_, password_);
-			submitInfo.Text = App.LoginsRep.statusMessage;
+            await App.LoginsRep.AddNewEmployee(staffID_, firstName_, surname_, password_);
+			submitInfo.Text =  App.LoginsRep.statusMessage;
 			if (App.LoginsRep.statusMessage.Equals("Success"))
 			{
                 await Navigation.PopAsync();
             }
-		}
+        }
 		else
 		{
             signUpActivitor.IsRunning = false;
@@ -197,5 +197,6 @@ public partial class SignUpPage : ContentPage
 	async void goToHome(object sender, EventArgs e)
 	{
         await Navigation.PopAsync();
+
     }
 }
