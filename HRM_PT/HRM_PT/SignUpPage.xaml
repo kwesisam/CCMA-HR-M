@@ -49,8 +49,8 @@
 
 
                 <HorizontalStackLayout>
-                    <ActivityIndicator IsRunning="False" x:Name="signUpActivitor" />
-                    <Label x:Name="submitInfo" TextColor="Blue" FontSize="14" WidthRequest="300" IsVisible="false" />
+                    <ActivityIndicator IsRunning="False" x:Name="signUpActivitor" IsVisible="false" />
+                    <Label x:Name="submitInfo" TextColor="Wheat" Margin="0,0,0,0" FontSize="14" WidthRequest="300" IsVisible="false" />
                 </HorizontalStackLayout>
                     
                     <HorizontalStackLayout

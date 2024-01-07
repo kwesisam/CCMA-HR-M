@@ -89,7 +89,6 @@ namespace HRM_PT;
         if (!string.IsNullOrEmpty(entryValue))
         {
             List<Logins> list = await App.LoginsRep.CheckUserStaffID(entryValue);
-
              
             try
             {
@@ -113,7 +112,7 @@ namespace HRM_PT;
                     else
                     {
 
-                        user.Text = "!Friend";
+                        user.Text = "Friend!";
                         userPassword.IsVisible = false;
                         staffID = "";
                     }
@@ -122,13 +121,13 @@ namespace HRM_PT;
                 {
                     userPassword.IsVisible = false;
 
-                    user.Text = "!Friend";
+                    user.Text = "Friend!";
                     staffID = "";
 
                 }
             }catch (Exception ex)
             {
-                user.Text = "!Friend";
+                user.Text = "Friend!";
                 userPassword.IsVisible = false;
                 staffID = "";
                 System.Diagnostics.Debug.WriteLine(ex.Message);
@@ -150,7 +149,7 @@ namespace HRM_PT;
             {
                 if (!string.IsNullOrEmpty(App.LoginsRep.statusMessage))
                 {
-                    if (App.LoginsRep.statusMessage.Equals("Success"))
+                    if (App.LoginsRep.statusMessage.Equals("Login Successful"))
                     {
                         
 
@@ -217,7 +216,7 @@ namespace HRM_PT;
         
         
 
-        if (App.LoginsRep.statusMessage.Equals("Success"))
+        if (App.LoginsRep.statusMessage.Equals("Login Successful"))
         {
             signInActivitor.IsRunning = false;
             password.Text = string.Empty;

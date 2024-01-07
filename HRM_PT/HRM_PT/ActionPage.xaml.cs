@@ -149,6 +149,13 @@ public partial class ActionPage : ContentPage
         {
             System.Diagnostics.Debug.WriteLine("error fil21 does not exist");
         }*/
+        hoverSearchImage.Source = "white_people_search.png";
+        searchFram.IsVisible = true;
+        hoverSearch.BorderColor = Colors.White;
+        hoverSearchLabel.TextColor = Colors.White;
+        searchByStaffID.IsVisible = true;          
+        openSearchByStaffIDFormLabel.TextColor = Colors.White;
+        openSearchByStaffIDFormFrame.BackgroundColor = Color.Parse("#1B4242");
     }
     protected override bool OnBackButtonPressed()
     {
@@ -206,12 +213,21 @@ public partial class ActionPage : ContentPage
         //statusSubmitSearchByStaffID.IsVisible = false;
         statusSubmitSearchByStaffID.IsVisible = false;
         string entryValue = searchByStaffID_entryStaffID.Text;
+        errorsearchByStaffID_entryStaffID.IsVisible = false;
+        byStaffID.IsVisible = false;
+
         if (!(string.IsNullOrWhiteSpace(entryValue)))
         {
             searchByStaffIDEntryStaffID = entryValue;
             testsearchByStaffIDEntryStaffID = true;
             isvalidsearchByStaffIDEntryStaffID = true;
             errorsearchByStaffID_entryStaffID.IsVisible = false;
+        }
+        else
+        {
+            errorsearchByStaffID_entryStaffID.Text = "This field cannot be empty.";
+            errorsearchByStaffID_entryStaffID.IsVisible = true;
+
         }
 
     }
@@ -220,6 +236,8 @@ public partial class ActionPage : ContentPage
     {
         string entryValue = searchByDepartment_Name.Text;
         statusSubmitSearchDepartment.IsVisible = false;
+        errorsearchByDepartment_entryStaffID.IsVisible = false;
+        byDepartment.IsVisible = false;
 
         if (!string.IsNullOrEmpty(entryValue))
         {
@@ -227,6 +245,12 @@ public partial class ActionPage : ContentPage
             testsearchBuDepartmentEntry = true;
             isvalidsearchByDepartmentEntry = true;
             errorsearchByDepartment_entryStaffID.IsVisible = false;
+        }
+        else
+        {
+            errorsearchByDepartment_entryStaffID.Text = "This field cannot be empty.";
+            errorsearchByDepartment_entryStaffID.IsVisible = true;
+
         }
 
 
@@ -252,7 +276,6 @@ public partial class ActionPage : ContentPage
         changeButtonSubmitSearchByStaffID.Background = Colors.DarkSlateGray;
 
 
-        byStaffID.IsVisible = true;
 
         byDepartment.IsVisible = false;
         byPayment.IsVisible = false;
@@ -267,211 +290,225 @@ public partial class ActionPage : ContentPage
             errorsearchByStaffID_entryStaffID.IsVisible = true;
             act1.IsRunning = false;
         }
-
-        if (isvalidsearchByStaffIDEntryStaffID)
+        else
         {
-            GetPeopleByStaffIDlist = await App.EmployeeRep.GetPeopleByStaffID(searchByStaffIDEntryStaffID);
-            if (App.EmployeeRep.testData)
+            if (isvalidsearchByStaffIDEntryStaffID)
             {
+                GetPeopleByStaffIDlist = await App.EmployeeRep.GetPeopleByStaffID(searchByStaffIDEntryStaffID);
                 statusSubmitSearchByStaffID.Text = App.EmployeeRep.statusMessage;
                 statusSubmitSearchByStaffID.IsVisible = true;
                 //byStaffID.IsVisible = true;
-
-
-                foreach (EmployeeDB emp in GetPeopleByStaffIDlist)
+                string check = App.EmployeeRep.statusMessage;
+                if (check == "Search Successful")
                 {
+                   
+                    byStaffID.IsVisible = true;
+
+                    foreach (EmployeeDB emp in GetPeopleByStaffIDlist)
+                    {
 
 
-                    searchByStaffID_staffID.Text = emp.identificationStaffID;
-                    searchByStaffID_socialSecurity.Text = emp.identificationSocialSecurity;
-                    searchByStaffID_nhis.Text = emp.identificationNHIS;
-                    searchByStaffID_driverLicense.Text = emp.identificationDriversLicense;
-                    searchByStaffID_votersID.Text = emp.identificationVotersID;
-                    searchByStaffID_nationalID.Text = emp.identificationNationalID;
-                    searchByStaffID_intPassport.Text = emp.identificationIntPassport;
-                    searchByStaffID_intPassportExpiry.Text = emp.identificationIntPassportExpiryDate;
-                    searchByStaffID_bankName.Text = emp.bankDetialsBankName;
-                    searchByStaffID_bankBranchName.Text = emp.bankDetialsBankBranchName;
-                    searchByStaffID_bankAccount.Text = emp.bankDetialsBankAccount;
-                    searchByStaffID_houseNo.Text = emp.residentialHouseNo;
-                    searchByStaffID_streetName.Text = emp.residentialStreetName;
-                    searchByStaffID_area.Text = emp.residentialArea;
-                    searchByStaffID_townCity.Text = emp.residentialTownCity;
-                    searchByStaffID_region.Text = emp.residentialRegion;
-                    searchByStaffID_postalAddress.Text = emp.otherPostalAddress;
-                    searchByStaffID_emailAddress.Text = emp.otherEmailAddress;
-                    searchByStaffID_officePhone.Text = emp.otherPhoneNo;
-                    searchByStaffID_mobilePhone.Text = emp.otherMobileNo;
-                    searchByStaffID_disableState.Text = emp.disableState;
-                    searchByStaffID_educationInstitutionName.Text = emp.educationInstitutionName;
-                    searchByStaffID_period.Text = emp.educationFrom + " - " + emp.educationTo;
-                    searchByStaffID_qualificationObtained.Text = emp.educationQualificationObtained;
-                    searchByStaffID_courseStudied.Text = emp.educationCourseStudied;
-                    searchByStaffID_BigSurname.Text = emp.employeeDetialsSurname;
-                    searchByStaffID_BigFirstName.Text = emp.employeeDetialsFirstName;
-                    searchByStaffID_BigMiddleName.Text = emp.employeeDetialsMiddleName;
-                    searchByStaffID_BigStaffID.Text = emp.identificationStaffID;
-                    searchByStaffID_BigPaymentMode.Text = emp.identificationPaymentMode;
-                    searchByStaffID_BigDepartment.Text = emp.employeeDetialsDepartment;
-                    searchByStaffID_employeeTitile.Text = emp.employementDetialsTitle;
-                    searchByStaffID_employeeSurname.Text = emp.employeeDetialsSurname;
-                    searchByStaffID_firstName.Text = emp.employeeDetialsFirstName;
-                    searchByStaffID_middleName.Text = emp.employeeDetialsMiddleName;
-                    searchByStaffID_subMetro.Text = emp.LgsSubMetro;
-                    searchByStaffID_employeeDirectorate.Text = emp.employeeDetialsDirectorate;
-                    searchByStaffID_employeeDepartment.Text = emp.employeeDetialsDepartment;
-                    searchByStaffID_employeeUnit.Text = emp.employeeDetialsUnit;
-                    searchByStaffID_employeeCostCenter.Text = emp.employeeDetialsCostCenter;
-                    searchByStaffID_employeeJobClass.Text = emp.employeeDetialsJobClass;
-                    searchByStaffID_employeeJobTitle.Text = emp.employeeDetialsJobTitle;
-                    searchByStaffID_employeeGradeLevel.Text = emp.employeeDetialsGradeLevel;
-                    searchByStaffID_employeeGradePint.Text = emp.employeeDetialsGradePoint;
-                    searchByStaffID_employeeFirstAppointmentDate.Text = emp.employeeDetialsAppointmentDate;
-                    searchByStaffID_employeeLastPromotionDate.Text = emp.employeeDetialsLastPromotionDate;
-                    searchByStaffID_employeeRetirementDate.Text = emp.employeeDetialsRetirementDate;
-                    searchByStaffID_employeeImmediateSupervisor.Text = emp.employeeDetialsImmediateSupervisor;
-                    searchByStaffID_biographicalMaidenName.Text = emp.biographicalDataMaidenName;
-                    searchByStaffID_biographicalSex.Text = emp.biographicalDataSex;
-                    searchByStaffID_biographicalMaritalStatus.Text = emp.biographicalMaritalStatus;
-                    searchByStaffID_biographicalPlaceOfBirth.Text = emp.biographicalDataPlaceOfBirth;
-                    searchByStaffID_biograhicalDateOfBirth.Text = emp.biographicalDataDateOfBirth;
-                    searchByStaffID_biographicalHomeTown.Text = emp.biographicalDataHomeTown;
-                    searchByStaffID_biographicalRegion.Text = emp.biographicalRegion;
-                    searchByStaffID_biographicalNationality.Text = emp.biographicalCountries;
-                    searchByStaffID_biographicalReligon.Text = emp.biographicalDataReligion;
-                    searchByStaffID_nextOfKinSurname.Text = emp.nextOfKinSurname;
-                    searchByStaffID_nextOfKinFirstName.Text = emp.nextOfKinFirstName;
-                    searchByStaffID_nextOfKinRelationship.Text = emp.nextOfKinRelationship;
-                    searchByStaffID_nextOfKinHouseNo.Text = emp.nextOfKinContactHouseNo;
-                    searchByStaffID_nextOfKinStreetName.Text = emp.nextOfKinContactStreetName;
-                    searchByStaffID_nextOfKinArea.Text = emp.nextOfKinContactArea;
-                    searchByStaffID_nextOfKincityTown.Text = emp.nextOfKinContactCityTown;
-                    searchByStaffID_nextOfKinRegion.Text = emp.nextOFKinRegion;
-                    searchByStaffID_nextOfKinCountry.Text = emp.nextOfKinCountries;
-                    searchByStaffID_nextOfKinContact.Text = emp.nextOfKinContactPhoneNo;
-                    firstName1 = emp.dependant1FirstName;
-                    surname1 = emp.dependant1Surname;
-                    othername1 = emp.dependant1MiddleName;
-                    dateofBirth1 = emp.dependant1DateOfBirth;
-                    relationship1 = emp.dependant1Relationship;
-                    title1 = emp.dependant1Title;
-                    firstName2 = emp.dependant2FirstName;
-                    surname2 = emp.dependant2Surname;
-                    othername2 = emp.dependant2MiddleName;
-                    dateofBirth2 = emp.dependant2DateOfBirth;
-                    relationship2 = emp.dependant2Relationship;
-                    title2 = emp.dependant2Title;
-                    firstName3 = emp.dependant3FirstName;
-                    surname3 = emp.dependant3Surname;
-                    othername3 = emp.dependant3MiddleName;
-                    dateofBirth1 = emp.dependant3DateOfBirth;
-                    relationship3 = emp.dependant3Relationship;
-                    title3 = emp.dependant3Title;
-                    firstName4 = emp.dependant4FirstName;
-                    surname4 = emp.dependant4Surname;
-                    othername4 = emp.dependant4MiddleName;
-                    dateofBirth4 = emp.dependant4DateOfBirth;
-                    relationship4 = emp.dependant4Relationship;
-                    title4 = emp.dependant4Title;
-                    firstName5 = emp.dependant5FirstName;
-                    surname5 = emp.dependant5Surname;
-                    othername5 = emp.dependant5MiddleName;
-                    dateofBirth5 = emp.dependant5DateOfBirth;
-                    relationship5 = emp.dependant5Relationship;
-                    title5 = emp.dependant5Title;
-                    languageA = emp.language1Name;
-                    languageB = emp.language2Name;
-                    languageC = emp.language3Name;
-                    spokenA = emp.languageSpoken1;
-                    spokenB = emp.languageSpoken2;
-                    spokenC = emp.languageSpoken3;
-                    writingA = emp.languageWriting1;
-                    writingB = emp.languageWriting2;
-                    writingC = emp.languageWriting3;
-                    readingA = emp.languageReading1;
-                    readingB = emp.languageReading2;
-                    readingC = emp.languageReading3;
-                    skillname1 = emp.skills1Type;
-                    skillname2 = emp.skills2Type;
-                    skillname3 = emp.skills3Type;
-                    init1 = emp.skills1InstitutionName;
-                    init2 = emp.skills2InstitutionName;
-                    init3 = emp.skills3InstitutionName;
-                    year1 = emp.skills1YearObtained;
-                    year2 = emp.skills2YearObtained;
-                    year3 = emp.skills3YearObtained;
-                    asso1 = emp.association1Name;
-                    asso2 = emp.association2Name;
-                    asso3 = emp.association3Name;
+                        searchByStaffID_staffID.Text = emp.identificationStaffID;
+                        searchByStaffID_socialSecurity.Text = emp.identificationSocialSecurity;
+                        searchByStaffID_nhis.Text = emp.identificationNHIS;
+                        searchByStaffID_driverLicense.Text = emp.identificationDriversLicense;
+                        searchByStaffID_votersID.Text = emp.identificationVotersID;
+                        searchByStaffID_nationalID.Text = emp.identificationNationalID;
+                        searchByStaffID_intPassport.Text = emp.identificationIntPassport;
+                        searchByStaffID_intPassportExpiry.Text = emp.identificationIntPassportExpiryDate;
+                        searchByStaffID_bankName.Text = emp.bankDetialsBankName;
+                        searchByStaffID_bankBranchName.Text = emp.bankDetialsBankBranchName;
+                        searchByStaffID_bankAccount.Text = emp.bankDetialsBankAccount;
+                        searchByStaffID_houseNo.Text = emp.residentialHouseNo;
+                        searchByStaffID_streetName.Text = emp.residentialStreetName;
+                        searchByStaffID_area.Text = emp.residentialArea;
+                        searchByStaffID_townCity.Text = emp.residentialTownCity;
+                        searchByStaffID_region.Text = emp.residentialRegion;
+                        searchByStaffID_postalAddress.Text = emp.otherPostalAddress;
+                        searchByStaffID_emailAddress.Text = emp.otherEmailAddress;
+                        searchByStaffID_officePhone.Text = emp.otherPhoneNo;
+                        searchByStaffID_mobilePhone.Text = emp.otherMobileNo;
+                        searchByStaffID_disableState.Text = emp.disableState;
+                        searchByStaffID_educationInstitutionName.Text = emp.educationInstitutionName;
+                        searchByStaffID_period.Text = emp.educationFrom + " - " + emp.educationTo;
+                        searchByStaffID_qualificationObtained.Text = emp.educationQualificationObtained;
+                        searchByStaffID_courseStudied.Text = emp.educationCourseStudied;
+                        searchByStaffID_BigSurname.Text = emp.employeeDetialsSurname;
+                        searchByStaffID_BigFirstName.Text = emp.employeeDetialsFirstName;
+                        searchByStaffID_BigMiddleName.Text = emp.employeeDetialsMiddleName;
+                        searchByStaffID_BigStaffID.Text = emp.identificationStaffID;
+                        searchByStaffID_BigPaymentMode.Text = emp.identificationPaymentMode;
+                        searchByStaffID_BigDepartment.Text = emp.employeeDetialsDepartment;
+                        searchByStaffID_employeeTitile.Text = emp.employementDetialsTitle;
+                        searchByStaffID_employeeSurname.Text = emp.employeeDetialsSurname;
+                        searchByStaffID_firstName.Text = emp.employeeDetialsFirstName;
+                        searchByStaffID_middleName.Text = emp.employeeDetialsMiddleName;
+                        searchByStaffID_subMetro.Text = emp.LgsSubMetro;
+                        searchByStaffID_employeeDirectorate.Text = emp.employeeDetialsDirectorate;
+                        searchByStaffID_employeeDepartment.Text = emp.employeeDetialsDepartment;
+                        searchByStaffID_employeeUnit.Text = emp.employeeDetialsUnit;
+                        searchByStaffID_employeeCostCenter.Text = emp.employeeDetialsCostCenter;
+                        searchByStaffID_employeeJobClass.Text = emp.employeeDetialsJobClass;
+                        searchByStaffID_employeeJobTitle.Text = emp.employeeDetialsJobTitle;
+                        searchByStaffID_employeeGradeLevel.Text = emp.employeeDetialsGradeLevel;
+                        searchByStaffID_employeeGradePint.Text = emp.employeeDetialsGradePoint;
+                        searchByStaffID_employeeFirstAppointmentDate.Text = emp.employeeDetialsAppointmentDate;
+                        searchByStaffID_employeeLastPromotionDate.Text = emp.employeeDetialsLastPromotionDate;
+                        searchByStaffID_employeeRetirementDate.Text = emp.employeeDetialsRetirementDate;
+                        searchByStaffID_employeeImmediateSupervisor.Text = emp.employeeDetialsImmediateSupervisor;
+                        searchByStaffID_biographicalMaidenName.Text = emp.biographicalDataMaidenName;
+                        searchByStaffID_biographicalSex.Text = emp.biographicalDataSex;
+                        searchByStaffID_biographicalMaritalStatus.Text = emp.biographicalMaritalStatus;
+                        searchByStaffID_biographicalPlaceOfBirth.Text = emp.biographicalDataPlaceOfBirth;
+                        searchByStaffID_biograhicalDateOfBirth.Text = emp.biographicalDataDateOfBirth;
+                        searchByStaffID_biographicalHomeTown.Text = emp.biographicalDataHomeTown;
+                        searchByStaffID_biographicalRegion.Text = emp.biographicalRegion;
+                        searchByStaffID_biographicalNationality.Text = emp.biographicalCountries;
+                        searchByStaffID_biographicalReligon.Text = emp.biographicalDataReligion;
+                        searchByStaffID_nextOfKinSurname.Text = emp.nextOfKinSurname;
+                        searchByStaffID_nextOfKinFirstName.Text = emp.nextOfKinFirstName;
+                        searchByStaffID_nextOfKinRelationship.Text = emp.nextOfKinRelationship;
+                        searchByStaffID_nextOfKinHouseNo.Text = emp.nextOfKinContactHouseNo;
+                        searchByStaffID_nextOfKinStreetName.Text = emp.nextOfKinContactStreetName;
+                        searchByStaffID_nextOfKinArea.Text = emp.nextOfKinContactArea;
+                        searchByStaffID_nextOfKincityTown.Text = emp.nextOfKinContactCityTown;
+                        searchByStaffID_nextOfKinRegion.Text = emp.nextOFKinRegion;
+                        searchByStaffID_nextOfKinCountry.Text = emp.nextOfKinCountries;
+                        searchByStaffID_nextOfKinContact.Text = emp.nextOfKinContactPhoneNo;
+                        firstName1 = emp.dependant1FirstName;
+                        surname1 = emp.dependant1Surname;
+                        othername1 = emp.dependant1MiddleName;
+                        dateofBirth1 = emp.dependant1DateOfBirth;
+                        relationship1 = emp.dependant1Relationship;
+                        title1 = emp.dependant1Title;
+                        firstName2 = emp.dependant2FirstName;
+                        surname2 = emp.dependant2Surname;
+                        othername2 = emp.dependant2MiddleName;
+                        dateofBirth2 = emp.dependant2DateOfBirth;
+                        relationship2 = emp.dependant2Relationship;
+                        title2 = emp.dependant2Title;
+                        firstName3 = emp.dependant3FirstName;
+                        surname3 = emp.dependant3Surname;
+                        othername3 = emp.dependant3MiddleName;
+                        dateofBirth1 = emp.dependant3DateOfBirth;
+                        relationship3 = emp.dependant3Relationship;
+                        title3 = emp.dependant3Title;
+                        firstName4 = emp.dependant4FirstName;
+                        surname4 = emp.dependant4Surname;
+                        othername4 = emp.dependant4MiddleName;
+                        dateofBirth4 = emp.dependant4DateOfBirth;
+                        relationship4 = emp.dependant4Relationship;
+                        title4 = emp.dependant4Title;
+                        firstName5 = emp.dependant5FirstName;
+                        surname5 = emp.dependant5Surname;
+                        othername5 = emp.dependant5MiddleName;
+                        dateofBirth5 = emp.dependant5DateOfBirth;
+                        relationship5 = emp.dependant5Relationship;
+                        title5 = emp.dependant5Title;
+                        languageA = emp.language1Name;
+                        languageB = emp.language2Name;
+                        languageC = emp.language3Name;
+                        spokenA = emp.languageSpoken1;
+                        spokenB = emp.languageSpoken2;
+                        spokenC = emp.languageSpoken3;
+                        writingA = emp.languageWriting1;
+                        writingB = emp.languageWriting2;
+                        writingC = emp.languageWriting3;
+                        readingA = emp.languageReading1;
+                        readingB = emp.languageReading2;
+                        readingC = emp.languageReading3;
+                        skillname1 = emp.skills1Type;
+                        skillname2 = emp.skills2Type;
+                        skillname3 = emp.skills3Type;
+                        init1 = emp.skills1InstitutionName;
+                        init2 = emp.skills2InstitutionName;
+                        init3 = emp.skills3InstitutionName;
+                        year1 = emp.skills1YearObtained;
+                        year2 = emp.skills2YearObtained;
+                        year3 = emp.skills3YearObtained;
+                        asso1 = emp.association1Name;
+                        asso2 = emp.association2Name;
+                        asso3 = emp.association3Name;
 
-                }
+                    }
 
-                dependantsList.ItemsSource = GetDependants5();
-                skillsList.ItemsSource = GetSkills();
-                associationList.ItemsSource = GetAssociations();
-                languageList.ItemsSource = GetLanguages();
-                /*if (!(string.IsNullOrWhiteSpace(surname1) && string.IsNullOrWhiteSpace(surname2) && string.IsNullOrWhiteSpace(surname3)
-                    && string.IsNullOrWhiteSpace(surname4) && string.IsNullOrWhiteSpace(surname5)))
-                {
                     dependantsList.ItemsSource = GetDependants5();
+                    skillsList.ItemsSource = GetSkills();
+                    associationList.ItemsSource = GetAssociations();
+                    languageList.ItemsSource = GetLanguages();
+                    /*if (!(string.IsNullOrWhiteSpace(surname1) && string.IsNullOrWhiteSpace(surname2) && string.IsNullOrWhiteSpace(surname3)
+                        && string.IsNullOrWhiteSpace(surname4) && string.IsNullOrWhiteSpace(surname5)))
+                    {
+                        dependantsList.ItemsSource = GetDependants5();
 
+                    }
+                    else if (!(string.IsNullOrWhiteSpace(surname1) && string.IsNullOrWhiteSpace(surname2) && string.IsNullOrWhiteSpace(surname3)
+                        && string.IsNullOrWhiteSpace(surname4)))
+                    {
+                        dependantsList.ItemsSource = GetDependants4();
+                    }
+                    else if (!(string.IsNullOrWhiteSpace(surname1) && string.IsNullOrWhiteSpace(surname2) && string.IsNullOrWhiteSpace(surname3)
+                       ))
+                    {
+                        dependantsList.ItemsSource = GetDependants3();
+
+                    }
+                    else if (!(string.IsNullOrWhiteSpace(surname1) && string.IsNullOrWhiteSpace(surname2)))
+                    {
+                        dependantsList.ItemsSource = GetDependants2();
+                    }
+                    else if (!(string.IsNullOrWhiteSpace(surname1)))
+                    {
+                        dependantsList.ItemsSource = GetDependants1();
+
+                    }
+
+                    if (!(string.IsNullOrWhiteSpace(languageA) && string.IsNullOrWhiteSpace(languageB) && string.IsNullOrWhiteSpace(languageC)
+                        ))
+                    {
+
+                        languageList.ItemsSource = GetLanguages3();
+
+
+                    }
+                    else if (!(string.IsNullOrWhiteSpace(languageA) && string.IsNullOrWhiteSpace(languageB)))
+
+                    {
+                        languageList.ItemsSource = GetLanguages2();
+
+                    }
+                    else if (!(string.IsNullOrWhiteSpace(languageA)))
+                    {
+                        languageList.ItemsSource = GetLanguages1();
+
+                    }
+
+                    act1.IsRunning = false;
                 }
-                else if (!(string.IsNullOrWhiteSpace(surname1) && string.IsNullOrWhiteSpace(surname2) && string.IsNullOrWhiteSpace(surname3)
-                    && string.IsNullOrWhiteSpace(surname4)))
+                else
                 {
-                    dependantsList.ItemsSource = GetDependants4();
+                    statusSubmitSearchByStaffID.Text = searchByStaffIDEntryStaffID + " does not exist";
+                    statusSubmitSearchByStaffID.IsVisible = true;
+                    act1.IsRunning = false;
+                    byStaffID.IsVisible = false;
                 }
-                else if (!(string.IsNullOrWhiteSpace(surname1) && string.IsNullOrWhiteSpace(surname2) && string.IsNullOrWhiteSpace(surname3)
-                   ))
+                }*/
+
+                    act1.IsRunning = false;
+
+
+                }
+                else
                 {
-                    dependantsList.ItemsSource = GetDependants3();
+                    act1.IsRunning = false;
+
+                    byStaffID.IsVisible = false;
 
                 }
-                else if (!(string.IsNullOrWhiteSpace(surname1) && string.IsNullOrWhiteSpace(surname2)))
-                {
-                    dependantsList.ItemsSource = GetDependants2();
-                }
-                else if (!(string.IsNullOrWhiteSpace(surname1)))
-                {
-                    dependantsList.ItemsSource = GetDependants1();
-
-                }
-
-                if (!(string.IsNullOrWhiteSpace(languageA) && string.IsNullOrWhiteSpace(languageB) && string.IsNullOrWhiteSpace(languageC)
-                    ))
-                {
-
-                    languageList.ItemsSource = GetLanguages3();
-
-
-                }
-                else if (!(string.IsNullOrWhiteSpace(languageA) && string.IsNullOrWhiteSpace(languageB)))
-
-                {
-                    languageList.ItemsSource = GetLanguages2();
-
-                }
-                else if (!(string.IsNullOrWhiteSpace(languageA)))
-                {
-                    languageList.ItemsSource = GetLanguages1();
-
-                }
-
-                act1.IsRunning = false;
             }
-            else
-            {
-                statusSubmitSearchByStaffID.Text = searchByStaffIDEntryStaffID + " does not exist";
-                statusSubmitSearchByStaffID.IsVisible = true;
-                act1.IsRunning = false;
-                byStaffID.IsVisible = false;
-            }
-            }*/
 
-
-
-            }
         }
+
 
 
     }
@@ -652,7 +689,6 @@ public partial class ActionPage : ContentPage
         byPayment.IsVisible = false;
         bySubMetro.IsVisible = false;
         byStaffID.IsVisible = false;
-        byDepartment.IsVisible = true;
         act2.IsRunning = true;
         if (!testsearchBuDepartmentEntry)
         {
@@ -660,19 +696,27 @@ public partial class ActionPage : ContentPage
             errorsearchByDepartment_entryStaffID.Text = "This field cannot be empty";
             act2.IsRunning = false;
         }
-
-        if (isvalidsearchByDepartmentEntry)
-        {
-            ByDepartment.ItemsSource = await App.EmployeeRep.GetPeopleByDepartment(searchByDepartmentName);
-            string check = App.EmployeeRep.statusMessage;
-
-            act2.IsRunning = false;
-            if (check != "Success")
+        else{
+            if (isvalidsearchByDepartmentEntry)
             {
-                statusSubmitSearchDepartment.Text = "Failed to retrieve data";
-                statusSubmitSearchDepartment.IsVisible = true;
+                ByDepartment.ItemsSource = await App.EmployeeRep.GetPeopleByDepartment(searchByDepartmentName);
+                string check = App.EmployeeRep.statusMessage;
+
+                act2.IsRunning = false;
+                if (check != "Search Successful")
+                {
+                    byDepartment.IsVisible = false;
+                    statusSubmitSearchDepartment.Text = "Failed to retrieve data";
+                    statusSubmitSearchDepartment.IsVisible = true;
+                }
+                else
+                {
+                    byDepartment.IsVisible = true;
+                }
             }
         }
+
+       
     }
 
     async void submitSearchBySub_Metro(object sender, EventArgs e)
@@ -684,10 +728,20 @@ public partial class ActionPage : ContentPage
         byDepartment.IsVisible = false;
         byPayment.IsVisible = false;
         byStaffID.IsVisible = false;
-        bySubMetro.IsVisible = true;
         System.Diagnostics.Debug.WriteLine(searchBySub_Metro);
         act3.IsRunning = true;
         BySubMetro.ItemsSource = await App.EmployeeRep.GetPeopleBySubMetro(searchBySub_Metro);
+        string check = App.EmployeeRep.statusMessage;
+
+        if(check == "Success")
+        {
+            bySubMetro.IsVisible = true;
+        }
+        else
+        {
+            bySubMetro.IsVisible = false;
+
+        }
         act3.IsRunning = false;
     }
 
@@ -700,9 +754,19 @@ public partial class ActionPage : ContentPage
         byDepartment.IsVisible = false;
         bySubMetro.IsVisible = false;
         byStaffID.IsVisible = false;
-        byPayment.IsVisible = true;
         System.Diagnostics.Debug.WriteLine(searchByPayment_Mode);
         ByPaymentMode.ItemsSource = await App.EmployeeRep.GetPeopleByPaymentMode(searchByPayment_Mode);
+        string check = App.EmployeeRep.statusMessage;
+
+        if (check == "Success")
+        {
+            byPayment.IsVisible = true;
+        }
+        else
+        {
+            byPayment.IsVisible = false;
+
+        }
         System.Diagnostics.Debug.WriteLine(App.EmployeeRep.statusMessage);
     }
 
@@ -3767,6 +3831,8 @@ private bool language3 = false;
 	{
 
 
+
+
         searchByStaffID.IsVisible = true;
 		searchByDepartment.IsVisible = false;
 		searchBySubMetro.IsVisible = false;
@@ -3905,6 +3971,7 @@ private bool language3 = false;
         hoverUpdateImage.Source = "renew.png";
         hoverDeleteImage.Source = "user_delete_icon.png";
 
+       
     }
 
 
@@ -3988,6 +4055,9 @@ private bool language3 = false;
         hoverLeaveImage.Source = "leave_manage.png";
         hoverPerformanceImage.Source = "assessment.png";
     }
+
+
+
 
     void openUpdateEmployeeFrame(object sender, EventArgs e)
 	{

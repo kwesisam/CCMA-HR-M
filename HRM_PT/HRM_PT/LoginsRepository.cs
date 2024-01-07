@@ -78,7 +78,7 @@ public class LoginsRepository
         {
             statusMessage = string.Empty;
 
-            statusMessage = string.Format("Invalid staff ID or password");
+            statusMessage = string.Format("Invalid staff ID or password: " + e.Message);
         }
 
         return new List<Logins>();
@@ -95,13 +95,13 @@ public class LoginsRepository
 
             if (test != null)
             {
-                statusMessage = "Success";
+                statusMessage = "Login Successful";
 
                 return await  conn.Table<Logins>().Where(e => e.staffID == _staffID).ToListAsync();
             }
             else
             {
-                statusMessage = "error";
+                statusMessage = "Error";
             }
 
         }
@@ -109,7 +109,7 @@ public class LoginsRepository
         {
             statusMessage = string.Empty;
 
-            statusMessage = string.Format("Invalid staff ID or password");
+            statusMessage = string.Format("Invalid staff ID or password: " + e.Message);
         }
 
         return new List<Logins>();

@@ -223,13 +223,14 @@ public class EmployeeRepository
             EmployeeDB test = await conn.Table<EmployeeDB>().FirstOrDefaultAsync(e => e.identificationStaffID == staffID);
             if(test != null)
             {
-                statusMessage = "success";
+                statusMessage = "Search Successful";
                 testData = true;
                 return await conn.Table<EmployeeDB>().Where(e => e.identificationStaffID == staffID).ToListAsync();
                 
             }
             else
             {
+                statusMessage = "Failed to retrieve data.";
                 testData = false;
             }
            
@@ -252,12 +253,14 @@ public class EmployeeRepository
 
             EmployeeDB test = await conn.Table<EmployeeDB>().FirstOrDefaultAsync(e => e.identificationStaffID == staffID);
             if(test != null){
-                statusMessage = "success";
+                statusMessage = "Search was successful";
                 testData = true; 
                 return await conn.Table<EmployeeDB>().Where(e => e.identificationStaffID == staffID).ToListAsync();
             }
             else
             {
+                statusMessage = "Search was not successful";
+
                 testData = false;
             }
         
@@ -265,8 +268,6 @@ public class EmployeeRepository
         catch (Exception e)
         {
             statusMessage = string.Empty;
-
-
             statusMessage = string.Format("Failed to retrieve data. {0}", e.Message);
         }
 
@@ -283,13 +284,14 @@ public class EmployeeRepository
 
             if (test != null)
             {
-                statusMessage = "Success";
+                statusMessage = "Search Successful";
                 testData = true;
                 return await conn.Table<EmployeeDB>().Where(e => e.employeeDetialsDepartment == department).ToListAsync();
                 
             }
             else
             {
+                statusMessage = "Failed to retrieve data";
                 testData = false;
             }
 
@@ -311,7 +313,14 @@ public class EmployeeRepository
             await Init();
             statusMessage = string.Empty;
 
-            return await conn.Table<EmployeeDB>().Where(e => e.LgsSubMetro == subMetro).ToListAsync();
+            EmployeeDB test = await conn.Table<EmployeeDB>().FirstOrDefaultAsync(e => e.LgsSubMetro == subMetro);
+
+            if (test != null)
+            {
+                statusMessage = "Success";
+                return await conn.Table<EmployeeDB>().Where(e => e.LgsSubMetro == subMetro).ToListAsync();
+            }
+            
         }catch (Exception e)
         {
             statusMessage = string.Empty;
@@ -328,9 +337,14 @@ public class EmployeeRepository
 
             await Init();
             statusMessage = string.Empty;
+            EmployeeDB test = await conn.Table<EmployeeDB>().FirstOrDefaultAsync(e => e.identificationPaymentMode == paymentMode);
 
-            statusMessage = "Success";
-            return await conn.Table<EmployeeDB>().Where(e => e.identificationPaymentMode == paymentMode).ToListAsync();
+            if (test != null)
+            {
+                statusMessage = "Success";
+                return await conn.Table<EmployeeDB>().Where(e => e.identificationPaymentMode == paymentMode).ToListAsync();
+            }
+            
         }catch (Exception e)
         {
             statusMessage = string.Empty;
@@ -497,7 +511,7 @@ public class EmployeeRepository
                 employeeUpdate.languageWriting3 = _languageWriting3;
 
 
-                conn.UpdateAsync(employeeUpdate);
+                await conn.UpdateAsync(employeeUpdate);
                 statusMessage = string.Format("{0} updated successfully.", staffID);
 
                 return true;
@@ -538,6 +552,7 @@ public class EmployeeRepository
             }
             else
             {
+                statusMessage = "Failed to fetch data";
                 testData = false;
             }
 

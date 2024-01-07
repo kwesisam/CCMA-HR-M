@@ -190,7 +190,7 @@ public partial class SignUpPage : ContentPage
 		{
             signUpActivitor.IsRunning = false;
             submitInfo.IsVisible = true;
-			submitInfo.Text = "Try again";
+			submitInfo.Text = "Cannot submit form.";
 		}
 	}
 
