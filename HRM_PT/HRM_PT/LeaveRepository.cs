@@ -55,7 +55,7 @@ namespace HRM_PT;
             approvedDate = _approvedDate,
             totalLeave = _totalLeave
             };
-            message = "Success";
+            message = "Successfully Added.";
             done = true;
             result = await conn.InsertAsync(employeeInformation);
         }

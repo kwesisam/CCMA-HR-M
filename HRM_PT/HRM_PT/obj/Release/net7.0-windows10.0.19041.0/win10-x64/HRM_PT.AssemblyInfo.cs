@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HRM_PT")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+5846c11a43e8f30d21cf31e2c66321d1c4b5925b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+8b56982643f818306287ab5ed4b019e5d30332b2")]
 [assembly: System.Reflection.AssemblyProductAttribute("HRM_PT")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HRM_PT")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

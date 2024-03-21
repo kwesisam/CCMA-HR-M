@@ -16,12 +16,12 @@ public partial class ActionPage : ContentPage
     private string fullPath;
     private string fullPath1;
     private string fullPath2;
-	public ActionPage(List<Logins> list)
-	{
+    public ActionPage(List<Logins> list)
+    {
 
         InitializeComponent();
 
-        
+
         foreach (Logins emp in list)
         {
             OneFullname.Text = emp.firstName + " " + emp.surname;
@@ -36,20 +36,20 @@ public partial class ActionPage : ContentPage
             FourStaffid.Text = emp.staffID;
             FiveStaffid.Text = emp.staffID;
             SixStaffid.Text = emp.staffID;
-            user.Text =  "Hi, " + emp.surname;
+            user.Text = "Hi, " + emp.surname;
         }
         /*spokenCollection.ItemsSource = GetLanguages();
 		readingCollection.ItemsSource = GetLanguages();
 		writingCollection.ItemsSource = GetLanguages();
         associationList.ItemsSource;*/
-		//dependantsList.ItemsSource = GetDependants();
-		skillsList.ItemsSource = GetSkills();
-		//ByDepartment.ItemsSource = GetWork();
-		//BySubMetro.ItemsSource = GetWork();
-		//ByPaymentMode.ItemsSource = GetWork();
+        //dependantsList.ItemsSource = GetDependants();
+        skillsList.ItemsSource = GetSkills();
+        //ByDepartment.ItemsSource = GetWork();
+        //BySubMetro.ItemsSource = GetWork();
+        //ByPaymentMode.ItemsSource = GetWork();
 
-		inputbiographicalDataCountries.ItemsSource = countries;
-		inputNextOfKinCountries.ItemsSource = countries;
+        inputbiographicalDataCountries.ItemsSource = countries;
+        inputNextOfKinCountries.ItemsSource = countries;
         _inputbiographicalDataCountries.ItemsSource = countries;
         _inputNextOfKinCountries.ItemsSource = countries;
 
@@ -101,7 +101,7 @@ public partial class ActionPage : ContentPage
 
         if (!File.Exists(fullPath2))
         {
-            using(StreamWriter writer = File.CreateText(fullPath2))
+            using (StreamWriter writer = File.CreateText(fullPath2))
             {
                 writer.WriteLine("Department,Planning Stage, Mid-Year Review, End of Year");
             }
@@ -153,13 +153,14 @@ public partial class ActionPage : ContentPage
         searchFram.IsVisible = true;
         hoverSearch.BorderColor = Colors.White;
         hoverSearchLabel.TextColor = Colors.White;
-        searchByStaffID.IsVisible = true;          
+        searchByStaffID.IsVisible = true;
         openSearchByStaffIDFormLabel.TextColor = Colors.White;
         openSearchByStaffIDFormFrame.BackgroundColor = Color.Parse("#1B4242");
+       
     }
     protected override bool OnBackButtonPressed()
     {
-        
+
         return true;
     }
     public static void getCurrentDirectory()
@@ -174,7 +175,7 @@ public partial class ActionPage : ContentPage
             a = Directory.GetParent(currentDirectory).Parent.Parent.Parent.Parent.Parent.FullName;
             // Check if parent directory exists and get its full path
             System.Diagnostics.Debug.WriteLine(parentDirectoryInfo);
-           
+
 
             // Set the label's text to the parent directory
 
@@ -187,7 +188,7 @@ public partial class ActionPage : ContentPage
         }
 
 
-        
+
     }
     //private static string currentDirectory;
 
@@ -301,7 +302,7 @@ public partial class ActionPage : ContentPage
                 string check = App.EmployeeRep.statusMessage;
                 if (check == "Search Successful")
                 {
-                   
+
                     byStaffID.IsVisible = true;
 
                     foreach (EmployeeDB emp in GetPeopleByStaffIDlist)
@@ -510,7 +511,6 @@ public partial class ActionPage : ContentPage
         }
 
 
-
     }
 
     private string firstImage = "fivestar_preview.png";
@@ -527,25 +527,25 @@ public partial class ActionPage : ContentPage
             new Language {name = languageC, readimage = readingC, writeimage = writingC, spokenimage = spokenC },
         };
     }
-   /* private List<Language> GetLanguages2()
-    {
-        return new List<Language>
-        {
-            new Language {number="A",name = languageA, readimage = readingA, writeimage = writingA, spokenimage = spokenA },
+    /* private List<Language> GetLanguages2()
+     {
+         return new List<Language>
+         {
+             new Language {number="A",name = languageA, readimage = readingA, writeimage = writingA, spokenimage = spokenA },
 
-            new Language {number="B",name = languageB, readimage = readingB, writeimage = writingB, spokenimage = spokenB },
+             new Language {number="B",name = languageB, readimage = readingB, writeimage = writingB, spokenimage = spokenB },
 
-        };
-    }
+         };
+     }
 
-    private List<Language> GetLanguages1()
-    {
-        return new List<Language>
-        {
-            new Language {number="A",name = languageA, readimage = readingA, writeimage = writingA, spokenimage = spokenA },
+     private List<Language> GetLanguages1()
+     {
+         return new List<Language>
+         {
+             new Language {number="A",name = languageA, readimage = readingA, writeimage = writingA, spokenimage = spokenA },
 
-        };
-    }*/
+         };
+     }*/
     private List<Association> GetAssociations()
     {
         return new List<Association>
@@ -592,7 +592,7 @@ public partial class ActionPage : ContentPage
 
     }
 
-   
+
     /*private List<Dependants> GetDependants4()
     {
 
@@ -696,7 +696,8 @@ public partial class ActionPage : ContentPage
             errorsearchByDepartment_entryStaffID.Text = "This field cannot be empty";
             act2.IsRunning = false;
         }
-        else{
+        else
+        {
             if (isvalidsearchByDepartmentEntry)
             {
                 ByDepartment.ItemsSource = await App.EmployeeRep.GetPeopleByDepartment(searchByDepartmentName);
@@ -716,7 +717,7 @@ public partial class ActionPage : ContentPage
             }
         }
 
-       
+
     }
 
     async void submitSearchBySub_Metro(object sender, EventArgs e)
@@ -733,7 +734,7 @@ public partial class ActionPage : ContentPage
         BySubMetro.ItemsSource = await App.EmployeeRep.GetPeopleBySubMetro(searchBySub_Metro);
         string check = App.EmployeeRep.statusMessage;
 
-        if(check == "Success")
+        if (check == "Success")
         {
             bySubMetro.IsVisible = true;
         }
@@ -863,8 +864,8 @@ public partial class ActionPage : ContentPage
     private string bankDetialsBankAccount = "";
     private string biographicalDataMaidenName = "";
     private string biographicalDataPlaceOfBirth = "";
-    private string biographicalDataHomeTown ="";
-    private string biographicalDataReligion ="";
+    private string biographicalDataHomeTown = "";
+    private string biographicalDataReligion = "";
     private string residentialHouseNo = "";
     private string residentialStreetName = "";
     private string residentialArea = "";
@@ -880,8 +881,8 @@ public partial class ActionPage : ContentPage
     private string nextOfKinRelationship = "";
     private string nextOfKinContactHouseNo = "";
     private string nextOfKinContactStreetName = "";
-    private string nextOfKinContactArea ="";
-    private string nextOfKinContactCityTown ="";
+    private string nextOfKinContactArea = "";
+    private string nextOfKinContactCityTown = "";
     private string nextOfKinContactPhoneNo = "";
     private string dependant1Surname = "";
     private string dependant1FirstName = "";
@@ -1063,7 +1064,7 @@ public partial class ActionPage : ContentPage
         DateTime desiredDate = new DateTime(1960, 02, 01);
         string desireDateFormat = desiredDate.ToString("dd/MM/yyyy");
 
-        if(selectedDateFormat == desireDateFormat)
+        if (selectedDateFormat == desireDateFormat)
         {
             testInputEmployeeDetialsAppointmentDateError = false;
             isvalidFirstAppointmentDate = false;
@@ -1356,12 +1357,12 @@ public partial class ActionPage : ContentPage
 
 
 
-   
+
 
     void OnInputStaffIDTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputIdentificationStaffID.Text;
-        if(!(string.IsNullOrWhiteSpace(entryValue)))
+        if (!(string.IsNullOrWhiteSpace(entryValue)))
         {
             testInputIdentificationStaffIDError = true;
             identificationStaffID = entryValue;
@@ -1421,7 +1422,7 @@ public partial class ActionPage : ContentPage
         }
     }
 
-   
+
     void OnInputVotersIDTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputIdentificationVotersID.Text;
@@ -1473,14 +1474,15 @@ public partial class ActionPage : ContentPage
     void OnInputSurnameTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsSurname.Text;
-        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter) )
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             employeeDetialsSurname = entryValue;
             testInputEmployeeDetialsSurnameError = true;
             inputEmployeeDetialsSurnameError.IsVisible = false;
             isvalidEmployeeSurname = true;
         }
-        else if (!(entryValue.All(char.IsLetter))){
+        else if (!(entryValue.All(char.IsLetter)))
+        {
             inputEmployeeDetialsSurnameError.IsVisible = true;
             inputEmployeeDetialsSurnameError.Text = "This field must contain only letters";
             testInputEmployeeDetialsSurnameError = true;
@@ -1498,7 +1500,7 @@ public partial class ActionPage : ContentPage
     void OnInputFirstNameTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsFirstName.Text;
-        if(!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             employeeDetialsFirstName = entryValue;
             testInputEmployeeDetialsFirstNameError = true;
@@ -1514,7 +1516,7 @@ public partial class ActionPage : ContentPage
         }
         else
         {
-            testInputEmployeeDetialsFirstNameError= false;
+            testInputEmployeeDetialsFirstNameError = false;
             inputEmployeeDetialsFirstNameError.IsVisible = false;
             isvalidEmployeeFirstName = false;
 
@@ -1524,7 +1526,7 @@ public partial class ActionPage : ContentPage
     void OnInputMiddleNameTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsMiddleName.Text;
-        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter) )
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             employeeDetialsMiddleName = entryValue;
             testInputEmployeeDetialsMiddleNameError = true;
@@ -1551,7 +1553,7 @@ public partial class ActionPage : ContentPage
     void OnInputDirectorateTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsDirectorate.Text;
-        if (!(string.IsNullOrEmpty(entryValue))  && entryValue.All(char.IsLetter))
+        if (!(string.IsNullOrEmpty(entryValue)) && entryValue.All(char.IsLetter))
         {
             employeeDetialsDirectorate = entryValue;
             testInputEmployeeDetialsDirectorateError = true;
@@ -1609,7 +1611,8 @@ public partial class ActionPage : ContentPage
             testInputEmployeeDetialsUnitError = true;
             isvalidUnit = true;
         }
-        else {
+        else
+        {
             testInputEmployeeDetialsUnitError = false;
             isvalidUnit = false;
         }
@@ -1679,7 +1682,7 @@ public partial class ActionPage : ContentPage
     void OnInputJobTitleTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEmployeeDetialsJobTitle.Text;
-        if(!(string.IsNullOrEmpty(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             employeeDetialsJobTitle = entryValue;
             inputEmployeeDetialsJobTitleError.IsVisible = false;
@@ -1703,7 +1706,8 @@ public partial class ActionPage : ContentPage
             inputEmployeeDetialsJobGradeError.IsVisible = false;
             isvalidJobGrade = true;
         }
-        else {
+        else
+        {
             testInputEmployeeDetialsJobGradeError = false;
             isvalidJobGrade = false;
         }
@@ -1774,7 +1778,7 @@ public partial class ActionPage : ContentPage
             bankDetialsBankBranchName = "";
             testInputBankDetialsBankBranchNameError = false;
         }
-        
+
 
     }
 
@@ -1851,7 +1855,7 @@ public partial class ActionPage : ContentPage
 
         }
     }
-    
+
     void OnInputReligionTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputBiographicalDataReligion.Text;
@@ -1871,7 +1875,7 @@ public partial class ActionPage : ContentPage
     void OnInputHouseNoTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputResidentialHouseNo.Text;
-        if(!(string.IsNullOrEmpty(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             residentialHouseNo = entryValue;
             testInputResidentialHouseNoError = true;
@@ -1887,7 +1891,7 @@ public partial class ActionPage : ContentPage
     void OnInputStreetNameTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputResidentialStreetName.Text;
-        if(!(string.IsNullOrEmpty(entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             residentialStreetName = entryValue;
             testInputResidentialStreetNameError = true;
@@ -1925,7 +1929,8 @@ public partial class ActionPage : ContentPage
             testInputResidentialTownCityError = true;
             inputResidentialTownCityError.IsVisible = false;
         }
-        else {
+        else
+        {
             residentialArea = "";
             testInputResidentialTownCityError = false;
         }
@@ -1950,12 +1955,13 @@ public partial class ActionPage : ContentPage
     void OnInputEmailAddressTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = inputOtherEmailAddress.Text;
-        if (!(string.IsNullOrWhiteSpace(entryValue)) && IsEmailValid(entryValue) )
+        if (!(string.IsNullOrWhiteSpace(entryValue)) && IsEmailValid(entryValue))
         {
             otherEmailAddress = entryValue;
             testInputOtherEmailAddressError = true;
             inputOtherEmailAddressError.IsVisible = false;
-        }else if (!(IsEmailValid(entryValue)))
+        }
+        else if (!(IsEmailValid(entryValue)))
         {
             inputOtherEmailAddressError.IsVisible = true;
             inputOtherEmailAddressError.Text = "This is not a valid email address";
@@ -1973,7 +1979,8 @@ public partial class ActionPage : ContentPage
         string entryValue = inputOtherPhoneNo.Text;
         if (!(string.IsNullOrWhiteSpace(entryValue)))
         {
-            if (IsPhoneNumberValid(entryValue)){
+            if (IsPhoneNumberValid(entryValue))
+            {
                 otherPhoneNo = entryValue;
                 testInputOtherPhoneNoError = true;
                 inputOtherPhoneNoError.IsVisible = false;
@@ -1985,7 +1992,7 @@ public partial class ActionPage : ContentPage
                 inputOtherPhoneNoError.Text = "This field can be only number";
             }
         }
-        else 
+        else
         {
             otherPhoneNo = "";
             testInputOtherPhoneNoError = false;
@@ -2032,7 +2039,7 @@ public partial class ActionPage : ContentPage
         disableState = "No";
         disableReason = "";
         inputDiableState.Text = string.Empty;
-        
+
     }
 
     void OnDiableStateTextChange(object sender, TextChangedEventArgs e)
@@ -2064,7 +2071,7 @@ public partial class ActionPage : ContentPage
             testInputNextOfKinSurnameError = true;
             inputNextOfKinSurnameError.IsVisible = true;
             inputNextOfKinSurnameError.Text = "This field must contain only letters";
-            isvalidNextOfKinSurname = false;   
+            isvalidNextOfKinSurname = false;
         }
         else
         {
@@ -2192,12 +2199,13 @@ public partial class ActionPage : ContentPage
             nextOfKinContactPhoneNo = entryValue;
             testInputNextOfKinContactPhoneNoError = true;
             inputNextOfKinContactPhoneNoError.IsVisible = false;
-        }else if (!(IsPhoneNumberValid(entryValue)))
+        }
+        else if (!(IsPhoneNumberValid(entryValue)))
         {
             testInputNextOfKinContactPhoneNoError = true;
             inputNextOfKinContactPhoneNoError.Text = "This field can be numbers only";
             inputNextOfKinContactPhoneNoError.IsVisible = true;
-        }   
+        }
         else
         {
             nextOfKinContactPhoneNo = "";
@@ -2206,7 +2214,7 @@ public partial class ActionPage : ContentPage
 
         }
     }
-    
+
     void OnInputDependant1SurnameTextChange(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputDependant1Surname.Text;
@@ -2694,12 +2702,13 @@ public partial class ActionPage : ContentPage
     void OnInputEducationInstitutionName(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEducationInstitutionName.Text;
-        if(!(string.IsNullOrEmpty(entryValue)) ) {
+        if (!(string.IsNullOrEmpty(entryValue)))
+        {
             educationInstitutionName = entryValue;
             testInputEducationInstitutionNameError = true;
             inputEducationInstitutionNameError.IsVisible = false;
         }
-       
+
         else
         {
             educationInstitutionName = "";
@@ -2743,7 +2752,7 @@ public partial class ActionPage : ContentPage
     void OnInputEducationEntryCertificate(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputEducationEntryCertificate.Text;
-        if(!(string.IsNullOrEmpty (entryValue)))
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             educationEntryCertificate = entryValue;
             testInputEducationEntryCertificateError = true;
@@ -2810,13 +2819,13 @@ public partial class ActionPage : ContentPage
     void OnInputSkills1InstitutionName(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputSkills1InstitutionName.Text;
-        if (!(string.IsNullOrEmpty(entryValue)) )
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             skills1InstitutionName = entryValue;
             testInputSkills1InstitutionNameError = true;
             inputSkills1InstitutionNameError.IsVisible = false;
         }
-       
+
         else
         {
             skills1InstitutionName = "";
@@ -2835,7 +2844,7 @@ public partial class ActionPage : ContentPage
             testInputSkills2InstitutionNameError = true;
             inputSkills2InstitutionNameError.IsVisible = false;
         }
-       
+
         else
         {
             skills2InstitutionName = "";
@@ -2847,13 +2856,13 @@ public partial class ActionPage : ContentPage
     void OnInputSkills3InstitutionName(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputSkills3InstitutionName.Text;
-        if (!(string.IsNullOrEmpty(entryValue)) )
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             skills3InstitutionName = entryValue;
             testInputSkills3InstitutionNameError = true;
             inputSkills3InstitutionNameError.IsVisible = false;
         }
-       
+
         else
         {
             skills3InstitutionName = "";
@@ -2870,9 +2879,9 @@ public partial class ActionPage : ContentPage
             association1Name = entryValue;
             testInputAssociation1NameError = true;
             inputAssociation1NameError.IsVisible = false;
-            
+
         }
-       
+
         else
         {
             association1Name = "";
@@ -2885,13 +2894,13 @@ public partial class ActionPage : ContentPage
     void OnInputAssociation2Name(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputAssociation2Name.Text;
-        if (!(string.IsNullOrEmpty(entryValue)) )
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             association2Name = entryValue;
             testInputAssociation2NameError = true;
             inputAssociation2NameError.IsVisible = false;
         }
-      
+
         else
         {
             association2Name = "";
@@ -2904,7 +2913,7 @@ public partial class ActionPage : ContentPage
     void OnInputAssociation3Name(Object sender, TextChangedEventArgs e)
     {
         string entryValue = inputAssociation3Name.Text;
-        if (!(string.IsNullOrEmpty(entryValue)) )
+        if (!(string.IsNullOrEmpty(entryValue)))
         {
             association3Name = entryValue;
             testInputAssociation3NameError = true;
@@ -3006,9 +3015,9 @@ public partial class ActionPage : ContentPage
     }
 
 
-    
 
-    
+
+
     async void inputSubmitbtn(object sender, EventArgs e)
     {
 
@@ -3065,38 +3074,38 @@ public partial class ActionPage : ContentPage
             inputEmployeeDetialsSurnameError.IsVisible = true;
         }
 
-        if(testInputEmployeeDetialsFirstNameError == false)
+        if (testInputEmployeeDetialsFirstNameError == false)
         {
             inputEmployeeDetialsFirstNameError.Text = "This field cannot be empty";
             inputEmployeeDetialsFirstNameError.IsVisible = true;
         }
 
-        if(testInputEmployeeDetialsDirectorateError == false)
+        if (testInputEmployeeDetialsDirectorateError == false)
         {
             inputEmployeeDetialsDirectorateError.Text = "This field cannot be empty";
             inputEmployeeDetialsDirectorateError.IsVisible = true;
         }
-        
-        if(testInputEmployeeDetialsDepartmentError == false)
+
+        if (testInputEmployeeDetialsDepartmentError == false)
         {
             inputEmployeeDetialsDepartmentError.Text = "This field cannot be empty";
             inputEmployeeDetialsDepartmentError.IsVisible = true;
         }
 
-        if(testInputEmployeeDetialsUnitError == false)
+        if (testInputEmployeeDetialsUnitError == false)
         {
             inputEmployeeDetialsUnitError.IsVisible = true;
             inputEmployeeDetialsUnitError.Text = "This field cannot be empty";
         }
-        
 
-        if(testInputEmployeeDetialsJobClassError == false)
+
+        if (testInputEmployeeDetialsJobClassError == false)
         {
             inputEmployeeDetialsJobClassError.IsVisible = true;
             inputEmployeeDetialsJobClassError.Text = "This field cannot be empty";
         }
 
-        if(testInputEmployeeDetialsJobTitleError == false)
+        if (testInputEmployeeDetialsJobTitleError == false)
         {
             inputEmployeeDetialsJobTitleError.IsVisible = true;
             inputEmployeeDetialsJobTitleError.Text = "This field cannot be empty";
@@ -3106,7 +3115,7 @@ public partial class ActionPage : ContentPage
             inputEmployeeDetialsJobTitleError.IsVisible = false;
         }
 
-        if(testInputEmployeeDetialsJobGradeError == false)
+        if (testInputEmployeeDetialsJobGradeError == false)
         {
             inputEmployeeDetialsJobGradeError.IsVisible = true;
             inputEmployeeDetialsJobGradeError.Text = "This field cannot be empty";
@@ -3133,84 +3142,84 @@ public partial class ActionPage : ContentPage
 
         }
 
-       /* if (testInputBiographicalDataSexError == false)
-        {
-            inputBiograhicalDataSexError.Text = "This field cannot be empty";
-            inputBiograhicalDataSexError.IsVisible = true;
-        }
+        /* if (testInputBiographicalDataSexError == false)
+         {
+             inputBiograhicalDataSexError.Text = "This field cannot be empty";
+             inputBiograhicalDataSexError.IsVisible = true;
+         }
 
-        if (testInputBiographicalMaritalStatusError == false)
-        {
-            inputBiograhicalDataMaritalStatusError.Text = "This field cannot be empty";
-            inputBiograhicalDataMaritalStatusError.IsVisible = true;
-        }
+         if (testInputBiographicalMaritalStatusError == false)
+         {
+             inputBiograhicalDataMaritalStatusError.Text = "This field cannot be empty";
+             inputBiograhicalDataMaritalStatusError.IsVisible = true;
+         }
 
-        if (testInputBiographicalRegionError == false)
-        {
-            inputBiographicalRegionError.IsVisible = true;
-            inputBiographicalRegionError.Text = "This field cannot be empty";
-        }
+         if (testInputBiographicalRegionError == false)
+         {
+             inputBiographicalRegionError.IsVisible = true;
+             inputBiographicalRegionError.Text = "This field cannot be empty";
+         }
 
-        if (testInputBiographicalDataCountriesError == false)
-        {
-            inputBiographicalDataCountriesError.Text = "This field cannot be empty";
-            inputBiographicalDataCountriesError.IsVisible = true;
+         if (testInputBiographicalDataCountriesError == false)
+         {
+             inputBiographicalDataCountriesError.Text = "This field cannot be empty";
+             inputBiographicalDataCountriesError.IsVisible = true;
 
-        }
+         }
 
-        if (testInputResidentialRegionError == false)
-        {
-            inputResidentialRegionError.IsVisible = true;
-            inputResidentialRegionError.Text = "This field cannot be empty";
-        }
+         if (testInputResidentialRegionError == false)
+         {
+             inputResidentialRegionError.IsVisible = true;
+             inputResidentialRegionError.Text = "This field cannot be empty";
+         }
 
-        if (testInputNextOfKinRegionError == false)
-        {
-            inputNextOfKinRegionError.IsVisible = true;
-            inputNextOfKinRegionError.Text = "This field cannot be empty";
-        }
+         if (testInputNextOfKinRegionError == false)
+         {
+             inputNextOfKinRegionError.IsVisible = true;
+             inputNextOfKinRegionError.Text = "This field cannot be empty";
+         }
 
-        if (testInputNextOfKinCountriesError == false)
-        {
-            inputNextOfKinCountriesError.Text = "This field cannot be empty";
-            inputNextOfKinCountriesError.IsVisible = true;
+         if (testInputNextOfKinCountriesError == false)
+         {
+             inputNextOfKinCountriesError.Text = "This field cannot be empty";
+             inputNextOfKinCountriesError.IsVisible = true;
 
-        }
+         }
 
-        if (testInputDependant1TitleError == false)
-        {
-            inputDependant1TitleError.IsVisible = true;
-            inputDependant1TitleError.Text = "This field cannot be empty";
+         if (testInputDependant1TitleError == false)
+         {
+             inputDependant1TitleError.IsVisible = true;
+             inputDependant1TitleError.Text = "This field cannot be empty";
 
-        }
+         }
 
-        if (testInputDependant2TitleError == false)
-        {
-            inputDependant2TitleError.IsVisible = true;
-            inputDependant2TitleError.Text = "This field cannot be empty";
+         if (testInputDependant2TitleError == false)
+         {
+             inputDependant2TitleError.IsVisible = true;
+             inputDependant2TitleError.Text = "This field cannot be empty";
 
-        }
+         }
 
-        if (testInputDependant3TitleError == false)
-        {
-            inputDependant3TitleError.IsVisible = true;
-            inputDependant3TitleError.Text = "This field cannot be empty";
+         if (testInputDependant3TitleError == false)
+         {
+             inputDependant3TitleError.IsVisible = true;
+             inputDependant3TitleError.Text = "This field cannot be empty";
 
-        }
+         }
 
-        if (testInputDependant4TitleError == false)
-        {
-            inputDependant4TitleError.IsVisible = true;
-            inputDependant4TitleError.Text = "This field cannot be empty";
+         if (testInputDependant4TitleError == false)
+         {
+             inputDependant4TitleError.IsVisible = true;
+             inputDependant4TitleError.Text = "This field cannot be empty";
 
-        }
+         }
 
-        if (testInputDependant5TitleError == false)
-        {
-            inputDependant5TitleError.IsVisible = true;
-            inputDependant5TitleError.Text = "This field cannot be empty";
+         if (testInputDependant5TitleError == false)
+         {
+             inputDependant5TitleError.IsVisible = true;
+             inputDependant5TitleError.Text = "This field cannot be empty";
 
-        }*/
+         }*/
 
         /*if(testInputLanguageSpoken1Error == false)
         {
@@ -3278,19 +3287,19 @@ private bool language3 = false;
 
         bool readyToGo = (language1 && language2 && language3 && isvalidDependant5MiddleName && isvalidDependant5FirstName && isvalidDependant5Surname && isvalidDependant4MiddleName
             && isvalidDependant4FirstName && isvalidDependant4Surname && isvalidDependant3MiddleName && isvalidDependant3FirstName && isvalidDependant3Surname && isvalidDependant2MiddleName
-            && isvalidDependant2FirstName &&  isvalidDependant2Surname && isvalidDependant1MiddleName && isvalidDependant1FirstName && isvalidDependant1Surname && isvalidNextOfKinFirstName
+            && isvalidDependant2FirstName && isvalidDependant2Surname && isvalidDependant1MiddleName && isvalidDependant1FirstName && isvalidDependant1Surname && isvalidNextOfKinFirstName
             && isvalidNextOfKinSurname && isvalidMaidenName && isvalidJobGrade && isvalidJobTitle && isvalidJobClass && isvalidSupervisor && isvalidUnit && isvalidDepartment
             && isvalidDirectorate && isvalidFirstAppointmentDate && isvalidEmployeeMiddleName && isvalidEmployeeFirstName && isvalidEmployeeSurname && isvalidEmployeeTitle
             && isvalidStaffID && isvalidSubMetro && isvalidPaymentMode);
 
-        if ( readyToGo)
+        if (readyToGo)
         {
 
-            App.EmployeeRep.AddNewEmployee(identificationStaffID, identificationSocialSecurity, identificationNHIS, identificationIntPassport,
+           await App.EmployeeRep.AddNewEmployee(identificationStaffID, identificationSocialSecurity, identificationNHIS, identificationIntPassport,
                 identificationVotersID, identificationNationalID, identificationDriversLicense, employeeDetialsSurname, employeeDetialsFirstName,
                 employeeDetialsMiddleName, employeeDetialsDirectorate, employeeDetialsDepartment, employeeDetialsUnit, employeeDetialsImmediateSupervisor,
                 employeeDetialsCostCenter, employeeDetialsJobClass, employeeDetialsJobTitle, employeeDetialsJobGrade, employeeDetialsGradeLevel,
-                employeeDetialsGradePoint, bankDetialsBankName, bankDetialsBankBranchName, bankDetialsBankAccount, biographicalDataMaidenName, 
+                employeeDetialsGradePoint, bankDetialsBankName, bankDetialsBankBranchName, bankDetialsBankAccount, biographicalDataMaidenName,
                 biographicalDataPlaceOfBirth, biographicalDataHomeTown, biographicalDataReligion, residentialHouseNo, residentialStreetName,
                 residentialArea, residentialTownCity, otherPostalAddress, otherEmailAddress, otherPhoneNo, otherMobileNo, disableState,
                 disableReason, nextOfKinSurname, nextOfKinFirstName, nextOfKinRelationship, nextOfKinContactHouseNo, nextOfKinContactStreetName, nextOfKinContactArea,
@@ -3307,42 +3316,42 @@ private bool language3 = false;
                 nextOfKinCountries, dependant1Title, dependant2Title, dependant3Title, dependant4Title, dependant5Title, languageSpoken1,
                 languageSpoken2, languageSpoken3, languageReading1, languageReading2, languageReading3, languageWriting1, languageWriting2, languageWriting3
                 );
-            
+
             string check = App.EmployeeRep.statusMessage;
-            if(check == "Success")
+            if (check == "Success")
             {
                 addEmployeeStatusMessage.Text = "Success";
-              
-                    if (File.Exists(fullPath))
-                    {
-                        addFileRecord(identificationStaffID,identificationSocialSecurity,identificationPaymentMode,LgsSubMetro,identificationNHIS,identificationDriversLicense,identificationVotersID,identificationIntPassport,identificationIntPassportExpiryDate,
-                                        employementDetialsTitle,employeeDetialsSurname,employeeDetialsFirstName,employeeDetialsMiddleName,employeeDetialsAppointmentDate, employeeDetialsDirectorate, employeeDetialsDepartment,
-                                        employeeDetialsUnit, employeeDetialsCostCenter, employeeDetialsJobClass, employeeDetialsJobTitle, employeeDetialsJobGrade, employeeDetialsGradeLevel, employeeDetialsGradePoint,employeeDetialsLastPromotionDate,
-                                        employeeDetialsRetirementDate,employeeDetialsImmediateSupervisor,bankDetialsBankName, bankDetialsBankBranchName, bankDetialsBankAccount,biographicalDataMaidenName,biographicalDataSex,biographicalMaritalStatus,
-                                        biographicalDataPlaceOfBirth,biographicalDataDateOfBirth,biographicalDataHomeTown,biographicalRegion, biographicalCountries, biographicalDataReligion, residentialHouseNo, residentialStreetName,residentialArea,
-                                        residentialTownCity,residentialRegion,otherPostalAddress,otherEmailAddress, otherPhoneNo, otherMobileNo, disableState, disableReason,nextOfKinSurname, nextOfKinFirstName, nextOfKinRelationship,
-                                        nextOfKinContactHouseNo,nextOfKinContactStreetName, nextOfKinContactArea, nextOfKinContactCityTown, nextOFKinRegion, nextOfKinCountries, nextOfKinContactPhoneNo, dependant1Title, dependant1Surname, dependant1FirstName,
-                                        dependant1MiddleName, dependant1DateOfBirth, dependant1Relationship, dependant2Title, dependant2Surname, dependant2FirstName,dependant2MiddleName, dependant2DateOfBirth, dependant2Relationship,
-                                        dependant3Title, dependant3Surname, dependant3FirstName, dependant3MiddleName, dependant3DateOfBirth, dependant3Relationship,dependant4Title, dependant4Surname, dependant4FirstName, dependant4MiddleName, 
-                                         dependant4DateOfBirth, dependant4Relationship,dependant5Title, dependant5Surname, dependant5FirstName, dependant5MiddleName, dependant5DateOfBirth, dependant5Relationship,educationInstitutionName,educationTo, educationFrom,
-                                         educationQualificationObtained,educationCourseStudied,educationEntryCertificate, skills1Type, skills1InstitutionName, skills1YearObtained, skills2Type, skills2InstitutionName, skills2YearObtained
-                                         , skills3Type, skills3InstitutionName, skills3YearObtained, association1Name, association2Name, association3Name, language1Name, languageSpoken1, languageReading1, languageWriting1, language2Name, languageSpoken2, 
-                                         languageReading2, languageWriting2, language3Name, languageSpoken3, languageReading3, languageWriting3, fullPath);
-                    }
-                
+
+                if (File.Exists(fullPath))
+                {
+                    addFileRecord(identificationStaffID, identificationSocialSecurity, identificationPaymentMode, LgsSubMetro, identificationNHIS, identificationDriversLicense, identificationVotersID, identificationIntPassport, identificationIntPassportExpiryDate,
+                                    employementDetialsTitle, employeeDetialsSurname, employeeDetialsFirstName, employeeDetialsMiddleName, employeeDetialsAppointmentDate, employeeDetialsDirectorate, employeeDetialsDepartment,
+                                    employeeDetialsUnit, employeeDetialsCostCenter, employeeDetialsJobClass, employeeDetialsJobTitle, employeeDetialsJobGrade, employeeDetialsGradeLevel, employeeDetialsGradePoint, employeeDetialsLastPromotionDate,
+                                    employeeDetialsRetirementDate, employeeDetialsImmediateSupervisor, bankDetialsBankName, bankDetialsBankBranchName, bankDetialsBankAccount, biographicalDataMaidenName, biographicalDataSex, biographicalMaritalStatus,
+                                    biographicalDataPlaceOfBirth, biographicalDataDateOfBirth, biographicalDataHomeTown, biographicalRegion, biographicalCountries, biographicalDataReligion, residentialHouseNo, residentialStreetName, residentialArea,
+                                    residentialTownCity, residentialRegion, otherPostalAddress, otherEmailAddress, otherPhoneNo, otherMobileNo, disableState, disableReason, nextOfKinSurname, nextOfKinFirstName, nextOfKinRelationship,
+                                    nextOfKinContactHouseNo, nextOfKinContactStreetName, nextOfKinContactArea, nextOfKinContactCityTown, nextOFKinRegion, nextOfKinCountries, nextOfKinContactPhoneNo, dependant1Title, dependant1Surname, dependant1FirstName,
+                                    dependant1MiddleName, dependant1DateOfBirth, dependant1Relationship, dependant2Title, dependant2Surname, dependant2FirstName, dependant2MiddleName, dependant2DateOfBirth, dependant2Relationship,
+                                    dependant3Title, dependant3Surname, dependant3FirstName, dependant3MiddleName, dependant3DateOfBirth, dependant3Relationship, dependant4Title, dependant4Surname, dependant4FirstName, dependant4MiddleName,
+                                     dependant4DateOfBirth, dependant4Relationship, dependant5Title, dependant5Surname, dependant5FirstName, dependant5MiddleName, dependant5DateOfBirth, dependant5Relationship, educationInstitutionName, educationTo, educationFrom,
+                                     educationQualificationObtained, educationCourseStudied, educationEntryCertificate, skills1Type, skills1InstitutionName, skills1YearObtained, skills2Type, skills2InstitutionName, skills2YearObtained
+                                     , skills3Type, skills3InstitutionName, skills3YearObtained, association1Name, association2Name, association3Name, language1Name, languageSpoken1, languageReading1, languageWriting1, language2Name, languageSpoken2,
+                                     languageReading2, languageWriting2, language3Name, languageSpoken3, languageReading3, languageWriting3, fullPath);
+                }
+
             }
             else
             {
                 addEmployeeStatusMessage.Text = check;
             }
-           
+
         }
         else
         {
             viewaddemployee.Text = "An error occured";
             viewaddemployee.TextColor = Colors.Red;
         }
-       
+
 
 
 
@@ -3354,21 +3363,21 @@ private bool language3 = false;
     //pickers
 
     private string LgsSubMetro;
-	private string identificationPaymentMode;
-	private string employementDetialsTitle;
-	private string biographicalDataSex = "";
-	private string biographicalMaritalStatus = "";
-	private string biographicalRegion = "";
-	private string biographicalCountries = "";
-	private string residentialRegion = "";
-	private string nextOFKinRegion = "";
-	private string nextOfKinCountries = "";
+    private string identificationPaymentMode;
+    private string employementDetialsTitle;
+    private string biographicalDataSex = "";
+    private string biographicalMaritalStatus = "";
+    private string biographicalRegion = "";
+    private string biographicalCountries = "";
+    private string residentialRegion = "";
+    private string nextOFKinRegion = "";
+    private string nextOfKinCountries = "";
     private string dependant1Title = "";
     private string dependant2Title = "";
     private string dependant3Title = "";
     private string dependant4Title = "";
     private string dependant5Title = "";
-	private string languageSpoken1 = "";
+    private string languageSpoken1 = "";
     private string languageSpoken2 = "";
     private string languageSpoken3 = "";
     private string languageReading1 = "";
@@ -3382,21 +3391,21 @@ private bool language3 = false;
 
     //test
     private bool testInputSubMetroError = false;
-	private bool testInputPaymentModeError = false;
-	private bool testInputEmployementDetialsTitleError = false;
-	private bool testInputBiographicalDataSexError = false;
-	private bool testInputBiographicalMaritalStatusError = false;
-	private bool testInputBiographicalRegionError = false;
+    private bool testInputPaymentModeError = false;
+    private bool testInputEmployementDetialsTitleError = false;
+    private bool testInputBiographicalDataSexError = false;
+    private bool testInputBiographicalMaritalStatusError = false;
+    private bool testInputBiographicalRegionError = false;
     private bool testInputBiographicalDataCountriesError = false;
     private bool testInputResidentialRegionError = false;
-	private bool testInputNextOfKinRegionError = false;
-	private bool testInputNextOfKinCountriesError = false;
+    private bool testInputNextOfKinRegionError = false;
+    private bool testInputNextOfKinCountriesError = false;
     private bool testInputDependant1TitleError = false;
     private bool testInputDependant2TitleError = false;
     private bool testInputDependant3TitleError = false;
     private bool testInputDependant4TitleError = false;
     private bool testInputDependant5TitleError = false;
-	private bool testInputLanguageSpoken1Error = false;
+    private bool testInputLanguageSpoken1Error = false;
     private bool testInputLanguageSpoken2Error = false;
     private bool testInputLanguageSpoken3Error = false;
     private bool testInputLanguageReading1Error = false;
@@ -3413,105 +3422,106 @@ private bool language3 = false;
 
 
     void OnPickerSelectedItem(object sender, EventArgs e)
-	{ 
+    {
 
-		string selectedValue = inputLgsSubMetro.SelectedItem as string;
-		if(!(string.IsNullOrEmpty(selectedValue)) )
-		{
-			testInputSubMetroError = true;
-			inputLgsSubMetroError.IsVisible = false;
-			LgsSubMetro = selectedValue;
+        string selectedValue = inputLgsSubMetro.SelectedItem as string;
+        if (!(string.IsNullOrEmpty(selectedValue)))
+        {
+            testInputSubMetroError = true;
+            inputLgsSubMetroError.IsVisible = false;
+            LgsSubMetro = selectedValue;
             isvalidSubMetro = true;
-		}
-		else
-		{
-			testInputSubMetroError = false;
+        }
+        else
+        {
+            testInputSubMetroError = false;
             isvalidSubMetro = false;
-		}
+        }
 
     }
 
-	void OnPickerPaymentModeSelectedItem(object sender, EventArgs e)
-	{
-		string selectedValue = inputIdentificationPaymentMode.SelectedItem as string;
-		if(!(string.IsNullOrEmpty(selectedValue) ) )
-		{
-			inputIdentificationPaymentModeError.IsVisible = false;
-			identificationPaymentMode = selectedValue;
-			testInputPaymentModeError = true;
+    void OnPickerPaymentModeSelectedItem(object sender, EventArgs e)
+    {
+        string selectedValue = inputIdentificationPaymentMode.SelectedItem as string;
+        if (!(string.IsNullOrEmpty(selectedValue)))
+        {
+            inputIdentificationPaymentModeError.IsVisible = false;
+            identificationPaymentMode = selectedValue;
+            testInputPaymentModeError = true;
             isvalidPaymentMode = true;
-		}
-		else
-		{
-			testInputPaymentModeError = true;
+        }
+        else
+        {
+            testInputPaymentModeError = true;
             isvalidPaymentMode = false;
-		}
-	}
+        }
+    }
 
-	void OnPickerEmployeeDetialsTitleSelectedItem(object sender, EventArgs e)
-	{
-		string selectedValue = inputEmployeeDetialsTitle.SelectedItem as string;
-		if (!(string.IsNullOrEmpty(selectedValue))){
+    void OnPickerEmployeeDetialsTitleSelectedItem(object sender, EventArgs e)
+    {
+        string selectedValue = inputEmployeeDetialsTitle.SelectedItem as string;
+        if (!(string.IsNullOrEmpty(selectedValue)))
+        {
             inputEmployeeDetialsTitleError.IsVisible = false;
-			employementDetialsTitle = selectedValue;
-			testInputEmployementDetialsTitleError = true;
+            employementDetialsTitle = selectedValue;
+            testInputEmployementDetialsTitleError = true;
             isvalidEmployeeTitle = true;
-		}
+        }
 
-		else
-		{
-			testInputEmployementDetialsTitleError = true;
+        else
+        {
+            testInputEmployementDetialsTitleError = true;
             isvalidEmployeeTitle = false;
-		}
-	}
+        }
+    }
 
-	void OnPickerBiographicalDataSexSelectedItem(object sender, EventArgs e)
-	{
-		string selectedValue = inputBiographicalDataSex.SelectedItem as string;
-		if (!(string.IsNullOrEmpty(selectedValue)))
-		{
-			inputBiograhicalDataSexError.IsVisible = false;
-			biographicalDataSex = selectedValue;
-			testInputBiographicalDataSexError = true;
-		}
-		else
-		{
+    void OnPickerBiographicalDataSexSelectedItem(object sender, EventArgs e)
+    {
+        string selectedValue = inputBiographicalDataSex.SelectedItem as string;
+        if (!(string.IsNullOrEmpty(selectedValue)))
+        {
+            inputBiograhicalDataSexError.IsVisible = false;
+            biographicalDataSex = selectedValue;
+            testInputBiographicalDataSexError = true;
+        }
+        else
+        {
             biographicalDataSex = "";
-			testInputBiographicalDataSexError = false;
-		}
-	}
+            testInputBiographicalDataSexError = false;
+        }
+    }
 
-	void OnPickerBiographicalDataMatrialStatusSelectedItem(object sender, EventArgs e)
-	{
-		string selectedValue = inputBiographicalDataMaritalStatus.SelectedItem as string;
-		if (!(string.IsNullOrEmpty(selectedValue)))
-		{
-			inputBiograhicalDataMaritalStatusError.IsVisible = false;
-			testInputBiographicalMaritalStatusError = true;
+    void OnPickerBiographicalDataMatrialStatusSelectedItem(object sender, EventArgs e)
+    {
+        string selectedValue = inputBiographicalDataMaritalStatus.SelectedItem as string;
+        if (!(string.IsNullOrEmpty(selectedValue)))
+        {
+            inputBiograhicalDataMaritalStatusError.IsVisible = false;
+            testInputBiographicalMaritalStatusError = true;
             biographicalMaritalStatus = selectedValue;
-		}
-		else
-		{
+        }
+        else
+        {
             biographicalMaritalStatus = "";
-			testInputBiographicalMaritalStatusError = false;
-		}
-	}
+            testInputBiographicalMaritalStatusError = false;
+        }
+    }
 
-	void OnPickerBiographicalDataRegionSelectedItem(object sender, EventArgs e)
-	{
+    void OnPickerBiographicalDataRegionSelectedItem(object sender, EventArgs e)
+    {
         string selectedValue = inputBiographicalDataRegion.SelectedItem as string;
-		if(!(string.IsNullOrEmpty(selectedValue)))
-		{
-			inputBiographicalRegionError.IsVisible = false;
-			testInputBiographicalRegionError = true;
-			biographicalRegion = selectedValue;
+        if (!(string.IsNullOrEmpty(selectedValue)))
+        {
+            inputBiographicalRegionError.IsVisible = false;
+            testInputBiographicalRegionError = true;
+            biographicalRegion = selectedValue;
 
-		}
-		else
-		{
+        }
+        else
+        {
             biographicalRegion = "";
-			testInputBiographicalRegionError = false;
-		}
+            testInputBiographicalRegionError = false;
+        }
 
     }
 
@@ -3523,45 +3533,45 @@ private bool language3 = false;
             inputBiographicalDataCountriesError.IsVisible = false;
             testInputBiographicalDataCountriesError = true;
             biographicalCountries = selectedValue;
-		}
-		else
-		{
+        }
+        else
+        {
             biographicalCountries = "";
-			testInputBiographicalDataCountriesError = false;
-		}
+            testInputBiographicalDataCountriesError = false;
+        }
     }
 
     void OnPickerResidentialRegionSelectedItem(object sender, EventArgs e)
-	{
-		string selectedValue = inputResidentialRegion.SelectedItem as string;
-		if (!(string.IsNullOrEmpty(selectedValue)))
-		{
-			inputResidentialRegionError.IsVisible = false;
-			residentialRegion = selectedValue;
-			testInputResidentialRegionError = true;
+    {
+        string selectedValue = inputResidentialRegion.SelectedItem as string;
+        if (!(string.IsNullOrEmpty(selectedValue)))
+        {
+            inputResidentialRegionError.IsVisible = false;
+            residentialRegion = selectedValue;
+            testInputResidentialRegionError = true;
 
-		}
-		else
-		{
-			testInputResidentialRegionError=false;
+        }
+        else
+        {
+            testInputResidentialRegionError = false;
             residentialRegion = "";
 
         }
 
     }
 
-	void OnPickerNextOfKinRegionSelectedItem(object sender, EventArgs e)
-	{
-		string selectedValue = inputNextOfKinRegion.SelectedItem as string;
-		if(!(string.IsNullOrEmpty(selectedValue)))
-		{
-			inputNextOfKinRegionError.IsVisible = false;
-			nextOFKinRegion = selectedValue;
-			testInputNextOfKinRegionError = true;
-		}
-		else
-		{
-			testInputNextOfKinRegionError = false;
+    void OnPickerNextOfKinRegionSelectedItem(object sender, EventArgs e)
+    {
+        string selectedValue = inputNextOfKinRegion.SelectedItem as string;
+        if (!(string.IsNullOrEmpty(selectedValue)))
+        {
+            inputNextOfKinRegionError.IsVisible = false;
+            nextOFKinRegion = selectedValue;
+            testInputNextOfKinRegionError = true;
+        }
+        else
+        {
+            testInputNextOfKinRegionError = false;
             nextOFKinRegion = "";
 
         }
@@ -3576,31 +3586,31 @@ private bool language3 = false;
             inputNextOfKinCountriesError.IsVisible = false;
             testInputNextOfKinCountriesError = true;
             nextOfKinCountries = selectedValue;
-		}
-		else
-		{
-			testInputNextOfKinCountriesError = false;
+        }
+        else
+        {
+            testInputNextOfKinCountriesError = false;
             nextOfKinCountries = "";
 
         }
     }
 
     void OnPickerDependant1TitleSelectedItem(object sender, EventArgs e)
-	{
-		string selectedValue = inputDependant1Title.SelectedItem as string;
-		if (!(string.IsNullOrEmpty(selectedValue)))
-		{
-			inputDependant1TitleError.IsVisible = false;
-			testInputDependant1TitleError = true;
-			dependant1Title = selectedValue;
-		}
-		else
-		{
-			testInputDependant1TitleError = false;
+    {
+        string selectedValue = inputDependant1Title.SelectedItem as string;
+        if (!(string.IsNullOrEmpty(selectedValue)))
+        {
+            inputDependant1TitleError.IsVisible = false;
+            testInputDependant1TitleError = true;
+            dependant1Title = selectedValue;
+        }
+        else
+        {
+            testInputDependant1TitleError = false;
             dependant1Title = "";
 
         }
-	}
+    }
 
     void OnPickerDependant2TitleSelectedItem(object sender, EventArgs e)
     {
@@ -3666,21 +3676,21 @@ private bool language3 = false;
         }
     }
 
-	void OnPickerLanguageSpoken1SelectedItem(object sender, EventArgs e)
-	{
-		string selectedValue = inputLanguageSpoken1.SelectedItem as string;
-		if (!(string.IsNullOrEmpty(selectedValue)))
-		{
-			languageSpoken1 = selectedValue;
-			inputLanguageSpoken1Error.IsVisible = false;
-			testInputLanguageSpoken1Error = true;
-		}
-		else
-		{
+    void OnPickerLanguageSpoken1SelectedItem(object sender, EventArgs e)
+    {
+        string selectedValue = inputLanguageSpoken1.SelectedItem as string;
+        if (!(string.IsNullOrEmpty(selectedValue)))
+        {
+            languageSpoken1 = selectedValue;
+            inputLanguageSpoken1Error.IsVisible = false;
+            testInputLanguageSpoken1Error = true;
+        }
+        else
+        {
             languageSpoken1 = "";
             testInputLanguageSpoken1Error = false;
-		}
-	}
+        }
+    }
 
     void OnPickerLanguageSpoken2SelectedItem(object sender, EventArgs e)
     {
@@ -3812,9 +3822,9 @@ private bool language3 = false;
     }
     // input employee record button
 
-	
 
-	/*private void Entry_Focused(object sender, FocusEventArgs e)
+
+    /*private void Entry_Focused(object sender, FocusEventArgs e)
 	{
 
 	}
@@ -3827,16 +3837,16 @@ private bool language3 = false;
 
 
 
-	void openSearchByStaffIDForm(object sender, EventArgs e)
-	{
+    void openSearchByStaffIDForm(object sender, EventArgs e)
+    {
 
 
 
 
         searchByStaffID.IsVisible = true;
-		searchByDepartment.IsVisible = false;
-		searchBySubMetro.IsVisible = false;
-		searchByPaymentMode.IsVisible = false;
+        searchByDepartment.IsVisible = false;
+        searchBySubMetro.IsVisible = false;
+        searchByPaymentMode.IsVisible = false;
         openSearchByStaffIDFormLabel.TextColor = Colors.White;
         openSearchByStaffIDFormFrame.BackgroundColor = Color.Parse("#1B4242");
         openSearchByDepartmentFormLabel.TextColor = Colors.Black;
@@ -3847,12 +3857,12 @@ private bool language3 = false;
         openSearchBySubMetroFormFrame.BackgroundColor = Color.Parse("#5C8374");
     }
 
-	void openSearchByDepartmentForm(object sender,EventArgs e)
-	{
-		searchByDepartment.IsVisible = true;
-		searchByPaymentMode.IsVisible = false;
-		searchByStaffID.IsVisible=false;
-		searchBySubMetro.IsVisible=false;
+    void openSearchByDepartmentForm(object sender, EventArgs e)
+    {
+        searchByDepartment.IsVisible = true;
+        searchByPaymentMode.IsVisible = false;
+        searchByStaffID.IsVisible = false;
+        searchBySubMetro.IsVisible = false;
         openSearchByStaffIDFormLabel.TextColor = Colors.Black;
         openSearchByStaffIDFormFrame.BackgroundColor = Color.Parse("#5C8374");
         openSearchByDepartmentFormLabel.TextColor = Colors.White;
@@ -3862,12 +3872,12 @@ private bool language3 = false;
         openSearchBySubMetroFormLabel.TextColor = Colors.Black;
         openSearchBySubMetroFormFrame.BackgroundColor = Color.Parse("#5C8374");
     }
-	void openSearchBySubMetroForm(object sender, EventArgs e)
-	{
-		searchBySubMetro.IsVisible = true;
-		searchByStaffID.IsVisible = false;
-		searchByDepartment.IsVisible = false;
-		searchByPaymentMode.IsVisible = false;
+    void openSearchBySubMetroForm(object sender, EventArgs e)
+    {
+        searchBySubMetro.IsVisible = true;
+        searchByStaffID.IsVisible = false;
+        searchByDepartment.IsVisible = false;
+        searchByPaymentMode.IsVisible = false;
         openSearchByStaffIDFormLabel.TextColor = Colors.Black;
         openSearchByStaffIDFormFrame.BackgroundColor = Color.Parse("#5C8374");
         openSearchByDepartmentFormLabel.TextColor = Colors.Black;
@@ -3877,12 +3887,12 @@ private bool language3 = false;
         openSearchBySubMetroFormLabel.TextColor = Colors.White;
         openSearchBySubMetroFormFrame.BackgroundColor = Color.Parse("#1B4242");
     }
-	void openSearchByPaymentMode(object sender, EventArgs e)
-	{
-		searchByPaymentMode.IsVisible = true;
-		searchByDepartment.IsVisible = false;
-		searchByStaffID.IsVisible = false;
-		searchBySubMetro.IsVisible = false;
+    void openSearchByPaymentMode(object sender, EventArgs e)
+    {
+        searchByPaymentMode.IsVisible = true;
+        searchByDepartment.IsVisible = false;
+        searchByStaffID.IsVisible = false;
+        searchBySubMetro.IsVisible = false;
         openSearchByStaffIDFormLabel.TextColor = Colors.Black;
         openSearchByStaffIDFormFrame.BackgroundColor = Color.Parse("#5C8374");
         openSearchByDepartmentFormLabel.TextColor = Colors.Black;
@@ -3894,24 +3904,24 @@ private bool language3 = false;
     }
 
 
-	
 
 
-	async void openLeaveAddEmployee(object sender, EventArgs e)
-	{
+
+    async void openLeaveAddEmployee(object sender, EventArgs e)
+    {
         openLeaveAddEmployeeButton.BackgroundColor = Colors.Teal;
         await Task.Delay(500);
         openLeaveAddEmployeeButton.BackgroundColor = Colors.DarkSlateGray;
 
         leaveAddEmployee.IsVisible = true;
-		leaveDeleteEmployee.IsVisible = false;
-		leaveSearchEmployee.IsVisible = false;
+        leaveDeleteEmployee.IsVisible = false;
+        leaveSearchEmployee.IsVisible = false;
         leaveUpdateEmployee.IsVisible = false;
 
     }
 
     async void openLeaveSearchEmployee(object sender, EventArgs e)
-	{
+    {
         openLeaveSearchEmployeeButton.BackgroundColor = Colors.Teal;
         await Task.Delay(500);
         openLeaveSearchEmployeeButton.BackgroundColor = Colors.DarkSlateGray;
@@ -3925,7 +3935,7 @@ private bool language3 = false;
     }
 
     async void openLeaveDeleteEmployee(object sender, EventArgs e)
-	{
+    {
         openLeaveDeleteEmployeeButton.BackgroundColor = Colors.Teal;
         await Task.Delay(500);
         openLeaveDeleteEmployeeButton.BackgroundColor = Colors.DarkSlateGray;
@@ -3937,7 +3947,7 @@ private bool language3 = false;
     }
 
     async void openLeaveUpdateEmployee(object sender, EventArgs e)
-	{
+    {
         openLeaveUpdateEmployeeButton.BackgroundColor = Colors.Teal;
         await Task.Delay(500);
         openLeaveUpdateEmployeeButton.BackgroundColor = Colors.DarkSlateGray;
@@ -3947,8 +3957,8 @@ private bool language3 = false;
         leaveSearchEmployee.IsVisible = false;
     }
     void openSearchEmployeeFrame(object sender, EventArgs e)
-	{
-		searchFram.IsVisible = true;
+    {
+        searchFram.IsVisible = true;
         addEmployeeFrame.IsVisible = false;
         updateEmployeeFrame.IsVisible = false;
         performanceFrame.IsVisible = false;
@@ -3971,26 +3981,26 @@ private bool language3 = false;
         hoverUpdateImage.Source = "renew.png";
         hoverDeleteImage.Source = "user_delete_icon.png";
 
-       
+
     }
 
 
     async void openPerformanceAddEmployee(object sender, EventArgs e)
-	{
+    {
         openPerformanceAddEmployeeButton.BackgroundColor = Colors.Teal;
         await Task.Delay(500);
         openPerformanceAddEmployeeButton.BackgroundColor = Colors.DarkSlateGray;
 
         performanceAddEmployee.IsVisible = true;
-		performanceDeleteEmployee.IsVisible = false;
-		performanceUpdateEmployee.IsVisible = false;
+        performanceDeleteEmployee.IsVisible = false;
+        performanceUpdateEmployee.IsVisible = false;
         performanceSearchEmployee.IsVisible = true;
         performanceSearchEmployee.IsVisible = false;
 
     }
 
     async void openPerformanceUpdateEmployee(object sender, EventArgs e)
-	{
+    {
         openPerformanceUpdateEmployeeButton.BackgroundColor = Colors.Teal;
         await Task.Delay(500);
         openPerformanceUpdateEmployeeButton.BackgroundColor = Colors.DarkSlateGray;
@@ -4002,7 +4012,7 @@ private bool language3 = false;
     }
 
     async void openPerformanceDeleteEmployee(object sender, EventArgs e)
-	{
+    {
         openPerformanceDeleteEmployeeButton.BackgroundColor = Colors.Teal;
         await Task.Delay(500);
         openPerformanceDeleteEmployeeButton.BackgroundColor = Colors.DarkSlateGray;
@@ -4028,8 +4038,8 @@ private bool language3 = false;
 
 
     void openAddEmployeeFrame(object sender, EventArgs e)
-	{
-		addEmployeeFrame.IsVisible = true;
+    {
+        addEmployeeFrame.IsVisible = true;
         searchFram.IsVisible = false;
         updateEmployeeFrame.IsVisible = false;
         deleteEmployeeFrame.IsVisible = false;
@@ -4060,8 +4070,11 @@ private bool language3 = false;
 
 
     void openUpdateEmployeeFrame(object sender, EventArgs e)
-	{
-		updateEmployeeFrame.IsVisible = true;
+    {
+        System.Diagnostics.Debug.Write("checking something");
+        searchMatch();
+
+        updateEmployeeFrame.IsVisible = true;
         searchFram.IsVisible = false;
         addEmployeeFrame.IsVisible = false;
         deleteEmployeeFrame.IsVisible = false;
@@ -4089,8 +4102,8 @@ private bool language3 = false;
     }
 
     void openDeleteEmployeeFrame(object sender, EventArgs e)
-	{
-		deleteEmployeeFrame.IsVisible = true;
+    {
+        deleteEmployeeFrame.IsVisible = true;
         searchFram.IsVisible = false;
         addEmployeeFrame.IsVisible = false;
         updateEmployeeFrame.IsVisible = false;
@@ -4120,8 +4133,8 @@ private bool language3 = false;
     }
 
     void openLeaveManagementFrame(object sender, EventArgs e)
-	{
-		leaveManagementFrame.IsVisible = true;
+    {
+        leaveManagementFrame.IsVisible = true;
         searchFram.IsVisible = false;
         addEmployeeFrame.IsVisible = false;
         updateEmployeeFrame.IsVisible = false;
@@ -4152,8 +4165,8 @@ private bool language3 = false;
     }
 
     void openPerformanceManagementFrame(object sender, EventArgs e)
-	{
-		performanceFrame.IsVisible = true;
+    {
+        performanceFrame.IsVisible = true;
         searchFram.IsVisible = false;
         addEmployeeFrame.IsVisible = false;
         updateEmployeeFrame.IsVisible = false;
@@ -4176,13 +4189,13 @@ private bool language3 = false;
         hoverAddImage.Source = "add_person.png";
         hoverUpdateImage.Source = "renew.png";
         hoverDeleteImage.Source = "user_delete_icon.png";
-        hoverLeaveImage.Source= "leave_manage.png";
+        hoverLeaveImage.Source = "leave_manage.png";
         hoverPerformanceImage.Source = "white_assignment.png";
     }
 
     void openReset(object sender, EventArgs e)
-	{
-		reset.IsVisible = true;
+    {
+        reset.IsVisible = true;
         performanceFrame.IsVisible = false;
         searchFram.IsVisible = false;
         addEmployeeFrame.IsVisible = false;
@@ -4190,18 +4203,18 @@ private bool language3 = false;
         deleteEmployeeFrame.IsVisible = false;
         leaveManagementFrame.IsVisible = false;
     }
-	async void logout(object sender, EventArgs e)
-	{
+    async void logout(object sender, EventArgs e)
+    {
         logoutButton.BackgroundColor = Colors.Coral;
         await Navigation.PopAsync();
         logoutButton.BackgroundColor = Colors.IndianRed;
-	}
+    }
 
-	private List<string> countries = new List<string>
-	{
-		"Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Côte d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "São Tomé and Príncipe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+    private List<string> countries = new List<string>
+    {
+        "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Côte d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "São Tomé and Príncipe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
 
-	};
+    };
 
     private void inputIdentificationNHIS_TextChanged(object sender, TextChangedEventArgs e)
     {
@@ -4211,7 +4224,7 @@ private bool language3 = false;
     private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
 
-   }
+    }
 
     //delete
     private string recordDelete_staffID;
@@ -4246,7 +4259,7 @@ private bool language3 = false;
 
         if (isvalid_recordDeleteStaffID)
         {
-            List<EmployeeDB>  list = await App.EmployeeRep.GetPeopleDeleteByStaffID(recordDelete_staffID);
+            List<EmployeeDB> list = await App.EmployeeRep.GetPeopleDeleteByStaffID(recordDelete_staffID);
             bool done = App.EmployeeRep.done;
             if (App.EmployeeRep.testData)
             {
@@ -4276,10 +4289,10 @@ private bool language3 = false;
                 recordDeleteCheckStaffID.IsVisible = true;
                 deAct.IsRunning = false;
             }
-           
+
         }
 
-        
+
 
     }
 
@@ -4819,42 +4832,42 @@ private bool language3 = false;
 
 
 
-     private bool _isvalidStaffID = false;
-     private bool _isvalidPaymentMode = false;
-     private bool _isvalidSubMetro = false;
-     private bool _isvalidEmployeeTitle = false;
-     private bool _isvalidEmployeeSurname = false;
-     private bool _isvalidEmployeeFirstName = false;
-     private bool _isvalidEmployeeMiddleName = false;
-     private bool _isvalidFirstAppointmentDate = false;
-     private bool _isvalidDirectorate = false;
-     private bool _isvalidDepartment = false;
-     private bool _isvalidUnit = false;
-     private bool _isvalidSupervisor = true;
-     private bool _isvalidJobClass = false;
-     private bool _isvalidJobTitle = false;
-     private bool _isvalidJobGrade = false;
-     private bool _isvalidMaidenName = true;
-     private bool _isvalidNextOfKinSurname = true;
-     private bool _isvalidNextOfKinFirstName = true;
-     private bool _isvalidDependant1Surname = true;
-     private bool _isvalidDependant1FirstName = true;
-     private bool _isvalidDependant1MiddleName = true;
-     private bool _isvalidDependant2Surname = true;
-     private bool _isvalidDependant2FirstName = true;
-     private bool _isvalidDependant2MiddleName = false;
-     private bool _isvalidDependant3Surname = true;
-     private bool _isvalidDependant3FirstName = true;
-     private bool _isvalidDependant3MiddleName = true;
-     private bool _isvalidDependant4Surname = true;
-     private bool _isvalidDependant4FirstName = true;
-     private bool _isvalidDependant4MiddleName = true;
-     private bool _isvalidDependant5Surname = true;
-     private bool _isvalidDependant5FirstName = true;
-     private bool _isvalidDependant5MiddleName = true;
-     private bool _language1 = true;
-     private bool _language2 = true;
-     private bool _language3 = true;
+    private bool _isvalidStaffID = false;
+    private bool _isvalidPaymentMode = false;
+    private bool _isvalidSubMetro = false;
+    private bool _isvalidEmployeeTitle = false;
+    private bool _isvalidEmployeeSurname = false;
+    private bool _isvalidEmployeeFirstName = false;
+    private bool _isvalidEmployeeMiddleName = false;
+    private bool _isvalidFirstAppointmentDate = false;
+    private bool _isvalidDirectorate = false;
+    private bool _isvalidDepartment = false;
+    private bool _isvalidUnit = false;
+    private bool _isvalidSupervisor = true;
+    private bool _isvalidJobClass = false;
+    private bool _isvalidJobTitle = false;
+    private bool _isvalidJobGrade = false;
+    private bool _isvalidMaidenName = true;
+    private bool _isvalidNextOfKinSurname = true;
+    private bool _isvalidNextOfKinFirstName = true;
+    private bool _isvalidDependant1Surname = true;
+    private bool _isvalidDependant1FirstName = true;
+    private bool _isvalidDependant1MiddleName = true;
+    private bool _isvalidDependant2Surname = true;
+    private bool _isvalidDependant2FirstName = true;
+    private bool _isvalidDependant2MiddleName = false;
+    private bool _isvalidDependant3Surname = true;
+    private bool _isvalidDependant3FirstName = true;
+    private bool _isvalidDependant3MiddleName = true;
+    private bool _isvalidDependant4Surname = true;
+    private bool _isvalidDependant4FirstName = true;
+    private bool _isvalidDependant4MiddleName = true;
+    private bool _isvalidDependant5Surname = true;
+    private bool _isvalidDependant5FirstName = true;
+    private bool _isvalidDependant5MiddleName = true;
+    private bool _language1 = true;
+    private bool _language2 = true;
+    private bool _language3 = true;
 
 
 
@@ -5011,7 +5024,7 @@ private bool language3 = false;
         {
             _testInputEmployeeDetialsSurnameError = false;
             _inputEmployeeDetialsSurnameError.IsVisible = false;
-            _isvalidEmployeeSurname = false ;
+            _isvalidEmployeeSurname = false;
 
         }
 
@@ -5054,7 +5067,7 @@ private bool language3 = false;
             _employeeDetialsMiddleName = entryValue;
             _testInputEmployeeDetialsMiddleNameError = true;
             _inputEmployeeDetialsMiddleNameError.IsVisible = false;
-            _isvalidEmployeeMiddleName = true; 
+            _isvalidEmployeeMiddleName = true;
         }
         else if (!(entryValue.All(char.IsLetter)))
         {
@@ -5591,7 +5604,8 @@ private bool language3 = false;
     }
 
     void _OnCheckDiableNo(object sender, CheckedChangedEventArgs e)
-    {            _viewaddemployee.IsVisible = false;
+    {
+        _viewaddemployee.IsVisible = false;
 
         _inputDiableState.IsVisible = false;
         _specifyYes.IsVisible = false;
@@ -6664,7 +6678,7 @@ private bool language3 = false;
             _language3 = true;
 
         }
-        else if(!(entryValue.All(char.IsLetter)))
+        else if (!(entryValue.All(char.IsLetter)))
         {
             _testInputLanguage3NameError = true;
             _inputLanguage3NameError.IsVisible = true;
@@ -7046,7 +7060,7 @@ private bool language3 = false;
                 _dependant5Surname, _dependant5FirstName, _dependant5MiddleName, _dependant5Relationship, _educationInstitutionName, _educationQualificationObtained,
                 _educationCourseStudied, _educationEntryCertificate, _skills1Type, _skills2Type, _skills3Type, _skills1InstitutionName,
                 _skills2InstitutionName, _skills3InstitutionName, _association1Name, _association2Name, _association3Name, _language1Name, _language2Name, _language3Name,
-                _identificationIntPassportExpiryDate, _employeeDetialsAppointmentDate ,_employeeDetialsRetirementDate, _employeeDetialsLastPromotionDate, _biographicalDataDateOfBirth,
+                _identificationIntPassportExpiryDate, _employeeDetialsAppointmentDate, _employeeDetialsRetirementDate, _employeeDetialsLastPromotionDate, _biographicalDataDateOfBirth,
                 _dependant1DateOfBirth, _dependant2DateOfBirth, _dependant3DateOfBirth, _dependant4DateOfBirth, _dependant5DateOfBirth, _educationTo,
                 _educationFrom, _skills1YearObtained, _skills2YearObtained, _skills3YearObtained, _LgsSubMetro, _identificationPaymentMode, _employementDetialsTitle,
                 _biographicalDataSex, _biographicalMaritalStatus, _biographicalRegion, _biographicalCountries, _residentialRegion, _nextOFKinRegion,
@@ -7571,7 +7585,8 @@ private bool language3 = false;
         _updateIfStaff.IsVisible = false;
         searchUpdate_StaffID.IsVisible = false;
         string entryValue = searchUpdateStaffID.Text;
-        if (!string.IsNullOrWhiteSpace(entryValue)){
+        if (!string.IsNullOrWhiteSpace(entryValue))
+        {
             __StaffID = entryValue;
             test__staffID = true;
             _isvalidTest__staffID = true;
@@ -7587,7 +7602,7 @@ private bool language3 = false;
 
         if (!test__staffID)
         {
-            error_searchUpdateStaffID.IsVisible = true ;
+            error_searchUpdateStaffID.IsVisible = true;
             error_searchUpdateStaffID.Text = "This field cannot be empty";
         }
 
@@ -8174,7 +8189,7 @@ private bool language3 = false;
 
             }
         }
-       
+
 
     }
     //basic authentication
@@ -8254,7 +8269,7 @@ private bool language3 = false;
     void OnAddNameofHOD(object sender, TextChangedEventArgs e)
     {
         string entryValue = leaveAddNameofHOD.Text;
-        if(!(string.IsNullOrWhiteSpace (entryValue)) && entryValue.All(char.IsLetter) )
+        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsLetter))
         {
             addNameOfHOD = entryValue;
             testAddNameoofHODError = true;
@@ -8263,7 +8278,7 @@ private bool language3 = false;
             leavesuccess.IsVisible = false;
 
         }
-        else if(!(entryValue.All(char.IsLetter)))
+        else if (!(entryValue.All(char.IsLetter)))
         {
             leaveAddNameofHODError.IsVisible = true;
             leaveAddNameofHODError.Text = "This field must be letters";
@@ -8280,7 +8295,7 @@ private bool language3 = false;
     void OnAddDaysRequested(object sender, TextChangedEventArgs e)
     {
         string entryValue = leaveAddDaysRequested.Text;
-        if(!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsDigit))
+        if (!(string.IsNullOrWhiteSpace(entryValue)) && entryValue.All(char.IsDigit))
         {
             addDaysRequested = entryValue;
             isvalidAddDaysRequested = true;
@@ -8288,7 +8303,8 @@ private bool language3 = false;
             leavesuccess.IsVisible = false;
 
         }
-        else if(!(entryValue.All(char.IsDigit))) {
+        else if (!(entryValue.All(char.IsDigit)))
+        {
             leaveAddDaysRequestedError.IsVisible = true;
             leaveAddDaysRequestedError.Text = "This field must be numbers only";
             isvalidAddDaysRequested = false;
@@ -8338,10 +8354,10 @@ private bool language3 = false;
             leaveAddTotalLeaveDaysError.IsVisible = false;
             leavesuccess.IsVisible = false;
             a = int.Parse(addTotalLeaveDays);
-             b = int.Parse(addDaysRequested);
+            b = int.Parse(addDaysRequested);
 
 
-            if(a < b)
+            if (a < b)
             {
                 leaveAddNumberosDaysLeftError.Text = addStaffID + " has exceed his/her leave days availalbe";
                 leaveAddNumberosDaysLeftError.IsVisible = true;
@@ -8350,7 +8366,7 @@ private bool language3 = false;
                 leaveAddNumberofDayLeft.Text = c.ToString();
                 addNumberofDaysLeft = c.ToString();
             }
-            else if(a > b)
+            else if (a > b)
             {
                 leaveAddNumberosDaysLeftError.IsVisible = false;
                 c = a - b;
@@ -8365,9 +8381,9 @@ private bool language3 = false;
                 addNumberofDaysLeft = "0";
                 isvalidNumberofDaysLeft = true;
             }
-            
 
-          
+
+
         }
         else if (!(entryValue.All(char.IsDigit)))
         {
@@ -8396,13 +8412,13 @@ private bool language3 = false;
             leaveAddStaffIDError.IsVisible = true;
         }
 
-        if(testAddNameoofHODError == false)
+        if (testAddNameoofHODError == false)
         {
             leaveAddNameofHODError.IsVisible = true;
             leaveAddNameofHODError.Text = "This field cannot be empty";
         }
 
-        if(testAddOfficerError == false)
+        if (testAddOfficerError == false)
         {
             leaveAddNameofOfficerError.IsVisible = true;
             leaveAddNameofOfficerError.Text = "This field cannot be empty";
@@ -8420,7 +8436,7 @@ private bool language3 = false;
             leaveAddTypeofLeaveError.Text = "This field cannot be empty";
         }
 
-        if(testAddResumeDateError == false)
+        if (testAddResumeDateError == false)
         {
             leaveAddResumeDateError.IsVisible = true;
             leaveAddResumeDateError.Text = "Please select a date";
@@ -8432,8 +8448,8 @@ private bool language3 = false;
             leaveAddApprovalDateError.Text = "Please select a date";
         }
 
-        if (isvalidAddStaffID && isvalidAddDateApplied && isvalidAddNameofHOD && isvalidAddDaysRequested && isvalidAddTypeofLeave 
-            && isvalidAddResumeDate && isvalidAddOfficer && isvalidAddApprovalDate && isvalidTotalLeaveDays && isvalidNumberofDaysLeft) 
+        if (isvalidAddStaffID && isvalidAddDateApplied && isvalidAddNameofHOD && isvalidAddDaysRequested && isvalidAddTypeofLeave
+            && isvalidAddResumeDate && isvalidAddOfficer && isvalidAddApprovalDate && isvalidTotalLeaveDays && isvalidNumberofDaysLeft)
         {
             /*private string addStaffID;
     private string addDateApplied;
@@ -8445,12 +8461,12 @@ private bool language3 = false;
     private string addApprovalDate;
     private string addTotalLeaveDays;
     private string addNumberofDaysLeft*/
-            App.LeaveRep.AddLeaveEmployee(addStaffID, addDateApplied, addNameOfHOD, addDaysRequested,
+            await App.LeaveRep.AddLeaveEmployee(addStaffID, addDateApplied, addNameOfHOD, addDaysRequested,
                 addTypeofLeave, addResumeDate, addOfficer, addApprovalDate, addTotalLeaveDays
                 );
 
-           addRecord1(addStaffID, addTypeofLeave, addDateApplied, addResumeDate, addApprovalDate,addNameOfHOD, addOfficer, addDaysRequested
-                , addTotalLeaveDays, fullPath1);
+            addRecord1(addStaffID, addTypeofLeave, addDateApplied, addResumeDate, addApprovalDate, addNameOfHOD, addOfficer, addDaysRequested
+                 , addTotalLeaveDays, fullPath1);
             leavesuccess.Text = App.LeaveRep.message;
             leavesuccess.IsVisible = true;
 
@@ -8468,12 +8484,12 @@ private bool language3 = false;
                 leaveAddApprovalDate.Date = specificDate;
                 leaveAddTotalLeaveDays.Text = string.Empty;
             }
-           
+
 
 
         }
-       
-    } 
+
+    }
 
 
     void OnDatePickerLeaveAddDateApplied(object sender, DateChangedEventArgs e)
@@ -8484,7 +8500,7 @@ private bool language3 = false;
         DateTime desireDate = new DateTime(1960, 02, 01);
         string desireDateFormat = desireDate.ToString("dd/MM/yyyy");
 
-        if(selectedDateFormat == desireDateFormat)
+        if (selectedDateFormat == desireDateFormat)
         {
             testAddDateAppliedError = false;
             isvalidAddDateApplied = false;
@@ -8508,7 +8524,7 @@ private bool language3 = false;
         DateTime desiredDate = new DateTime(1960, 02, 01);
         string desiredDateFormat = desiredDate.ToString("dd/MM/yyyy");
 
-        if(selectedDateFormat == desiredDateFormat)
+        if (selectedDateFormat == desiredDateFormat)
         {
             testAddResumeDateError = false;
             isvalidAddResumeDate = false;
@@ -8614,7 +8630,7 @@ private bool language3 = false;
             updateCheckSuccess.IsVisible = true;
             if (done)
             {
-                
+
                 leaveUpdateMain.IsVisible = true;
                 foreach (LeaveManagementDB emp in list)
                 {
@@ -8699,7 +8715,7 @@ private bool language3 = false;
                 }
 
             }
-     
+
 
         }
 
@@ -8743,7 +8759,7 @@ private bool language3 = false;
     private bool _testAddTotalLeaveDays = false;
 
 
-    
+
     void _OnAddStaffIDTextChange(object sender, TextChangedEventArgs e)
     {
         string entryValue = _leaveAddStaffID.Text;
@@ -8858,7 +8874,7 @@ private bool language3 = false;
             leaveAddTotalLeaveDaysError.IsVisible = false;
             _showLeaveAddResult.IsVisible = false;
             _a = int.Parse(_addTotalLeaveDays);
-            
+
         }
         else if (!(entryValue.All(char.IsDigit)))
         {
@@ -8951,7 +8967,7 @@ private bool language3 = false;
         if (_isvalidAddStaffID && _isvalidAddDateApplied && _isvalidAddNameofHOD && _isvalidAddDaysRequested && _isvalidAddTypeofLeave
             && _isvalidAddResumeDate && _isvalidAddOfficer && _isvalidAddApprovalDate && _isvalidTotalLeaveDays && _isvalidNumberofDaysLeft)
         {
-           // _showLeaveAddResult.Text = _addStaffID + " " + _addDateApplied + " " + _addNameOfHOD + " " + _addDaysRequested + " " + _addTypeofLeave + " " + _addResumeDate + " " + _addOfficer + " " + _addApprovalDate + " " + _addTotalLeaveDays + " " + _addNumberofDaysLeft;
+            // _showLeaveAddResult.Text = _addStaffID + " " + _addDateApplied + " " + _addNameOfHOD + " " + _addDaysRequested + " " + _addTypeofLeave + " " + _addResumeDate + " " + _addOfficer + " " + _addApprovalDate + " " + _addTotalLeaveDays + " " + _addNumberofDaysLeft;
 
             bool result = await App.LeaveRep.UpdateAddLeaveEmployee(__staffID__, _addStaffID, _addDateApplied, _addNameOfHOD, _addDaysRequested,
                  _addTypeofLeave, _addResumeDate, _addOfficer, _addApprovalDate, _addTotalLeaveDays);
@@ -8973,10 +8989,10 @@ private bool language3 = false;
             _showLeaveAddResult.Text = App.LeaveRep.message;
 
         }
-        
 
 
-       
+
+
 
     }
     async void _btn_leaveAdd(object sender, EventArgs e)
@@ -9158,7 +9174,7 @@ private bool language3 = false;
         DateTime desireDate = new DateTime(1960, 02, 01);
         string desireDateFormant = desireDate.ToString("dd/MM/yyyy");
 
-        if(desireDateFormant == selectedDateFormat)
+        if (desireDateFormant == selectedDateFormat)
         {
             performancePlanning = "0";
         }
@@ -9221,7 +9237,7 @@ private bool language3 = false;
         }
         else
         {
-            System.Diagnostics.Debug.WriteLine( performanceDepartmentName + " " + performancePlanning + " " + performanceMidYear + " " + performanceEndYear);
+            System.Diagnostics.Debug.WriteLine(performanceDepartmentName + " " + performancePlanning + " " + performanceMidYear + " " + performanceEndYear);
 
             await App.PerformanceRep.AddData(performanceDepartmentName, performancePlanning, performanceMidYear, performanceEndYear);
             performanceUpdate_status.Text = App.PerformanceRep.statusMessage;
@@ -9341,9 +9357,9 @@ private bool language3 = false;
 
     async void _performanceCheckDepartment(object sender, EventArgs e)
     {
-            _performanceCheckDepartmentButton.BackgroundColor = Colors.Teal;
-            await Task.Delay(500);
-            _performanceCheckDepartmentButton.BackgroundColor = Colors.DarkSlateGray;
+        _performanceCheckDepartmentButton.BackgroundColor = Colors.Teal;
+        await Task.Delay(500);
+        _performanceCheckDepartmentButton.BackgroundColor = Colors.DarkSlateGray;
         if (_test_performancename)
         {
             List<PerformanceDB> list = await App.PerformanceRep.GetPerformanceRecord(_performanceDepartmentName);
@@ -9407,10 +9423,10 @@ private bool language3 = false;
                 }
             }
         }
-    
 
 
-}
+
+    }
     private string performanaceValue;
     private bool test_performanceValue = false;
     void deleteperformanceTextChange(object sender, TextChangedEventArgs e)
@@ -9448,44 +9464,76 @@ private bool language3 = false;
     //excel files
 
     //excel files
-    private  void addFileRecord(string Staff_ID_No, string Social_Security_No, string Payment_Mode, string Sub_Metro, string NHIS_No, string Drivers_License_No,string Voters_ID_No, string INTL_Passport_No, string Expiry_Date, string Title, string Surname,
-        string First_Name, string Middle_Name, string First_Appointment_Date, string Directorate, string Department, string Unit, string Cost_Center, string Job_Class, string Job_Title, string Job_Grade, string Grade_Level, 
-        string Grade_Point, string Date_of_Last_Promotion,string Retirement_Date, string Name_of_Immediate_Supervisor, string Name_of_Bank, string Branch_Name_Code, string Account_Number, string Maiden_name, string Sex, string Marital_Status, 
+    private void addFileRecord(string Staff_ID_No, string Social_Security_No, string Payment_Mode, string Sub_Metro, string NHIS_No, string Drivers_License_No, string Voters_ID_No, string INTL_Passport_No, string Expiry_Date, string Title, string Surname,
+        string First_Name, string Middle_Name, string First_Appointment_Date, string Directorate, string Department, string Unit, string Cost_Center, string Job_Class, string Job_Title, string Job_Grade, string Grade_Level,
+        string Grade_Point, string Date_of_Last_Promotion, string Retirement_Date, string Name_of_Immediate_Supervisor, string Name_of_Bank, string Branch_Name_Code, string Account_Number, string Maiden_name, string Sex, string Marital_Status,
         string Place_of_Birth, string Date_of_Birth, string Home_Town, string Region, string Nationality, string Religion, string House_No, string Street_Name, string Area, string Town_City, string Residential_Region, string Postal_Address,
         string Email_Address, string Office_Phone_No, string Mobile_Cell_Phone_No, string Disable, string If_yes_Specify, string Next_of_kin_Surname, string Next_of_kin_FirstName, string Next_of_kin_Relationship, string Next_of_kin_House_No,
         string Next_of_kin_Street_Name, string Next_of_kin_Area, string Next_of_kin_City_Town, string Next_of_kin_State_Region, string Next_of_kin_Country, string Contact_Phone_No, string Title1, string Surname1, string First_Name1, string Middle_Name1, string Date_of_Birth1,
         string Relationship1, string Title2, string Surname2, string First_Name2, string Middle_Name2, string Date_of_Birth2, string Relationship2, string Title3, string Surname3, string First_Name3, string Middle_Name3,
         string Date_of_Birth3, string Relationship3, string Title4, string Surname4, string First_Name4, string Middle_Name4, string Date_of_Birth4, string Relationship4, string Title5, string Surname5, string First_Name5,
-        string Middle_Name5, string Date_of_Birth5, string Relationship5, string Name_of_Institution_School,string Period_Attend_From,string Period_Attend_To,string Qualification,string Main_Course_of_Study,string Entry_Certificate,
-        string Skill_Training1,string Training_Institution_Organization1,string Year_Obtained1,string Skill_Training2,string Training_Institution_Organization2,string Year_Obtained2,string Skill_Training3,string Training_Institution_Organization3,
-        string Year_Obtained3,string Professional_Societies_and_Affiliations1,string Professional_Societies_and_Affiliations2,string Professional_Societies_and_Affiliations3,string Language1,string Spoken1,string Reading1,string Writing1,
-        string Language2,string Spoken2,string Reading2,string Writing2,string Language3,string Spoken3, string Reading3, string Writing3, string filePath)
+        string Middle_Name5, string Date_of_Birth5, string Relationship5, string Name_of_Institution_School, string Period_Attend_From, string Period_Attend_To, string Qualification, string Main_Course_of_Study, string Entry_Certificate,
+        string Skill_Training1, string Training_Institution_Organization1, string Year_Obtained1, string Skill_Training2, string Training_Institution_Organization2, string Year_Obtained2, string Skill_Training3, string Training_Institution_Organization3,
+        string Year_Obtained3, string Professional_Societies_and_Affiliations1, string Professional_Societies_and_Affiliations2, string Professional_Societies_and_Affiliations3, string Language1, string Spoken1, string Reading1, string Writing1,
+        string Language2, string Spoken2, string Reading2, string Writing2, string Language3, string Spoken3, string Reading3, string Writing3, string filePath)
     {
         try
         {
-            using(StreamWriter file = File.AppendText(filePath))
+            using (StreamWriter file = File.AppendText(filePath))
             {
-                file.Write(Staff_ID_No + "," + Social_Security_No + ","+ Payment_Mode +","+ Sub_Metro + "," + NHIS_No + "," + Drivers_License_No + "," + Voters_ID_No + "," + INTL_Passport_No + "," + Expiry_Date + "," + Title + "," + Surname
+                file.Write(Staff_ID_No + "," + Social_Security_No + "," + Payment_Mode + "," + Sub_Metro + "," + NHIS_No + "," + Drivers_License_No + "," + Voters_ID_No + "," + INTL_Passport_No + "," + Expiry_Date + "," + Title + "," + Surname
         + "," + First_Name + "," + Middle_Name + "," + First_Appointment_Date + "," + Directorate + "," + Department + "," + Unit + "," + Cost_Center + "," + Job_Class + "," + Job_Title + "," + Job_Grade + "," + Grade_Level
-        +"," + Grade_Point + "," + Date_of_Last_Promotion + "," + Retirement_Date + "," + Name_of_Immediate_Supervisor + "," + Name_of_Bank + "," + Branch_Name_Code + "," + Account_Number + "," + Maiden_name + "," + Sex + "," + Marital_Status
-        +"," + Place_of_Birth + "," + Date_of_Birth + "," + Home_Town + "," + Region + "," + Nationality + "," + Religion + "," + House_No + "," + Street_Name + "," + Area + "," + Town_City + "," + Residential_Region + "," + Postal_Address
-        +"," + Email_Address + "," + Office_Phone_No + "," + Mobile_Cell_Phone_No + "," + Disable + "," + If_yes_Specify + "," + Next_of_kin_Surname + "," + Next_of_kin_FirstName + "," + Next_of_kin_Relationship + "," + Next_of_kin_House_No
-        +"," + Next_of_kin_Street_Name + "," + Next_of_kin_Area + "," + Next_of_kin_City_Town + "," + Next_of_kin_State_Region + "," + Next_of_kin_Country + "," + Contact_Phone_No + "," + Title1 + "," + Surname1 + "," + First_Name1 + "," + Middle_Name1 + "," + Date_of_Birth1
-        +"," + Relationship1 + "," + Title2 + "," + Surname2 + "," + First_Name2 + "," + Middle_Name2 + "," + Date_of_Birth2 + "," + Relationship2 + "," + Title3 + "," + Surname3 + "," + First_Name3 + "," + Middle_Name3
-        +"," + Date_of_Birth3 + "," + Relationship3 + "," + Title4 + "," + Surname4 + "," + First_Name4 + "," + Middle_Name4 + "," + Date_of_Birth4 + "," + Relationship4 + "," + Title5 + "," + Surname5 + "," + First_Name5
-        +"," + Middle_Name5 + "," + Date_of_Birth5 + "," + Relationship5 + "," + Name_of_Institution_School + "," + Period_Attend_From + "," + Period_Attend_To + "," + Qualification + "," + Main_Course_of_Study + "," + Entry_Certificate
-        +"," + Skill_Training1 + "," + Training_Institution_Organization1 + "," + Year_Obtained1 + "," + Skill_Training2 + "," + Training_Institution_Organization2 + "," + Year_Obtained2 + "," + Skill_Training3 + "," + Training_Institution_Organization3
-        +"," + Year_Obtained3 + "," + Professional_Societies_and_Affiliations1 + "," + Professional_Societies_and_Affiliations2 + "," + Professional_Societies_and_Affiliations3 + "," + Language1 + "," + Spoken1 + "," + Reading1 + "," + Writing1
-        +"," + Language2 + "," + Spoken2 + "," + Reading2 + "," + Writing2 + "," + Language3 + "," + Spoken3 + "," + Reading3 + "," + Writing3 + "\n");
+        + "," + Grade_Point + "," + Date_of_Last_Promotion + "," + Retirement_Date + "," + Name_of_Immediate_Supervisor + "," + Name_of_Bank + "," + Branch_Name_Code + "," + Account_Number + "," + Maiden_name + "," + Sex + "," + Marital_Status
+        + "," + Place_of_Birth + "," + Date_of_Birth + "," + Home_Town + "," + Region + "," + Nationality + "," + Religion + "," + House_No + "," + Street_Name + "," + Area + "," + Town_City + "," + Residential_Region + "," + Postal_Address
+        + "," + Email_Address + "," + Office_Phone_No + "," + Mobile_Cell_Phone_No + "," + Disable + "," + If_yes_Specify + "," + Next_of_kin_Surname + "," + Next_of_kin_FirstName + "," + Next_of_kin_Relationship + "," + Next_of_kin_House_No
+        + "," + Next_of_kin_Street_Name + "," + Next_of_kin_Area + "," + Next_of_kin_City_Town + "," + Next_of_kin_State_Region + "," + Next_of_kin_Country + "," + Contact_Phone_No + "," + Title1 + "," + Surname1 + "," + First_Name1 + "," + Middle_Name1 + "," + Date_of_Birth1
+        + "," + Relationship1 + "," + Title2 + "," + Surname2 + "," + First_Name2 + "," + Middle_Name2 + "," + Date_of_Birth2 + "," + Relationship2 + "," + Title3 + "," + Surname3 + "," + First_Name3 + "," + Middle_Name3
+        + "," + Date_of_Birth3 + "," + Relationship3 + "," + Title4 + "," + Surname4 + "," + First_Name4 + "," + Middle_Name4 + "," + Date_of_Birth4 + "," + Relationship4 + "," + Title5 + "," + Surname5 + "," + First_Name5
+        + "," + Middle_Name5 + "," + Date_of_Birth5 + "," + Relationship5 + "," + Name_of_Institution_School + "," + Period_Attend_From + "," + Period_Attend_To + "," + Qualification + "," + Main_Course_of_Study + "," + Entry_Certificate
+        + "," + Skill_Training1 + "," + Training_Institution_Organization1 + "," + Year_Obtained1 + "," + Skill_Training2 + "," + Training_Institution_Organization2 + "," + Year_Obtained2 + "," + Skill_Training3 + "," + Training_Institution_Organization3
+        + "," + Year_Obtained3 + "," + Professional_Societies_and_Affiliations1 + "," + Professional_Societies_and_Affiliations2 + "," + Professional_Societies_and_Affiliations3 + "," + Language1 + "," + Spoken1 + "," + Reading1 + "," + Writing1
+        + "," + Language2 + "," + Spoken2 + "," + Reading2 + "," + Writing2 + "," + Language3 + "," + Spoken3 + "," + Reading3 + "," + Writing3 + "\n");
             }
-        }catch(Exception e)
+        }
+        catch (Exception e)
         {
             string error = $"Error was found!: {e.Message}";
         }
-    
+
     }
 
-    private void addRecord1(string staffID, string typeOfLeave, string dateApplied, string dateOfResumption, 
+    private void searchMatch()
+    {
+        Textwork.Text = "hello3";
+        int positionSearch = 0;
+
+        try
+        {
+            string[] lines = File.ReadAllLines(fullPath);
+            Textwork.Text = lines[1].ToString();
+            for(int i = 0; i < lines.Length; i++)
+            {
+                string[] fields = lines[i].Split(",");
+
+                if (recordMatch("STAFFF", fields, positionSearch)){
+                    Textwork.Text = string.Join(", ", fields);
+                    break;
+                }
+            }
+
+           
+        }catch(Exception e)
+        {
+            Textwork.Text = "ID does not exist " + e.Message;
+        }
+    }
+
+    private bool recordMatch(string searchTerm, string[] record, int positionOfSearchTerm)
+    {
+        return record.Length > positionOfSearchTerm && record[positionOfSearchTerm].Equals(searchTerm);
+
+    }
+    private void addRecord1(string staffID, string typeOfLeave, string dateApplied, string dateOfResumption,
         string approvalDate, string nameOfHOD, string officer, string requestedDays, string totalLeave, string filePath)
     {
         try
@@ -9497,9 +9545,10 @@ private bool language3 = false;
             using (StreamWriter file = File.AppendText(filePath))
             {
                 file.Write(staffID + "," + typeOfLeave + "," + dateApplied + "," + dateOfResumption + "," + approvalDate + "," + nameOfHOD
-                    + "," + officer + "," + requestedDays + "," + d + "," + totalLeave+ "\n");
+                    + "," + officer + "," + requestedDays + "," + d + "," + totalLeave + "\n");
             }
-        }catch(Exception e)
+        }
+        catch (Exception e)
         {
             System.Diagnostics.Debug.WriteLine($"Error was found: {e.Message}");
         }
@@ -9513,7 +9562,8 @@ private bool language3 = false;
             {
                 file.Write(department + "," + planningStage + "," + midYear + "," + endYear + "\n");
             }
-        }catch(Exception e)
+        }
+        catch (Exception e)
         {
             System.Diagnostics.Debug.WriteLine($"Error was found: {e.Message}");
         }

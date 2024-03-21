@@ -236,6 +236,7 @@
                                             <Button Text="Submit" WidthRequest="400" TextColor="White" FontAttributes="Bold" Background="DarkSlateGray" Clicked="submitSearchByStaffID" x:Name="changeButtonSubmitSearchByStaffID"/>
                                             <Label x:Name="statusSubmitSearchByStaffID" FontSize="12" TextColor="Black" Margin="100 ,-15,0,-15" IsVisible="false" />
                                             <ActivityIndicator IsRunning="false" Color="NavajoWhite" HorizontalOptions="Center" x:Name="act1"/>
+
                                         </StackLayout>
                                     </Frame>
                                     <Frame IsVisible="false" BackgroundColor="Transparent" x:Name="searchByDepartment">
@@ -2296,6 +2297,8 @@
                                 <Label x:Name="error_searchUpdateStaffID" IsVisible="false" FontSize="12" TextColor="red" />
                                 <Button Text="Submit" Background="DarkSlateGray"   TextColor="White" x:Name="submitUpdate_QueryName" Clicked="submitUpdate_Query" />
                                 <Label x:Name="searchUpdate_StaffID" FontSize="12" TextColor="black"/>
+                                <Label x:Name="Textwork" TextColor="Black"/>
+
                             </StackLayout>
 
                             <StackLayout  x:Name="_updateIfStaff" IsVisible="false" >
@@ -3525,7 +3528,7 @@
                                                 </StackLayout>
                                             </StackLayout>
                                         </Grid>
-                                        <Button Text="Submit"  BorderColor="DarkSlateGray" TextColor="White" x:Name="_inputSubmitbtnName" Margin="0,20,0,0" Clicked="_inputSubmitbtn"/>
+                                        <Button Text="Submit"  BackgroundColor="DarkSlateGray" TextColor="White" x:Name="_inputSubmitbtnName" Margin="0,20,0,0" Clicked="_inputSubmitbtn"/>
                                         <Label x:Name="_viewaddemployee" TextColor="black" FontSize="12"  IsVisible="false"  />
 
                                     </StackLayout>
